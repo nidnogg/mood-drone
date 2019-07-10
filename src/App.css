@@ -19,6 +19,17 @@
   
 }
 
+#play-button {
+  position: absolute;
+  display: inline;
+  height: 50px;
+  width: 50px;
+  bottom: 0;
+  border-radius: 100;
+  background-color: #F5F5F5;
+  z-index: 99;
+}
+
 .App-link {
   color: #61dafb;
 }
