@@ -1,65 +1,29 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Howl, Howler} from 'howler';
+import React, {Component} from 'react';
+import './css/App.css'
 
-function App() {
-  useEffect(() => {
-    console.log('Loading data...');
-    try {
-      fetch('https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Ftest.mp3?alt=media&token=c0ca5d7b-abcf-43c7-87af-764393e539af')
-        .then(response => {
-          ßconsole.log('Response is: ' + response);
-          let sound = new Howl({
-            src: [response]
-          });
-        });
-      console.log('App data successfully loaded.');
-    }
 
-    catch(error) {
-      console.log('Error detected: ' + error);
-    }
+// for legacy browsers
+const AudioContext = window.AudioContext || window.webkitAudioContext;
 
-  });
-  return (
-    <div className="App">
-      <header className="App-header">
-        <MoodShell />
-        <PlayButton />
-        <HeaderText />
-      </header>
-    </div>
-  );
+const audioContext = new AudioContext();
+
+async function fetchAudio() {
+  url = 'https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Ftest.mp3?alt=media&token=c0ca5d7b-abcf-43c7-87af-764393e539af';
+  try {
+    const response = await fetch(url);
+    console.log("response: " + response.text);
+  } catch (err) {
+    console.log('Failed to fetch. Error: ' + err);
+  }
 }
-
-
-function MoodShell() {
+const App = () => {
   return (
-    <div style={{
-      position: 'absolute',
-      bottom: '0',
-      height: '30vh',
-      width: '20vw',
-      backgroundColor: '#453643',
-      zIndex: 1
-    }}>
+    <div>
+      <h3>
+        all I ever wanted
+      </h3>
+      <audio src="" type="audio/mpeg"></audio>
     </div>
-  );
-}
-
-function PlayButton() {
-
-  return (
-    <div id="play-button">
-
-    </div>
-  );
-
-}
-function HeaderText() {
-  return (
-    <h3 className="header-text"> M O O D <br />D R O N E </h3>
   );
 }
 

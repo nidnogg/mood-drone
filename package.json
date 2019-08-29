@@ -1,32 +1,24 @@
 {
-  "name": "mood-drone-files",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "howler": "^2.1.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
+  "name": "mood-drone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "clean": "rm dist/bundle.js",
+    "start": "parcel serve public/index.html --port 3000",
+    "build-prod": "parcel build public/index.html"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "css": "^2.2.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "parcel-bundler": "^1.12.3"
   }
 }
