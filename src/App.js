@@ -23,12 +23,14 @@ const App = () => {
     <section className="main-section">
 
       {/* 
-      <h3>
-        all I ever wanted
-      </h3>
-      <AudioElem sourceUrl={audioUrls}/>
-      <PlayButton />
+    <h3>
+      all I ever wanted
+    </h3>
+    <AudioElem sourceUrl={audioUrls}/>
+    <PlayButton />
+    
     */}
+
       <div className="mood-drone">
         <Upper className="upper-wrapper"/>
         <div className="wheel-grid">
@@ -37,8 +39,7 @@ const App = () => {
         </div>
         <Main className="main-wrapper"/>
       </div>
-
-     
+  
     </section>
   );
 }

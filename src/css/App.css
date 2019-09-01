@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'alarm_clock';
+  src: url('../resources/fonts/alarm_clock.woff2') format('woff2'),
+       url('../resources/fonts/alarm_clock.woff') format('woff'),
+       url('../resources/fonts/alarm_clock.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -26,7 +35,7 @@ time, mark, audio, video {
 body {
   color: #FFF9F5;
   background-color: #F6BD60;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'alarm_clock','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow-y: hidden;
 }
 
