@@ -82,27 +82,27 @@ SVG features
 .wheel-grid {
   position: relative;
   display: inline-flex;
-  width: 650px;
+  max-width: 550px;
   justify-content: center;
   z-index: 3;
+  padding: 0;
 }
 
 .wheel-wrapper {
   position: relative;
   display: inline-block;
   flex-shrink: 0;
-  max-width: 268px;
-  min-height: 268px;
+  max-width: 272px;
+  max-height: 272px;
   
-  margin: 0 0 0 0;
-  margin-left: 1.0px;
-  margin-right: 11.5px;
+  margin: 0 5.5px 0 1.9px;
+  /*margin-left: 1.0px;
+  margin-right: 11.5px;*/
 
 }
 
 .main-wrapper {
   position: relative;
   top: -340px;
-  right: 3px;
   max-width: 544px;
 }
