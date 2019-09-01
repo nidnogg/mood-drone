@@ -12,6 +12,7 @@
     "build-prod": "parcel build public/index.html"
   },
   "dependencies": {
+    "@svgr/parcel-plugin-svgr": "^4.3.2",
     "css": "^2.2.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

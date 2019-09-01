@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import ReactSVG from 'react-svg';
-import './css/App.css'
+import './css/App.css';
+import Wheel from './resources/wheel.svg';
+import Upper from './resources/upper.svg';
+import Main from './resources/main.svg'; 
 
 
 const getAudio = () => {
@@ -13,26 +16,41 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 // generates audio context
 const audioContext = new AudioContext();
 
+const audioUrls = 'https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a';
+
 const App = () => {
   return (
-    <section className="main">
-        <h3>
-          all I ever wanted
-        </h3>
-        <AudioElem />
-        <PlayButton />
+    <section className="main-section">
+
+      {/* 
+      <h3>
+        all I ever wanted
+      </h3>
+      <AudioElem sourceUrl={audioUrls}/>
+      <PlayButton />
+    */}
+      <div className="mood-drone">
+        <Upper className="upper-wrapper"/>
+        <div className="wheel-grid">
+          <Wheel className="wheel-wrapper" />
+          <Wheel className="wheel-wrapper" />
+        </div>
+        <Main className="main-wrapper"/>
+      </div>
+
+     
     </section>
   );
 }
 
-const AudioElem = () => {
-
+const AudioElem = sourceUrl => {
   useEffect(() => {
     audioSetup();
+    console.log(sourceUrl);
   });
 
   return (
-    <audio src={'https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a'} crossOrigin="anonymous" type="audio/mpeg">Failed to load <code>audio</code> element</audio>
+    <audio src={sourceUrl} crossOrigin="anonymous" type="audio/mpeg">Failed to load <code>audio</code> element</audio>
   );
 }
 
@@ -46,7 +64,7 @@ const PlayButton = () => {
     const audioElement = document.querySelector('audio');
     
     // for diagnostics
-    getMethods(audioContext);
+    //getMethods(audioContext);
 
     if(isActive) {
       audioElement.play();

@@ -2,20 +2,42 @@
   box-sizing: border-box;
 }
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 body {
   color: #FFF9F5;
   background-color: #F6BD60;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  overflow-y: hidden;
 }
 
-.main {
+.main-section {
+  background-color: #F6BD60;
+  /*
   background-color: #2F232A;
-  /*margin-top: 20vh;*/
-  height: 100vh;
+  margin-top: 20vh;
+  */
+  height: 80%;
   text-align: center;
-  display: flex;
-  justify-content: center;
-
 }
 
 .button {
@@ -27,4 +49,60 @@ body {
   color: #FFF9F5;
   border-style: none;
   margin-top: 50px;
+}
+/*****
+SVG features
+******/
+
+.main-section {
+  display: flex;
+  justify-content: center;
+}
+.mood-drone {
+  /*display: flex;
+  justify-content: center;
+  background-color: #1C1519;
+  */
+  position: absolute;
+  margin: auto;
+  width: 50vw;
+  z-index: 0;
+
+
+}
+
+.upper-wrapper {
+  position: relative;
+  display: inline-block;
+  top: 23px;
+  max-width: 550.11px;
+  z-index: 4;
+}
+
+.wheel-grid {
+  position: relative;
+  display: inline-flex;
+  width: 650px;
+  justify-content: center;
+  z-index: 3;
+}
+
+.wheel-wrapper {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 268px;
+  min-height: 268px;
+  
+  margin: 0 0 0 0;
+  margin-left: 1.0px;
+  margin-right: 11.5px;
+
+}
+
+.main-wrapper {
+  position: relative;
+  top: -340px;
+  right: 3px;
+  max-width: 544px;
 }
