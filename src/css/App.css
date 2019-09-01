@@ -1,4 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  color: black;
-  background-color: #FFFFF9;
+  color: #FFF9F5;
+  background-color: #F6BD60;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.main {
+  background-color: #2F232A;
+  /*margin-top: 20vh;*/
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.button {
+  position: absolute;
+  display: flex;
+  text-align: center;
+  font-family: Calibri;
+  background-color: #1C1519;
+  color: #FFF9F5;
+  border-style: none;
+  margin-top: 50px;
 }

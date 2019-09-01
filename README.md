@@ -8,8 +8,8 @@
 
 ## Dependencies 
 
-Parcel, React, ReactDOM, autoprefixer, styled-components.
+Parcel, React, ReactDOM, autoprefixer
 
 ## Misc 
 
-```npx babel-upgrade``` maybe necessary for the latest Babel version to work.
+```npx babel-upgrade``` could maybe be necessary for the latest Babel version to work.

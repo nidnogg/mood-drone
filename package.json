@@ -14,7 +14,8 @@
   "dependencies": {
     "css": "^2.2.4",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-svg": "^10.0.20"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
