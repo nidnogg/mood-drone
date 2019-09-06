@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import ReactSVG from 'react-svg';
 import './css/App.css';
 import Wheel from './resources/wheel.svg';
@@ -16,21 +16,15 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 // generates audio context
 const audioContext = new AudioContext();
 
-const audioUrls = 'https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a';
+const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
 
 const App = () => {
   return (
     <section className="main-section">
 
-      {/* 
-    <h3>
-      all I ever wanted
-    </h3>
-    <AudioElem sourceUrl={audioUrls}/>
-    <PlayButton />
     
-    */}
-
+    
+  
       <div className="mood-drone">
         <Upper className="upper-wrapper"/>
         <div className="wheel-grid">
@@ -38,34 +32,56 @@ const App = () => {
           <Wheel className="wheel-wrapper" />
         </div>
         <Main className="main-wrapper"/>
+        <div className="visor-panel-wrapper">
+          <section className="visor">
+            <Clock />
+          </section>
+          <section className="control-panel">
+            <AudioElem sourceUrl={audioUrls}/>
+            <PlayButton />
+          </section>
+        </div>
       </div>
   
+    
+
     </section>
+  );
+}
+
+const Clock = () => {
+
+  let d = new Date();
+  let initial_time = d.getHours() + '<span className="blink">:</span>' + d.getMinutes();
+  initial_time = initial_time.split(':').join('<span className="blink">:</span>');
+  const [curTime, updateTime] = useState(initial_time);
+
+  useEffect(() => {
+    let d = new Date();
+    updateTime(d.getHours() + '<span className="blink">:</span>' + d.getMinutes());
+  });
+
+  return ( 
+    <h1>{curTime}</h1>
   );
 }
 
 const AudioElem = sourceUrl => {
   useEffect(() => {
     audioSetup();
-    console.log(sourceUrl);
   });
 
   return (
-    <audio src={sourceUrl} crossOrigin="anonymous" type="audio/mpeg">Failed to load <code>audio</code> element</audio>
+    <audio src={sourceUrl.sourceUrl} crossOrigin="anonymous" type="audio/mpeg">Failed to load <code>audio</code> element</audio>
   );
 }
 
 const PlayButton = () => {
   const [isActive, setActive] = useState(0);
-
-  
   useEffect(() => {
     
     // gets audio DOM node
     const audioElement = document.querySelector('audio');
-    
-    // for diagnostics
-    //getMethods(audioContext);
 
     if(isActive) {
       audioElement.play();
@@ -76,7 +92,6 @@ const PlayButton = () => {
   });
 
   return (
-
     <div>
       <button className="button" data-playing="false" role="switch" aria-checked="false" 
               onClick={() => {
@@ -94,7 +109,6 @@ const PlayButton = () => {
               }}>      
         <span>Play/Pause</span>
       </button> 
-
       <br/>
       <button className="button" data-playing="false" role="switch" aria-checked="false" 
       onClick={() => {
@@ -103,14 +117,11 @@ const PlayButton = () => {
         } else {
           setActive(0);
           audioStop();
-          ///audioElement.currentTime = 0;
         }
       }}>
         <span>Stop</span>
       </button> 
     </div>
-    
-  
   );
 }
 
@@ -121,13 +132,11 @@ const audioStop = () => {
 }
 
 const audioSetup = () => {
-
   // gets audio element
   const audioElement = document.querySelector('audio');
   console.log('audio context ' + audioContext);
   // passes it into the audio context
   const track = audioContext.createMediaElementSource(audioElement);
-
   track.connect(audioContext.destination);
 }
 

@@ -67,6 +67,22 @@ SVG features
   display: flex;
   justify-content: center;
 }
+
+.visor-panel-wrapper {
+  position: absolute;
+  top: 0px;
+  z-index: 1000;
+}
+
+.visor {
+  margin-top: 50px;
+  display: inline-block;
+}
+
+.control-panel {
+  display: inline-block;
+  padding: 20px;
+}
 .mood-drone {
   /*display: flex;
   justify-content: center;
@@ -76,8 +92,7 @@ SVG features
   margin: auto;
   width: 50vw;
   z-index: 0;
-
-
+  top:40px;
 }
 
 .upper-wrapper {
@@ -103,15 +118,23 @@ SVG features
   flex-shrink: 0;
   max-width: 272px;
   max-height: 272px;
-  
   margin: 0 5.5px 0 1.9px;
-  /*margin-left: 1.0px;
-  margin-right: 11.5px;*/
-
 }
 
 .main-wrapper {
   position: relative;
   top: -340px;
   max-width: 544px;
+}
+
+
+.drone-button {
+  display: none;
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  right: 60px;
+  background-color: #1C1519;
+  border-style: none;
+  z-index: 5;
 }
