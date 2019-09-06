@@ -70,13 +70,17 @@ SVG features
 
 .visor-panel-wrapper {
   position: absolute;
-  top: 0px;
+  display: flex;
+  top: 520px;
+  right: 48%;
+  /*padding: 0px 0px 0px 0px;*/
   z-index: 1000;
 }
 
 .visor {
   margin-top: 50px;
   display: inline-block;
+  color: #1C1519;
 }
 
 .control-panel {
