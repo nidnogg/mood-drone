@@ -63,3 +63,6 @@ typings/
 # parcel folders
 .cache
 dist
+
+# annoying vscode shit
+.vscode
