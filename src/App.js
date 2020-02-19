@@ -21,10 +21,6 @@ const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.
 const App = () => {
   return (
     <section className="main-section">
-
-    
-    
-  
       <div className="mood-drone">
         <Upper className="upper-wrapper"/>
         <div className="wheel-grid">
@@ -42,9 +38,6 @@ const App = () => {
           </section>
         </div>
       </div>
-  
-    
-
     </section>
   );
 }

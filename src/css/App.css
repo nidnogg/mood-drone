@@ -87,16 +87,34 @@ SVG features
   display: inline-block;
   padding: 20px;
 }
+
 .mood-drone {
   /*display: flex;
   justify-content: center;
   background-color: #1C1519;
   */
   position: absolute;
-  margin: auto;
-  width: 50vw;
+  max-width: 50%;
   z-index: 0;
-  top:40px;
+  top: 40px;
+}
+
+@media (max-width: 1115px) {
+  .mood-drone {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 800px) {
+  .mood-drone {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 660px) {
+  .mood-drone {
+    max-width: 90%;
+  }
 }
 
 .upper-wrapper {
@@ -110,7 +128,8 @@ SVG features
 .wheel-grid {
   position: relative;
   display: inline-flex;
-  max-width: 550px;
+  /*max-width: 550px;*/
+  max-width: 558px;
   justify-content: center;
   z-index: 3;
   padding: 0;
@@ -119,9 +138,9 @@ SVG features
 .wheel-wrapper {
   position: relative;
   display: inline-block;
-  flex-shrink: 0;
-  max-width: 272px;
-  max-height: 272px;
+  flex-shrink: 1;
+  /*max-width: 272px;*/
+  /*max-height: 272px;*/
   margin: 0 5.5px 0 1.9px;
 }
 
@@ -130,7 +149,6 @@ SVG features
   top: -340px;
   max-width: 544px;
 }
-
 
 .drone-button {
   display: none;

@@ -64,5 +64,9 @@ typings/
 .cache
 dist
 
+# diff flag tricks diff viewers in every system (git diff, github, Phabricator, Bitbucket, etc) to think that the file is a binary file that should be collapsed. 
+# you can still uncollapse the file if you need to verify the changes.
+package-lock.json -diff
+
 # annoying vscode shit
 .vscode
