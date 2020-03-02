@@ -144,6 +144,17 @@ SVG features
   margin: 0 5.5px 0 1.9px;
 }
 
+.playing {
+  animation: rotation 0.8s infinite linear;
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+}
+
+@keyframes rotation {
+  from {transform: rotate(0deg);}
+  to   {transform: rotate(359deg);}
+}
+
 .main-wrapper {
   position: relative;
   top: -340px;

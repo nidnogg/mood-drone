@@ -18,14 +18,16 @@ const audioContext = new AudioContext();
 
 const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
 
+let wheelClass = "wheel-wrapper playing";
+
 const App = () => {
   return (
     <section className="main-section">
       <div className="mood-drone">
         <Upper className="upper-wrapper"/>
         <div className="wheel-grid">
-          <Wheel className="wheel-wrapper" />
-          <Wheel className="wheel-wrapper" />
+          <WheelSpinner />
+          <WheelSpinner />
         </div>
         <Main className="main-wrapper"/>
         <div className="visor-panel-wrapper">
@@ -88,6 +90,17 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
+const WheelSpinner = () => {
+  const [willSpin, setSpinning] = useState(0);
+  // Fades in spin
+  if(willSpin) {
+    wheelClass = "wheel-wrapper spin-fade";
+  }
+  return (
+    <Wheel className={wheelClass}/>
+  );
+
+}
 const AudioElem = sourceUrl => {
   useEffect(() => {
     audioSetup();
@@ -107,9 +120,11 @@ const PlayButton = () => {
 
     if(isActive) {
       audioElement.play();
+      wheelClass = "wheel-wrapper playing";
 
     } else {
       audioElement.pause();
+      wheelClass = "wheel-wrapper"
     }
   });
 
