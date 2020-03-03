@@ -137,17 +137,15 @@ SVG features
 
 .wheel-wrapper {
   position: relative;
-  display: inline-block;
   flex-shrink: 1;
   /*max-width: 272px;*/
   /*max-height: 272px;*/
-  margin: 0 5.5px 0 1.9px;
+  margin: 0 5.5px 0 1.6px;
 }
 
 .playing {
   animation: rotation 0.8s infinite linear;
-  transform-origin: 50% 50%;
-  transform-box: fill-box;
+  transform-origin: 50.777% 49.999%;
 }
 
 @keyframes rotation {

@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
-import ReactSVG from 'react-svg';
+import React, {useEffect, useState, useRef, useContext} from 'react';
+import { Tween, Timeline } from "gsap";
 import './css/App.css';
 import Wheel from './resources/wheel.svg';
 import Upper from './resources/upper.svg';
@@ -18,28 +18,13 @@ const audioContext = new AudioContext();
 
 const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
 
-let wheelClass = "wheel-wrapper playing";
+let wheelClass = "wheel-wrapper";
 
 const App = () => {
+
   return (
     <section className="main-section">
-      <div className="mood-drone">
-        <Upper className="upper-wrapper"/>
-        <div className="wheel-grid">
-          <WheelSpinner />
-          <WheelSpinner />
-        </div>
-        <Main className="main-wrapper"/>
-        <div className="visor-panel-wrapper">
-          <section className="visor">
-            <Clock />
-          </section>
-          <section className="control-panel">
-            <AudioElem sourceUrl={audioUrls}/>
-            <PlayButton />
-          </section>
-        </div>
-      </div>
+      <MoodD />
     </section>
   );
 }
@@ -90,12 +75,46 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-const WheelSpinner = () => {
-  const [willSpin, setSpinning] = useState(0);
-  // Fades in spin
-  if(willSpin) {
-    wheelClass = "wheel-wrapper spin-fade";
+const MoodD = () => {
+  const wheel0 = useRef();
+  const wheel1 = useRef();
+  const [isActive, setActive] = useState(0);
+
+  // value should be either 0 or 1. This callback is passed to child components
+  function setActiveCallback(value) {
+    setActive(value);
   }
+
+  function isActiveCallback() {
+    return isActive;
+  } 
+
+  return (
+    <div className="mood-drone">
+      <Upper className="upper-wrapper"/>
+        <div className="wheel-grid">
+          <WheelSpinner ref={wheel0} />
+          <WheelSpinner ref={wheel1}/>
+        </div>
+        <Main className="main-wrapper"/>
+        <div className="visor-panel-wrapper">
+          <section className="visor">
+            <Clock />
+          </section>
+          <section className="control-panel">
+            <AudioElem sourceUrl={audioUrls}/>
+            <PlayButton isActive={isActiveCallback} setActive={setActiveCallback} />
+          </section>
+        </div>
+    </div>
+  );
+}
+
+const WheelSpinner = () => {
+  // Fades in spin
+  useEffect(() => {
+    
+  });
   return (
     <Wheel className={wheelClass}/>
   );
@@ -111,20 +130,19 @@ const AudioElem = sourceUrl => {
   );
 }
 
-const PlayButton = () => {
-  const [isActive, setActive] = useState(0);
+const PlayButton = props => {
+  //const [isActive, setActive] = useState();
+
   useEffect(() => {
     
     // gets audio DOM node
     const audioElement = document.querySelector('audio');
 
-    if(isActive) {
+    if(props.isActive()) {
       audioElement.play();
-      wheelClass = "wheel-wrapper playing";
 
     } else {
       audioElement.pause();
-      wheelClass = "wheel-wrapper"
     }
   });
 
@@ -138,10 +156,10 @@ const PlayButton = () => {
                   audioContext.resume();
                 }
                 
-                if(!isActive) {
-                  setActive(1);
+                if(!props.isActive()) {
+                  props.setActive(1);
                 } else {
-                  setActive(0);
+                  props.setActive(0);
                 }
               }}>      
         <span>Play/Pause</span>
@@ -149,10 +167,10 @@ const PlayButton = () => {
       <br/>
       <button className="button" data-playing="false" role="switch" aria-checked="false" 
       onClick={() => {
-        if(!isActive) {
+        if(!props.isActive()) {
           audioStop();
         } else {
-          setActive(0);
+          props.setActive(0);
           audioStop();
         }
       }}>
@@ -166,6 +184,7 @@ const audioStop = () => {
    // gets audio element
    const audioElement = document.querySelector('audio');
    audioElement.currentTime = 0;
+
 }
 
 const audioSetup = () => {
