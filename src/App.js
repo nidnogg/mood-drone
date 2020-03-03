@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
-import { Tween, Timeline } from "gsap";
+import { TweenMax, TweenLite, Linear, gsap } from "gsap";
 import './css/App.css';
 import Wheel from './resources/wheel.svg';
 import Upper from './resources/upper.svg';
@@ -76,8 +76,6 @@ function useInterval(callback, delay) {
 }
 
 const MoodD = () => {
-  const wheel0 = useRef();
-  const wheel1 = useRef();
   const [isActive, setActive] = useState(0);
 
   // value should be either 0 or 1. This callback is passed to child components
@@ -92,10 +90,7 @@ const MoodD = () => {
   return (
     <div className="mood-drone">
       <Upper className="upper-wrapper"/>
-        <div className="wheel-grid">
-          <WheelSpinner ref={wheel0} />
-          <WheelSpinner ref={wheel1}/>
-        </div>
+        <SpinningWheels isActive={isActiveCallback} />
         <Main className="main-wrapper"/>
         <div className="visor-panel-wrapper">
           <section className="visor">
@@ -110,13 +105,41 @@ const MoodD = () => {
   );
 }
 
-const WheelSpinner = () => {
+const SpinningWheels = props => {
+  const wheel0 = useRef(0);
+  const wheel1 = useRef(0);
+  let rotateCD = new TweenMax.to([wheel0.current, wheel1.current], .3, {rotation:"360", ease:Linear.easeNone,repeat:-1,paused:true}).timeScale(0);
+  //let tl = gsap.timeline({repeat: 0});
+  //tl.to([wheel0.current, wheel1.current], {rotation: 360, ease: 'easeNone', repeat: -1})
+
   // Fades in spin
   useEffect(() => {
     
+    /*let tween = gsap.fromTo(
+      [wheel0.current, wheel1.current], 
+      {rotation: 0, duration: 0.5, ease: "circ", repeat: -1},
+      {rotation: 360, repeat: -1}
+    );
+    tween.pause();
+*/
+    if(props.isActive) {
+      rotateCD.play();
+      TweenLite.to(rotateCD,2,{timeScale:1});
+    } else {
+      TweenLite.to(rotateCD,2,{timeScale:0,onComplete:function(){ this.pause() }})
+    }
   });
+
   return (
-    <Wheel className={wheelClass}/>
+    <div className="wheel-grid">
+      <div ref={wheel0}>
+        <Wheel className={wheelClass} />  
+      </div>
+      <div ref={wheel1}>
+        <Wheel className={wheelClass} />  
+      </div>
+    </div>
+
   );
 
 }
@@ -162,6 +185,7 @@ const PlayButton = props => {
                   props.setActive(0);
                 }
               }}>      
+  
         <span>Play/Pause</span>
       </button> 
       <br/>
