@@ -7,7 +7,6 @@ import Clock from './Clock.js';
 import Upper from './resources/upper.svg';
 import Main from './resources/main.svg'; 
 
-
 const getAudio = () => {
   return 'https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a';
 }
@@ -23,7 +22,6 @@ const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.
 let wheelClass = "wheel-wrapper";
 
 const App = () => {
-
   return (
     <section className="main-section">
       <MoodD />
@@ -61,25 +59,37 @@ const MoodD = () => {
   );
 }
 
+// Currently holds both wheels and uses state from MoodD parent component to fade spin animations
 const SpinningWheels = props => {
   const wheel0 = useRef(0);
-  const wheel1 = useRef(null);
+  const wheel1 = useRef(0);
+  const rotation = useRef(0);
+  const didMountRef = useRef(0); // this hook starts as a false ref, after first render it is set to true
   // Applies style="transform: translate3d(0px, 0px, 0px) rotate(0deg);" 
-  let rotation = gsap.to([wheel0.current, wheel1.current], .3, {rotation:"360", ease:"none", repeat:-1, paused:true }).timeScale(0);
+  //let rotation = gsap.to([wheel0.current, wheel1.current], .5, {rotation:"360", ease:"linear", repeat:-1, paused:true }).timeScale(0);
   // Fades in spin
-  useEffect(() => {
-    if(props.isActive) {
-      console.log('isActive!');
-      rotation.play();
-      gsap.to(rotation,2 ,{timeScale:1});
-    }
-  
-    if(props.isActive == 0) {
-      console.log('isNotActive!');
-      gsap.to(rotateCD, 2 , { timeScale:0, onComplete:function(){ this.pause() }});
-    }
 
+  useEffect(() => {
+    if(didMountRef.current) {
+      rotation.current = gsap.to([wheel0.current, wheel1.current], {duration: .7, rotation:"360", ease:"linear", repeat:-1, paused:true }).timeScale(0);
+
+      if(props.isActive()) {
+        console.log('isActive!');
+        rotation.current.play();
+        gsap.to(rotation.current, {duration: 0.8, timeScale:1}); // tweens rotation timescale to 1, over 0.8 seconds
+      }
+
+      if(!props.isActive()) {
+        console.log('isNotActive!');
+        // tweens rotation timescale back to 1, over 0.8 seconds, and pauses after tweening
+        //gsap.to(rotation.current, {duration: 0.8, timeScale:0, onComplete:() => { console.log('boof'); rotation.current.pause()}}); 
+        gsap.to(rotation.current, {duration: 0.8, timeScale: 0, onComplete: () => { rotation.current.pause(); }});
+      }
+    } else {
+      didMountRef.current = 1;
+    }
   });
+  
 
   return (
     <div className="wheel-grid">
@@ -184,11 +194,10 @@ const AudioElem = sourceUrl => {
   );
 }
 
+// Receives moodD parent callback state functions as props and sets MoodD's state from these
 const PlayButton = props => {
-  //const [isActive, setActive] = useState();
 
   useEffect(() => {
-    
     // gets audio DOM node
     const audioElement = document.querySelector('audio');
 
@@ -238,7 +247,6 @@ const audioStop = () => {
    // gets audio element
    const audioElement = document.querySelector('audio');
    audioElement.currentTime = 0;
-
 }
 
 const audioSetup = () => {
