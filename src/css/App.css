@@ -127,7 +127,7 @@ SVG features
 
 .wheel-grid {
   position: relative;
-  display: inline-flex;
+  display: inline-flex; /* Warning - breaks in Chrome. Could be something to do with overflow:hidden */
   /*max-width: 550px;*/
   max-width: 558px;
   justify-content: center;
@@ -139,6 +139,7 @@ SVG features
   height: 100%;
   width: auto;
 }
+
 .wheel-wrapper {
   position: relative;
   flex-shrink: 1;
