@@ -1,7 +1,9 @@
 import React, {useEffect, useState, useRef, useContext} from 'react';
 import { TweenMax, TweenLite, Linear, gsap } from "gsap";
 import './css/App.css';
-import Wheel from './resources/wheel.svg';
+//import Wheel from './resources/wheel.svg';
+import Wheel from './Wheel.js';
+import Clock from './Clock.js';
 import Upper from './resources/upper.svg';
 import Main from './resources/main.svg'; 
 
@@ -27,52 +29,6 @@ const App = () => {
       <MoodD />
     </section>
   );
-}
-
-const Clock = () => {
-
-  let initial_time = getTime();
- //initial_time = initial_time.split(':').join('<span className="blink">:</span>');
-  const [curTime, updateTime] = useState(initial_time);
-
-  useInterval(() => {
-    updateTime(getTime());
-  }, 1000);
-
-  return ( 
-    <h1>{curTime}</h1>
-  );
-}
-
-const getTime = () => {
-  let d = new Date();
-
-  let hours = d.getHours() < 10 ? hours = '0' + d.getHours() : d.getHours();
-  let minutes = d.getMinutes() < 10 ? minutes = '0' + d.getMinutes() : d.getMinutes();
-  
-  const curTime = hours + ':' + minutes;
-
-  return curTime;
-}
-
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
 }
 
 const MoodD = () => {
@@ -107,36 +63,111 @@ const MoodD = () => {
 
 const SpinningWheels = props => {
   const wheel0 = useRef(0);
-  const wheel1 = useRef(0);
-  let rotateCD = new TweenMax.to([wheel0.current, wheel1.current], .3, {rotation:"360", ease:Linear.easeNone,repeat:-1,paused:true}).timeScale(0);
-  //let tl = gsap.timeline({repeat: 0});
-  //tl.to([wheel0.current, wheel1.current], {rotation: 360, ease: 'easeNone', repeat: -1})
-
+  const wheel1 = useRef(null);
+  // Applies style="transform: translate3d(0px, 0px, 0px) rotate(0deg);" 
+  let rotation = gsap.to([wheel0.current, wheel1.current], .3, {rotation:"360", ease:"none", repeat:-1, paused:true }).timeScale(0);
   // Fades in spin
   useEffect(() => {
-    
-    /*let tween = gsap.fromTo(
-      [wheel0.current, wheel1.current], 
-      {rotation: 0, duration: 0.5, ease: "circ", repeat: -1},
-      {rotation: 360, repeat: -1}
-    );
-    tween.pause();
-*/
     if(props.isActive) {
-      rotateCD.play();
-      TweenLite.to(rotateCD,2,{timeScale:1});
-    } else {
-      TweenLite.to(rotateCD,2,{timeScale:0,onComplete:function(){ this.pause() }})
+      console.log('isActive!');
+      rotation.play();
+      gsap.to(rotation,2 ,{timeScale:1});
     }
+  
+    if(props.isActive == 0) {
+      console.log('isNotActive!');
+      gsap.to(rotateCD, 2 , { timeScale:0, onComplete:function(){ this.pause() }});
+    }
+
   });
 
   return (
     <div className="wheel-grid">
-      <div ref={wheel0}>
-        <Wheel className={wheelClass} />  
+      <div className="wheel-container">
+        <svg ref={wheel0} className={wheelClass} data-name="Layer 1" viewBox="0 0 268 268" >
+        <circle cx={134} cy={134} r={134} fill="#675858" />
+        <circle cx={133.92} cy={133.58} r={49.33} fill="#675858" />
+        <circle cx={133.92} cy={133.58} r={48.83} fill="none" stroke="#e6dad1" />
+        <circle cx={132.66} cy={133.58} r={48.07} fill="#675858" />
+        <circle cx={132.66} cy={133.58} r={47.57} fill="none" stroke="#40393d" />
+        <path
+          fill="#2f232a"
+          d="M159.67 125.82l-23.1 36.44-3.17-2.44L157.28 124z"
+        />
+        <path fill="#9b8c8c" d="M136.6 162.24l-50-36.12.5-2.12 51.25 35.78z" />
+        <path
+          fill="#2f232a"
+          d="M158.86 126.53l-49.62-33.45a1.34 1.34 0 01.85-.49c.45 0 .23-.1.23-.1l49.57 33.15z"
+        />
+        <path
+          fill="#7e6969"
+          d="M156.33 126.53L106.7 93.08a1.34 1.34 0 01.85-.49c.45 0 .23-.1.23-.1l49.57 33.15z"
+        />
+        <path
+          fill="#7e6969"
+          d="M156.32 125.48l-22.8 31.08s.4.46.6.46.82.65.82.65l21.83-31.36z"
+        />
+        <path
+          fill="none"
+          stroke="#605252"
+          d="M176.83 174l18.78 70.26a60.39 60.39 0 01-11.71 6.28 110.55 110.55 0 01-15.3 4.5l-38.86-63.43s-18.87.8-32.52-9-22.05-30.2-22.05-30.2L5.83 133.84l1-14.78 3.14-15 71-1.46s10.75-17 26.7-23.72 37.14-3.2 37.14-3.2l50-51.5 12.87 6.92 10.9 11.14L182 105.7s8.74 16.62 7.45 33.7-12.62 34.6-12.62 34.6z"
+        />
+        <path
+          fill="#675858"
+          d="M63.1 168.7a7.81 7.81 0 117.81-7.81 7.82 7.82 0 01-7.81 7.81z"
+        />
+        <path
+          fill="#605252"
+          d="M63.1 168.2a7.31 7.31 0 10-7.31-7.31 7.32 7.32 0 007.31 7.31m0 1a8.31 8.31 0 118.31-8.31 8.31 8.31 0 01-8.31 8.31z"
+        />
+        <path
+          fill="#2f232a"
+          d="M178 91a41.25 41.25 0 00-7.78-8.57 36.6 36.6 0 00-9.87-5.21L177 60.6a12.07 12.07 0 013.27.94 37.82 37.82 0 013.58 1.66 14 14 0 013.5 3.4 16.4 16.4 0 012.24 4.69zM66.6 113.6a41.25 41.25 0 00-3.53 11 36.6 36.6 0 00.42 11.15l-22.74-6.17a12.07 12.07 0 01-.82-3.3 37.82 37.82 0 01-.35-3.93 14 14 0 011.2-4.73 16.4 16.4 0 012.94-4.29zm80.7 80.2a41.25 41.25 0 0011.31-2.46 36.6 36.6 0 009.45-5.94l6 22.78a12.07 12.07 0 01-2.45 2.36 37.82 37.82 0 01-3.23 2.27 14 14 0 01-4.69 1.33 16.4 16.4 0 01-5.18-.4z"
+        />
+      </svg>
       </div>
-      <div ref={wheel1}>
-        <Wheel className={wheelClass} />  
+      <div className="wheel-container">
+        <svg ref={wheel1} className={wheelClass} data-name="Layer 1" viewBox="0 0 268 268" >
+          <circle cx={134} cy={134} r={134} fill="#675858" />
+          <circle cx={133.92} cy={133.58} r={49.33} fill="#675858" />
+          <circle cx={133.92} cy={133.58} r={48.83} fill="none" stroke="#e6dad1" />
+          <circle cx={132.66} cy={133.58} r={48.07} fill="#675858" />
+          <circle cx={132.66} cy={133.58} r={47.57} fill="none" stroke="#40393d" />
+          <path
+            fill="#2f232a"
+            d="M159.67 125.82l-23.1 36.44-3.17-2.44L157.28 124z"
+          />
+          <path fill="#9b8c8c" d="M136.6 162.24l-50-36.12.5-2.12 51.25 35.78z" />
+          <path
+            fill="#2f232a"
+            d="M158.86 126.53l-49.62-33.45a1.34 1.34 0 01.85-.49c.45 0 .23-.1.23-.1l49.57 33.15z"
+          />
+          <path
+            fill="#7e6969"
+            d="M156.33 126.53L106.7 93.08a1.34 1.34 0 01.85-.49c.45 0 .23-.1.23-.1l49.57 33.15z"
+          />
+          <path
+            fill="#7e6969"
+            d="M156.32 125.48l-22.8 31.08s.4.46.6.46.82.65.82.65l21.83-31.36z"
+          />
+          <path
+            fill="none"
+            stroke="#605252"
+            d="M176.83 174l18.78 70.26a60.39 60.39 0 01-11.71 6.28 110.55 110.55 0 01-15.3 4.5l-38.86-63.43s-18.87.8-32.52-9-22.05-30.2-22.05-30.2L5.83 133.84l1-14.78 3.14-15 71-1.46s10.75-17 26.7-23.72 37.14-3.2 37.14-3.2l50-51.5 12.87 6.92 10.9 11.14L182 105.7s8.74 16.62 7.45 33.7-12.62 34.6-12.62 34.6z"
+          />
+          <path
+            fill="#675858"
+            d="M63.1 168.7a7.81 7.81 0 117.81-7.81 7.82 7.82 0 01-7.81 7.81z"
+          />
+          <path
+            fill="#605252"
+            d="M63.1 168.2a7.31 7.31 0 10-7.31-7.31 7.32 7.32 0 007.31 7.31m0 1a8.31 8.31 0 118.31-8.31 8.31 8.31 0 01-8.31 8.31z"
+          />
+          <path
+            fill="#2f232a"
+            d="M178 91a41.25 41.25 0 00-7.78-8.57 36.6 36.6 0 00-9.87-5.21L177 60.6a12.07 12.07 0 013.27.94 37.82 37.82 0 013.58 1.66 14 14 0 013.5 3.4 16.4 16.4 0 012.24 4.69zM66.6 113.6a41.25 41.25 0 00-3.53 11 36.6 36.6 0 00.42 11.15l-22.74-6.17a12.07 12.07 0 01-.82-3.3 37.82 37.82 0 01-.35-3.93 14 14 0 011.2-4.73 16.4 16.4 0 012.94-4.29zm80.7 80.2a41.25 41.25 0 0011.31-2.46 36.6 36.6 0 009.45-5.94l6 22.78a12.07 12.07 0 01-2.45 2.36 37.82 37.82 0 01-3.23 2.27 14 14 0 01-4.69 1.33 16.4 16.4 0 01-5.18-.4z"
+          />
+        </svg>
       </div>
     </div>
 
@@ -172,20 +203,19 @@ const PlayButton = props => {
   return (
     <div>
       <button className="button" data-playing="false" role="switch" aria-checked="false" 
-              onClick={() => {
+        onClick={() => {
 
-                // check for autoplay policy
-                if(audioContext.state == 'suspended') {
-                  audioContext.resume();
-                }
-                
-                if(!props.isActive()) {
-                  props.setActive(1);
-                } else {
-                  props.setActive(0);
-                }
-              }}>      
-  
+          // check for autoplay policy
+          if(audioContext.state == 'suspended') {
+            audioContext.resume();
+          }
+          
+          if(!props.isActive()) {
+            props.setActive(1);
+          } else {
+            props.setActive(0);
+          }
+        }}>      
         <span>Play/Pause</span>
       </button> 
       <br/>

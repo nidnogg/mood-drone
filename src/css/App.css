@@ -135,6 +135,10 @@ SVG features
   padding: 0;
 }
 
+.wheel-container {
+  height: 100%;
+  width: auto;
+}
 .wheel-wrapper {
   position: relative;
   flex-shrink: 1;
@@ -144,7 +148,9 @@ SVG features
   margin: 0 5.5px 0 4.6px;
   height: auto;
   /*transform-origin: 50.777% 49.999%;*/
-  animation: rotation 0.8s infinite linear;
+  /*animation: rotation 0.8s infinite linear;*/
+  /* Without this pre-set to zero values a very small y-axis shift change occurs in firefox 60+ */
+  transform: translate3d(0px, 0px, 0px) rotate(0deg);
 }
 
 .playing {
