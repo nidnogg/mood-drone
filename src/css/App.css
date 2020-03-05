@@ -36,17 +36,16 @@ body {
   color: #FFF9F5;
   background-color: #F6BD60;
   font-family: 'alarm_clock','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 100%;
   overflow-y: hidden;
 }
 
 .main-section {
-  background-color: #F6BD60;
-  /*
-  background-color: #2F232A;
-  margin-top: 20vh;
-  */
-  height: 80%;
   text-align: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  bottom: 0;
 }
 
 .button {
@@ -59,45 +58,53 @@ body {
   border-style: none;
   margin-top: 50px;
 }
-/*****
-SVG features
-******/
-
-.main-section {
-  display: flex;
-  justify-content: center;
-}
 
 .visor-panel-wrapper {
   position: absolute;
-  display: flex;
-  top: 520px;
-  right: 48%;
-  /*padding: 0px 0px 0px 0px;*/
+  display: block;
+  bottom: 20px;
   z-index: 1000;
-}
-
-.visor {
-  margin-top: 50px;
   display: inline-block;
+  font-size: 2.0rem;
   color: #1C1519;
 }
 
 .control-panel {
+  position: absolute;
   display: inline-block;
   padding: 20px;
+  bottom: 0;
 }
 
-.mood-drone {
+.drone-button {
+  display: none;
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  right: 60px;
+  background-color: #1C1519;
+  border-style: none;
+  z-index: 5;
+}
+
+/*****
+SVG features
+******/
+
+.drone-wrapper {
   /*display: flex;
   justify-content: center;
   background-color: #1C1519;
   */
   position: absolute;
-  max-width: 50%;
+  display: flex;
+  justify-content:center;
   z-index: 0;
-  top: 40px;
+  max-height: 80vh;
+  bottom: 0;
 }
+
+
 
 @media (max-width: 1115px) {
   .mood-drone {
@@ -117,66 +124,7 @@ SVG features
   }
 }
 
-.upper-wrapper {
-  position: relative;
-  display: inline-block;
-  top: 23px;
-  max-width: 550.11px;
-  z-index: 4;
-}
-
-.wheel-grid {
-  position: relative;
-  display: inline-flex; /* Warning - breaks in Chrome. Could be something to do with overflow:hidden */
-  /*max-width: 550px;*/
-  max-width: 558px;
-  justify-content: center;
-  z-index: 3;
-  padding: 0;
-}
-
-.wheel-container {
-  height: 100%;
-  width: auto;
-}
-
-.wheel-wrapper {
-  position: relative;
-  flex-shrink: 1;
-  max-width: 280px;
-  /*max-height: 272px;*/
-  /*margin: 0 5.5px 0 1.6px; before svg resize*/
-  margin: 0 5.5px 0 4.6px;
-  height: auto;
-  /*transform-origin: 50.777% 49.999%;*/
-  /*animation: rotation 0.8s infinite linear;*/
-  /* Without this pre-set to zero values a very small y-axis shift change occurs in firefox 60+ */
-  transform: translate3d(0px, 0px, 0px) rotate(0deg);
-}
-
-.playing {
-}
-
-
 @keyframes rotation {
   from {transform: rotate(0deg);}
   to   {transform: rotate(359deg);}
-}
-
-
-.main-wrapper {
-  position: relative;
-  top: -340px;
-  max-width: 544px;
-}
-
-.drone-button {
-  display: none;
-  position: absolute;
-  height: 300px;
-  width: 300px;
-  right: 60px;
-  background-color: #1C1519;
-  border-style: none;
-  z-index: 5;
 }
