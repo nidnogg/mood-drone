@@ -19,7 +19,6 @@ const Drone = props => {
     } else if (props.isActive()) {
         gsap.to(rotation.current, {
           duration: 1.0,
-          transformOrigin:"50% 50%",
           timeScale: 1,
           overwrite: true,
           onStart() {
@@ -29,7 +28,6 @@ const Drone = props => {
       } else {
         gsap.to(rotation.current, {
           duration: 0.8,
-          transformOrigin:"50% 50%",
           timeScale: 0,
           overwrite: true,
           onComplete: () => {

@@ -27,16 +27,15 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+  font: inherit;
+  font-size: 100%;
 	vertical-align: baseline;
 }
 
 body {
   color: #FFF9F5;
   background-color: #F6BD60;
-  font-family: 'alarm_clock','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 100%;
+  font-family: 'alarm_clock', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow-y: hidden;
 }
 
@@ -50,41 +49,31 @@ body {
 
 .button {
   position: absolute;
-  display: flex;
+  display: inline-flex;
+  bottom: 0%;
+  height: 0vh;
   text-align: center;
   font-family: Calibri;
   background-color: #1C1519;
   color: #FFF9F5;
   border-style: none;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
 }
 
 .visor-panel-wrapper {
   position: absolute;
   display: block;
-  bottom: 20px;
+  bottom: 9%;
+  height: 10%;
   z-index: 1000;
   display: inline-block;
-  font-size: 2.0rem;
+  /*font-size: calc(1.5rem + 5vw - (1.5em *(1px/1vh) ) );*/
+  font-size: calc(0.5rem + 0.5vw + 2.5vh);
   color: #1C1519;
 }
 
-.control-panel {
-  position: absolute;
-  display: inline-block;
-  padding: 20px;
-  bottom: 0;
-}
-
-.drone-button {
-  display: none;
-  position: absolute;
-  height: 300px;
-  width: 300px;
-  right: 60px;
-  background-color: #1C1519;
-  border-style: none;
-  z-index: 5;
+.alarm-text {
+  font-size: calc(0.117rem + 0.20vw + 1.5vh);
 }
 
 /*****
@@ -92,10 +81,6 @@ SVG features
 ******/
 
 .drone-wrapper {
-  /*display: flex;
-  justify-content: center;
-  background-color: #1C1519;
-  */
   position: absolute;
   display: flex;
   justify-content:center;
@@ -103,8 +88,6 @@ SVG features
   max-height: 80vh;
   bottom: 0;
 }
-
-
 
 @media (max-width: 1115px) {
   .mood-drone {

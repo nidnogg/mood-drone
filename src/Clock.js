@@ -10,8 +10,11 @@ const Clock = () => {
     updateTime(getTime());
   }, 1000);
 
-  return ( 
-    <h1>{curTime}</h1>
+  return (
+    <div>
+      <h1>{curTime}</h1>
+      <h6 className="alarm-text">ALARM SET</h6>
+    </div>
   );
 }
 
