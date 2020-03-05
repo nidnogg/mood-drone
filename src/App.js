@@ -34,10 +34,8 @@ const MoodD = () => {
         <section className="visor">
           <Clock />
         </section>
-        <section className="control-panel">
-          <Playback isActive={isActiveCallback} setActive={setActiveCallback} />
-        </section>
       </div>
+      <Playback isActive={isActiveCallback} setActive={setActiveCallback} />
     </div>
   );
 }
