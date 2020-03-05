@@ -52,23 +52,7 @@ const Playback = props => {
   return (
     <div className="buttons-wrapper">
       <AudioElem sourceUrl={audioUrls}/>
-        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
-          onClick={() => {
-            // check for autoplay policy
-            if(audioContext.state == 'suspended') {
-              audioContext.resume();
-            }
-          
-            if(!props.isActive()) {
-              props.setActive(1);
-            }
-          }}>  
-        <svg viewBox="0 0 7.599 7.791">
-           <path d="M.002 0l7.6 3.9-7.6 3.9z" fill="#d6d6d6" />
-        </svg>
-        </button> 
-
-        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+       <button  className="button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
@@ -88,8 +72,6 @@ const Playback = props => {
           </svg>    
         </button> 
 
-        <br/>
-
         <button className="button" data-playing="false" role="switch" aria-checked="false" 
         onClick={() => {
           if(props.isActive()) {
@@ -99,6 +81,49 @@ const Playback = props => {
         }}>
         <svg viewBox="0 0 7.5 7.5">
           <path fill="#d6d6d6" d="M0 0h7.5v7.5H0z" />
+        </svg>
+        </button> 
+
+        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+          onClick={() => {
+            // check for autoplay policy
+            if(audioContext.state == 'suspended') {
+              audioContext.resume();
+            }
+          
+            if(!props.isActive()) {
+              props.setActive(1);
+            }
+          }}>  
+        <svg viewBox="0 0 7.599 7.791">
+           <path d="M.002 0l7.6 3.9-7.6 3.9z" fill="#d6d6d6" />
+        </svg>
+        </button> 
+
+        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+          onClick={() => {
+          }}>  
+        <svg viewBox="0 0 7.5 7.5">
+          <g stroke="#d6d6d6" fill="none">
+          <g strokeWidth={1.1}>
+            <rect width={7.5} height={7.5} rx={3.75} stroke="none" />
+            <rect x={0.55} y={0.55} width={6.4} height={6.4} rx={3.2} />
+          </g>
+            <path d="M3.747 1.486v2.546h1.781" strokeWidth={0.75} />
+          </g>
+        </svg>
+        </button> 
+
+        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+          onClick={() => {          
+          }}>  
+        <svg viewBox="0 0 7.488 6.719" >
+          <defs>
+            <style>
+              {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:1.5px}"}
+            </style>
+          </defs>
+          <path className="prefix__a" d="M0 3.36h7.488M0 5.97h7.488M0 .75h7.488" />
         </svg>
         </button> 
     </div>

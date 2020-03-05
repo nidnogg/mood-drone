@@ -9,7 +9,7 @@ const Drone = props => {
 
 
   useEffect(() => {
-
+    //placeholder for eventual parallax effect with drone ref
   });
 
   useEffect(() => {
