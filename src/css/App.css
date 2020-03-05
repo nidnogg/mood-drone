@@ -84,14 +84,16 @@ body {
   height: calc(0.5rem + 0.5vw + 2.5vh);
   */
   /*border-radius: 100%;*/
-  border-bottom-right-radius: 30%;
+  border-bottom-right-radius: 20%;
+  border-top-right-radius: 20%;
+
   /*border-bottom-radius: 0;*/
   border-style: none none solid bottom;
   border: 1.8px solid #9B8C8C;
   text-align: center;
   background-color: #1C1519;
   color: #FFF9F5;
-  box-shadow: unset 5em 5em rgba(0, 0, 0, 0.5);
+  box-shadow: inset 5em 5em rgba(0, 0, 0, 0.5);
   /*margin-left: 60px;*/
 }
 

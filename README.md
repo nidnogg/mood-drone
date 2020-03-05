@@ -1,14 +1,16 @@
 # mood drone
 
+Mood Drone is a tiny web app mimicking a radio widget.
+
+It supports user defined alarms and it's mostly intended to play moody songs that would lull the user to a healthy night's sleep.
+
 ## Usage
 
-```npm run dev``` for development
-
- ```npm run build``` for production
+Currently just ```npm run start``` for development
 
 ## Dependencies 
 
-Parcel, React, ReactDOM, autoprefixer
+Parcel, React, ReactDOM, GSAP
 
 ## Misc 
 

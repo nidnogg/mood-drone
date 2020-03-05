@@ -61,10 +61,22 @@ const Playback = props => {
           
             if(!props.isActive()) {
               props.setActive(1);
-            } else {
-              props.setActive(0);
             }
+          }}>  
+        <svg viewBox="0 0 7.599 7.791">
+           <path d="M.002 0l7.6 3.9-7.6 3.9z" fill="#d6d6d6" />
+        </svg>
+        </button> 
 
+        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+          onClick={() => {
+            // check for autoplay policy
+            if(audioContext.state == 'suspended') {
+              audioContext.resume();
+            }
+            if(props.isActive()) {
+              props.setActive(0);
+            } 
           }}>  
           <svg viewBox="0 0 6.3 7.5">
             <defs>
@@ -75,7 +87,9 @@ const Playback = props => {
             <path className="prefix__a" d="M1.15 0v7.5M5.15 0v7.5" />
           </svg>    
         </button> 
+
         <br/>
+
         <button className="button" data-playing="false" role="switch" aria-checked="false" 
         onClick={() => {
           if(props.isActive()) {
@@ -83,7 +97,9 @@ const Playback = props => {
             audioStop();
           }
         }}>
-          <span>Stop</span>
+        <svg viewBox="0 0 7.5 7.5">
+          <path fill="#d6d6d6" d="M0 0h7.5v7.5H0z" />
+        </svg>
         </button> 
     </div>
   );
