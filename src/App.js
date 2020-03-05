@@ -40,7 +40,6 @@ const MoodD = () => {
   );
 }
 
-
 // utility function for listing object methods 
 const getMethods = (obj) => {
   let properties = new Set()

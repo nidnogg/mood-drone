@@ -91,8 +91,10 @@ body {
   background-color: #9B8C8C;
   color: #FFF9F5;
   /*box-shadow: inset 5em 5em rgba(0, 0, 0, 0.5);*/
+  /*
   box-shadow:  20px 20px 60px #181215, 
              -20px -20px 60px #20181d;
+             */
 }
 
 .button:hover {
@@ -105,9 +107,23 @@ body {
 }
 
 .button:active {
-  background-color: rgb(93, 85, 85);
+  background-color: #181215;
   transform: scale(0.9);
 }
+
+/* experimental 
+.acrylic-bg {
+  height: 100%;
+  width: 100%;
+  z-index: 1001 !important;
+  background-color: rgba(255,255,255,.9);
+  @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background-color: rgba(255,255,255,.3);
+  }
+}
+*/
 
 /*****
 SVG features
