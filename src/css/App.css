@@ -70,31 +70,33 @@ body {
   min-width: 68px;
   bottom: 0;
   z-index: 1000;
-  padding-bottom: 5px;
+ /* padding-bottom: 5px;*/
   padding-right: 9px;
 }
 
 .button {
   display: flex;
+  /*
   min-height: 34px;
   max-width: 34px;
+  */
+  min-height: 5vh;
+  max-width: 5vh;
+  
   bottom: 0;
   /*
   width: calc(0.5rem + 0.5vw + 2.5vh);
   height: calc(0.5rem + 0.5vw + 2.5vh);
   */
-  /*border-radius: 100%;*/
   border-bottom-right-radius: 20%;
   border-top-right-radius: 20%;
-
-  /*border-bottom-radius: 0;*/
-  border-style: none none solid bottom;
   border: 1.8px solid #9B8C8C;
   text-align: center;
   background-color: #1C1519;
   color: #FFF9F5;
   box-shadow: inset 5em 5em rgba(0, 0, 0, 0.5);
   /*margin-left: 60px;*/
+  transform: scale(1.0); /* Equal to scaleX(0.7) scaleY(0.7) */
 }
 
 /*****

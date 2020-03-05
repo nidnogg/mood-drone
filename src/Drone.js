@@ -2,9 +2,15 @@ import React, {useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 
 const Drone = props => {
+  const drone = useRef(0);
   const wheel0 = useRef(0);
   const wheel1 = useRef(0);
   const rotation = useRef(0);
+
+
+  useEffect(() => {
+
+  });
 
   useEffect(() => {
     if (!rotation.current) {
@@ -38,7 +44,7 @@ const Drone = props => {
   });
 
   return (
-    <svg data-name="Layer 1" viewBox="0 0 550.12 652.07" {...props}>
+    <svg ref={drone} data-name="Layer 1" viewBox="0 0 550.12 652.07" {...props}>
       <title>{"mood-drone-illustrator-01"}</title>
       <path
         data-name="Dark Pastel"
