@@ -3,7 +3,6 @@ import React, {useEffect, useState, useRef } from 'react';
 const Clock = () => {
 
   let initial_time = getTime();
- //initial_time = initial_time.split(':').join('<span className="blink">:</span>');
   const [curTime, updateTime] = useState(initial_time);
 
   useInterval(() => {

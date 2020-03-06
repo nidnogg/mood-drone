@@ -3,23 +3,21 @@ import { gsap } from "gsap";
 import './css/App.css';
 import Drone from './Drone.js';
 import Clock from './Clock.js';
-import Playback from './Playback.js';
-
-let wheelClass = "wheel-wrapper";
+import Controller from './Controller.js';
 
 const App = () => {
-  return (
-    <section className="main-section">
-      <MoodD />
-    </section>
-  );
-}
 
-const MoodD = () => {
   const [isActive, setActive] = useState(0);
+  const [isMenuOpen, setMenuOpen] = useState(0);
 
-  // value should be either 0 or 1. This callback is passed to child components
+  //const timeline = useRef(0);
+  const menu = useRef(0);
+  const menuHeader = useRef(0);
+  const verNum = useRef(0);
+
+  // value should be either 0 or 1. These callbacks are passed down to child components
   function setActiveCallback(value) {
+    console.log('Setting active state to ' + value);
     setActive(value);
   }
 
@@ -27,16 +25,64 @@ const MoodD = () => {
     return isActive;
   } 
 
+  function setMenuOpenCallback(value) {
+    console.log('Setting menu open state to ' + value);
+    setMenuOpen(value);
+  }
+
+  function isMenuOpenCallback() {
+    isMenuOpen ? console.log('Menu is active') : console.log('Menu is hidden');
+    return isMenuOpen;
+  }
+  
+  const tl = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} });
+  useEffect(() => {
+    /* if all else fails, use timeline refs!
+    if(!tl.current) {
+      tl.current = gsap.timeline();
+    }
+    */
+    if(isMenuOpen) {
+      tl.to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"});
+      tl.to(menu.current, {opacity:"1"});
+      tl.to(menuHeader.current, {opacity:"1", top: "20%"}, ">0.6");
+      tl.to(verNum.current, {opacity: "1", top: "20%"}, ">0.4");
+      if(!isMenuOpen) {
+        tl.reverse();
+      }
+    }
+   
+    
+  })
   return (
-    <div className="drone-wrapper">
-      <Drone className="drone" isActive={isActiveCallback} />
-      <div className="visor-panel-wrapper">
-        <section className="visor">
-          <Clock />
-        </section>
-      </div>
-      <Playback isActive={isActiveCallback} setActive={setActiveCallback} />
-    </div>
+    <section className="main-section">
+      <section ref={menu} className="main-menu-section">
+        <h1 className="main-menu-content">
+          <span ref={menuHeader} className="bold">mood drone</span> <span ref={verNum}>v1.0</span>
+          <button className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
+            <svg viewBox="0 0 7.488 6.719" >
+              <defs>
+                <style>
+                  {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:1.5px}"}
+                </style>
+              </defs>
+              <path className="prefix__a" d="M0 3.36h7.488M0 5.97h7.488M0 .75h7.488" />
+            </svg>
+          </button>
+        </h1>
+      </section>
+      <div className="drone-wrapper">
+        <Drone className="drone" isActive={isActiveCallback} />
+          <div className="visor-panel-wrapper">
+            <section className="visor">
+              <Clock />
+            </section>
+          </div>
+          <Controller isActive={isActiveCallback} setActive={setActiveCallback} 
+                      isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} 
+          />
+     </div>
+    </section>
   );
 }
 

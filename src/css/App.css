@@ -7,6 +7,9 @@
   font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;800&display=swap');
+/* imported Barlow 400 and 800 */
+
 * {
   box-sizing: border-box;
 }
@@ -47,6 +50,35 @@ body {
   bottom: 0;
 }
 
+.main-menu-section {
+  opacity: 0;
+  position: relative;
+  /*display: flex;*/
+  
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
+  background-color: black;
+  z-index: -1000;
+/*  z-index: 9997;*/
+
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.main-menu-content {
+  position: absolute;
+  top: 10%; /*toggled by anim!*/ 
+  left: 0;
+  height: 100vh;
+  width: 50vw;
+}
+
 .visor-panel-wrapper {
   position: absolute;
   display: block;
@@ -74,6 +106,10 @@ body {
   padding-right: 9px;
 }
 
+.menu-button {
+  min-height: 4.5vh;
+  max-width: 4.5vh;
+}
 .button {
   display: flex;
   /*

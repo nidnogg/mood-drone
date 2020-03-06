@@ -8,8 +8,9 @@ const getAudio = () => {
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 
+var audioContext;
 // generates audio context
-const audioContext = new AudioContext();
+//const audioContext = new AudioContext();
 
 const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
 
@@ -20,9 +21,10 @@ const audioStop = () => {
 }
 
 const audioSetup = () => {
+  // generates audio context on first user interaction
+  audioContext = new AudioContext();
   // gets audio element
   const audioElement = document.querySelector('audio');
-  console.log('audio context ' + audioContext);
   // passes it into the audio context
   const track = audioContext.createMediaElementSource(audioElement);
   track.connect(audioContext.destination);
@@ -38,7 +40,7 @@ const AudioElem = sourceUrl => {
 }
 
 // Receives moodD parent callback state functions as props and sets MoodD's state from these
-const Playback = props => {
+const Controller = props => {
   // gets audio DOM node 
   useEffect(() => {
     const audioElement = document.querySelector('audio');
@@ -56,7 +58,9 @@ const Playback = props => {
           onClick={() => {
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
-              audioContext.resume();
+              audioContext.resume().then(() => {
+                audioSetup();
+              });
             }
             if(props.isActive()) {
               props.setActive(0);
@@ -115,7 +119,8 @@ const Playback = props => {
         </button> 
 
         <button  className="button" data-playing="false" role="switch" aria-checked="false" 
-          onClick={() => {          
+          onClick={() => { 
+            props.isMenuOpen() ? props.setMenuOpen(0):props.setMenuOpen(1);
           }}>  
         <svg viewBox="0 0 7.488 6.719" >
           <defs>
@@ -130,4 +135,4 @@ const Playback = props => {
   );
 }
 
-export default Playback
+export default Controller;
