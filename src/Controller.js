@@ -9,8 +9,6 @@ const getAudio = () => {
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext;
-// generates audio context
-//const audioContext = new AudioContext();
 
 const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
 
@@ -31,9 +29,6 @@ const audioSetup = () => {
 }
 
 const AudioElem = sourceUrl => {
-  useEffect(() => {
-    audioSetup();
-  });
   return (
     <audio src={sourceUrl.sourceUrl} crossOrigin="anonymous" type="audio/mpeg">Failed to load <code>audio</code> element</audio>
   );
@@ -44,11 +39,13 @@ const Controller = props => {
   // gets audio DOM node 
   useEffect(() => {
     const audioElement = document.querySelector('audio');
+    if(audioContext) {
       if(props.isActive()) {
         audioElement.play();
       } else {
         audioElement.pause();
       }
+    }
   });
 
   return (
@@ -59,7 +56,6 @@ const Controller = props => {
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
               audioContext.resume().then(() => {
-                audioSetup();
               });
             }
             if(props.isActive()) {
@@ -78,6 +74,7 @@ const Controller = props => {
 
         <button className="button" data-playing="false" role="switch" aria-checked="false" 
         onClick={() => {
+          
           if(props.isActive()) {
             props.setActive(0);
             audioStop();
@@ -90,6 +87,7 @@ const Controller = props => {
 
         <button  className="button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
+            if(!audioContext) audioSetup();
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
               audioContext.resume();

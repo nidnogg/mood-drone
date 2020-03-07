@@ -62,9 +62,17 @@ const App = () => {
         <h1 ref={menuHeaderDiv} className="main-menu-content">
           <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>
           <button className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
-            
+          <svg viewBox="0 0 6.3 7.5">
+            <defs>
+              <style>
+                {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:2.3px}"}
+              </style>
+            </defs>
+            <path className="prefix__a" d="M1.15 0v7.5M5.15 0v7.5" />
+          </svg>  
           </button>
         </h1>
+       
       </section>
       <div className="drone-wrapper">
         <Drone className="drone" isActive={isActiveCallback} />

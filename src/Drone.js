@@ -7,7 +7,6 @@ const Drone = props => {
   const wheel1 = useRef(0);
   const rotation = useRef(0);
 
-
   useEffect(() => {
     //placeholder for eventual parallax effect with drone ref
   });
