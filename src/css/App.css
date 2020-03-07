@@ -6,7 +6,6 @@
   font-weight: normal;
   font-style: normal;
 }
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;800&display=swap");
 
 /* imported Barlow 400 and 800 */
 
@@ -67,11 +66,20 @@ body {
 
 }
 
-.bold {
+.ver-num {
+  position: relative;
+  opacity: 0;
+  font-size: 1.5rem;
+}
+
+.menu-header {
+  position: relative;
+  opacity: 0;
   font-weight: 800;
 }
 
 .main-menu-content {
+  opacity: 0;
   position: absolute;
   top: 10%; /*toggled by anim!*/ 
   left: 0;
@@ -110,6 +118,7 @@ body {
   min-height: 4.5vh;
   max-width: 4.5vh;
 }
+
 .button {
   display: flex;
   /*

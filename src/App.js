@@ -13,8 +13,11 @@ const App = () => {
   //const timeline = useRef(0);
   const tl = useRef(0);
   const menu = useRef(0);
+  const menuHeaderDiv = useRef(0);
   const menuHeader = useRef(0);
   const verNum = useRef(0);
+  const menuContentDiv = useRef(0);
+
 
   // value should be either 0 or 1. These callbacks are passed down to child components
   function setActiveCallback(value) {
@@ -40,31 +43,26 @@ const App = () => {
 
   useEffect(() => {
     if(!tl.current) {
-      tl.current = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} })
+      tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
                        .to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"})
                        .to(menu.current, {opacity:"1"})
-                       .to(menuHeader.current, {opacity:"1", top: "20%"}, ">0.6")
-                       .to(verNum.current, {opacity: "1", top: "20%"}, ">0.4");
+                       .to(menuHeaderDiv.current, {opacity:"1"})
+                       .to(menuHeader.current, {opacity: "1", top:"2%"}, ">-0.2")
+                       .to(verNum.current, {opacity: "1", top: "2%"}, ">-0.1");
     }
-
   }, []); // crap requirement for using hooks with timelines
+
   useEffect(() => {
     isMenuOpen ? tl.current.play() : tl.current.reverse();
-  }, [isMenuOpen]);
+  }, [isMenuOpen]);  // wonder if isMenuOpen is also required for hooks
+
   return (
     <section className="main-section">
       <section ref={menu} className="main-menu-section">
-        <h1 className="main-menu-content">
-          <span ref={menuHeader} className="bold">mood drone</span> <span ref={verNum}>v1.0</span>
+        <h1 ref={menuHeaderDiv} className="main-menu-content">
+          <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>
           <button className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
-            <svg viewBox="0 0 7.488 6.719" >
-              <defs>
-                <style>
-                  {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:1.5px}"}
-                </style>
-              </defs>
-              <path className="prefix__a" d="M0 3.36h7.488M0 5.97h7.488M0 .75h7.488" />
-            </svg>
+            
           </button>
         </h1>
       </section>
