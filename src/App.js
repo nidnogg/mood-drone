@@ -11,6 +11,7 @@ const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(0);
 
   //const timeline = useRef(0);
+  const tl = useRef(0);
   const menu = useRef(0);
   const menuHeader = useRef(0);
   const verNum = useRef(0);
@@ -35,25 +36,21 @@ const App = () => {
     return isMenuOpen;
   }
   
-  const tl = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} });
+  //const tl.current = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} }); WIPED OUT ON EVERY RENDER
+
   useEffect(() => {
-    /* if all else fails, use timeline refs!
     if(!tl.current) {
-      tl.current = gsap.timeline();
+      tl.current = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} })
+                       .to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"})
+                       .to(menu.current, {opacity:"1"})
+                       .to(menuHeader.current, {opacity:"1", top: "20%"}, ">0.6")
+                       .to(verNum.current, {opacity: "1", top: "20%"}, ">0.4");
     }
-    */
-    if(isMenuOpen) {
-      tl.to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"});
-      tl.to(menu.current, {opacity:"1"});
-      tl.to(menuHeader.current, {opacity:"1", top: "20%"}, ">0.6");
-      tl.to(verNum.current, {opacity: "1", top: "20%"}, ">0.4");
-      if(!isMenuOpen) {
-        tl.reverse();
-      }
-    }
-   
-    
-  })
+
+  }, []); // crap requirement for using hooks with timelines
+  useEffect(() => {
+    isMenuOpen ? tl.current.play() : tl.current.reverse();
+  }, [isMenuOpen]);
   return (
     <section className="main-section">
       <section ref={menu} className="main-menu-section">
