@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { gsap } from "gsap";
+//import { useSpring, animated } from 'react-spring';
 import './css/App.css';
 import Drone from './Drone.js';
 import Clock from './Clock.js';
@@ -17,7 +18,7 @@ const App = () => {
   const menuHeader = useRef(0);
   const verNum = useRef(0);
   const menuContentDiv = useRef(0);
-
+  const blur = useRef(0);
 
   // value should be either 0 or 1. These callbacks are passed down to child components
   function setActiveCallback(value) {
@@ -45,7 +46,10 @@ const App = () => {
     if(!tl.current) {
       tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
                        .to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"})
-                       .to(menu.current, {opacity:"1"})
+                      // .add("start", 2)
+                       .to(blur.current, {bottom: "-30%", duration: 0.3777}, 0.2) //0.2 could be label start!
+                       .set(blur.current, {webkitFilter:"blur(10px)"}, 0.2)
+                       .to(menu.current, {opacity:"1"}, 0.4)
                        .to(menuHeaderDiv.current, {opacity:"1"})
                        .to(menuHeader.current, {opacity: "1", top:"2%"}, ">-0.2")
                        .to(verNum.current, {opacity: "1", top: "2%"}, ">-0.1");
@@ -74,7 +78,7 @@ const App = () => {
         </h1>
        
       </section>
-      <div className="drone-wrapper">
+      <div ref={blur} className="drone-wrapper">
         <Drone className="drone" isActive={isActiveCallback} />
           <div className="visor-panel-wrapper">
             <section className="visor">
@@ -90,7 +94,7 @@ const App = () => {
 }
 
 // utility function for listing object methods 
-const getMethods = (obj) => {
+const getMethods = obj => {
   let properties = new Set()
   let currentObj = obj
   do {
