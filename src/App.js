@@ -17,6 +17,7 @@ const App = () => {
   const menuHeaderDiv = useRef(0);
   const menuHeader = useRef(0);
   const verNum = useRef(0);
+  const menuButton = useRef(0);
   const menuContentDiv = useRef(0);
   const blur = useRef(0);
 
@@ -52,7 +53,9 @@ const App = () => {
                        .to(menu.current, {opacity:"1"}, 0.4)
                        .to(menuHeaderDiv.current, {opacity:"1"})
                        .to(menuHeader.current, {opacity: "1", top:"2%"}, ">-0.2")
-                       .to(verNum.current, {opacity: "1", top: "2%"}, ">-0.1");
+                       .to(verNum.current, {opacity: "1", top: "27px"}, ">-0.1")
+                       .to(menuContentDiv.current, {opacity: "1"}, ">-0.2")
+                       .to(menuButton.current, {opacity: "1", left: "40px"}, ">-0.2");
     }
   }, []); // crap requirement for using hooks with timelines
 
@@ -63,19 +66,30 @@ const App = () => {
   return (
     <section className="main-section">
       <section ref={menu} className="main-menu-section">
-        <h1 ref={menuHeaderDiv} className="main-menu-content">
-          <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>
-          <button className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
-          <svg viewBox="0 0 6.3 7.5">
-            <defs>
-              <style>
-                {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:2.3px}"}
-              </style>
-            </defs>
-            <path className="prefix__a" d="M1.15 0v7.5M5.15 0v7.5" />
-          </svg>  
-          </button>
-        </h1>
+        <div ref={menuHeaderDiv} className="main-menu-header">
+            <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>      
+            <button ref={menuButton} className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
+              <svg viewBox="0 0 6.3 7.5">
+                <defs>
+                  <style>
+                    {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:2.3px}"}
+                  </style>
+                </defs>
+                <path className="prefix__a" d="M1.15 0v7.5M5.15 0v7.5" />
+              </svg>  
+            </button>
+        </div>
+
+        <div ref={menuContentDiv} className="main-menu-content">
+          <p>
+            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+          </p>
+        </div>
+        
        
       </section>
       <div ref={blur} className="drone-wrapper">

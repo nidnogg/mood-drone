@@ -41,8 +41,14 @@ body {
   overflow-y: hidden;
 }
 
+p {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
 .main-section {
-  text-align: center;
+  /*text-align: center;*/
   justify-content: center;
   position: relative;
   height: 100vh;
@@ -54,7 +60,6 @@ body {
   /*filter: blur(4px);*/
   position: relative;
   /*display: flex;*/
-  
   justify-content: center;
   height: 100vh;
   width: 100vw;
@@ -76,27 +81,71 @@ body {
 }
 
 .ver-num {
-  position: relative;
+  left: 5px;
   opacity: 0;
   font-size: 1.5rem;
   z-index: 9999;
 }
 
 .menu-header {
-  position: relative;
+  position: absolute;
   opacity: 0;
+  /*left: 0;*/
   font-weight: 800;
+  white-space: nowrap;
   z-index: 9999;
+}
+
+.main-menu-header {
+  position: absolute;
+  display: inline-flex;
+  flex-flow: row;
+  top: 10%; /*toggled by anim!*/ 
+  left: 4%;
+  height: 20vh;
+  width: 90vw;
+  z-index: 9999;
+}
+
+.main-menu-header > * {
+  position: relative;
+  display: flex;
+}
+
+.menu-button {
+  opacity: 0;
+  top: 30px;
+  left: 27px; /* Toggled by anim! */
+  height: 20px;
+  width: 20px;
+}
+
+.menu-button > svg {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .main-menu-content {
   position: absolute;
-  top: 10%; /*toggled by anim!*/ 
-  left: 0;
+  opacity: 0;
+  top: 25%;
+  left: 9%;
   height: 100vh;
-  width: 50vw;
-  z-index: 9999;
+  text-align: justify;
+  width: 80vw;
 }
+
+
+.playback-button > svg {
+  position: absolute;  /*switching to absolute shows SVG in chrome*/
+  text-align: center;
+  top: 8px; 
+  width: 50%;
+}
+
 
 .visor-panel-wrapper {
   position: absolute;
@@ -135,11 +184,6 @@ body {
   bottom: 0;
   padding-right: 9px;
   z-index: 1000;
-}
-
-.menu-button {
-  min-height: 4.5vh;
-  max-width: 4.5vh;
 }
 
 .playback-button {

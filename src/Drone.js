@@ -44,7 +44,7 @@ const Drone = props => {
 
   return (
     <svg ref={drone} data-name="Layer 1" viewBox="0 0 550.12 652.07" {...props}>
-      <title>{"mood-drone-illustrator-01"}</title>
+      {/*<title>{"mood-drone-illustrator-01"}</title>*/}
       <path
         data-name="Dark Pastel"
         fill="#b98656"
