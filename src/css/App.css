@@ -101,7 +101,7 @@ body {
 .visor-panel-wrapper {
   position: absolute;
   display: block;
-  bottom: 9%;
+  bottom: 7%;
   height: 10%;
   z-index: 1000;
   /*font-size: calc(1.5rem + 5vw - (1.5em *(1px/1vh) ) );*/
@@ -109,6 +109,18 @@ body {
   color: #1C1519;
 }
 
+@media (max-width: 383px) {
+  .visor-panel-wrapper {
+    bottom: 5.5%;
+  }
+}
+
+
+@media (max-width: 330px) {
+  .visor-panel-wrapper {
+    bottom: 4%;
+  }
+}
 .alarm-text {
   font-size: calc(0.117rem + 0.20vw + 1.5vh);
 }
@@ -129,14 +141,15 @@ body {
   max-width: 4.5vh;
 }
 
-.button {
+.playback-button {
+  position: relative;
   display: flex;
-  min-height: 4.5vh;
-  max-width: 4.5vh;
-  /*bottom: 0;*/
+  height: 1.9em;
+  width: 1.9em;
+  bottom: 0;
   border-bottom-right-radius: 20%;
   border-top-right-radius: 20%;
-  border: 1.8px solid rgb(93, 85, 85);
+   border: 1.8px solid rgb(93, 85, 85);
   text-align: center;
   background-color: #9B8C8C;
   color: #FFF9F5;
@@ -147,16 +160,16 @@ body {
              */
 }
 
-.button:hover {
+.playback-button:hover {
   transition: 0.25s;
   background-color: rgb(93, 85, 85) ;
 }
 
-.button:focus {
+.playback-button:focus {
   background-color:#9B8C8C ;
 }
 
-.button:active {
+.playback-button:active {
   background-color: #181215;
   transform: scale(0.9);
 }
@@ -187,11 +200,13 @@ svg {
 
 /*FIX THIS */
 
-.button > svg {
-  position: relative;  /*switching to absolute shows SVG in chrome*/
-  min-width: initial;
+.playback-button > svg {
+  position: absolute;  /*switching to absolute shows SVG in chrome*/
   text-align: center;
-  padding: 10px 14px;   /* removing padding shows SVG in firefox */
+  top: 8px; 
+  width: 50%;
+  /*padding: 10px 14px;   /* removing padding shows SVG in firefox */
+
 }
 
 .drone-wrapper {

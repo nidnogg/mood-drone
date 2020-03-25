@@ -53,16 +53,13 @@ const Controller = props => {
     <div className="buttons-wrapper">
       {/*<YtPlayer id="bebuiaSKtU4" />*/}
       <AudioElem sourceUrl={audioUrls}/>
-       <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+       <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
-            
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
               audioContext.resume().then(() => {
-
               });
             }
-            
             if(props.isActive()) {
               props.setActive(0);
             } 
@@ -77,7 +74,7 @@ const Controller = props => {
           </svg>    
         </button> 
 
-        <button className="button" data-playing="false" role="switch" aria-checked="false" 
+        <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
         onClick={() => {
           
           if(props.isActive()) {
@@ -90,7 +87,7 @@ const Controller = props => {
         </svg>
         </button> 
 
-        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+        <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
             if(!audioContext) audioSetup();
             // check for autoplay policy
@@ -107,7 +104,7 @@ const Controller = props => {
         </svg>
         </button> 
 
-        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+        <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
           }}>  
         <svg viewBox="0 0 7.5 7.5">
@@ -121,7 +118,7 @@ const Controller = props => {
         </svg>
         </button> 
 
-        <button  className="button" data-playing="false" role="switch" aria-checked="false" 
+        <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => { 
             props.isMenuOpen() ? props.setMenuOpen(0):props.setMenuOpen(1);
           }}>  
