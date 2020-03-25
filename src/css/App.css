@@ -121,6 +121,7 @@ body {
     bottom: 4%;
   }
 }
+
 .alarm-text {
   font-size: calc(0.117rem + 0.20vw + 1.5vh);
 }
@@ -174,6 +175,17 @@ body {
   transform: scale(0.9);
 }
 
+@-moz-document url-prefix() {
+  .playback-button > svg {
+    right: 6px;
+  }
+
+  .playback-button {
+    height: 2.1em;
+    width: 2.1em;
+  }
+}
+
 /* experimental 
 .acrylic-bg {
   height: 100%;
@@ -198,16 +210,13 @@ svg {
   width: auto;
 }
 
-/*FIX THIS */
-
 .playback-button > svg {
   position: absolute;  /*switching to absolute shows SVG in chrome*/
   text-align: center;
   top: 8px; 
   width: 50%;
-  /*padding: 10px 14px;   /* removing padding shows SVG in firefox */
-
 }
+
 
 .drone-wrapper {
   position: absolute;

@@ -16,7 +16,7 @@ const Clock = () => {
   }, 1000);
 
   useEffect(() => {
-    gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.3});
+    gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
   }); 
   return (
     <div>
