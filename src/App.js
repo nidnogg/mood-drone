@@ -82,11 +82,10 @@ const App = () => {
 
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
-            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
-            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
-            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
-            all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted all I ever wanted 
+            Hi! This is a radio web app built with quality sleep and productivity in mind. It aims to bring you moody tunes and to boost your spirits in times of need.
+            It's also intended as a simple visual experiment.<br/> <br/>
+            Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a>
+           
           </p>
         </div>
         
@@ -103,7 +102,20 @@ const App = () => {
                       isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} 
           />
      </div>
+     <Tooltip />
     </section>
+  );
+}
+
+const Tooltip = () => {
+  return (
+    <div className="tooltip-container">
+      <span className="tooltip">
+        <span className="tooltiptext">
+          Now playing: <br /> songname
+        </span>
+      </span>
+    </div>
   );
 }
 

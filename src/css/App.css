@@ -45,6 +45,34 @@ p {
   font-family: 'Barlow', sans-serif;
   font-weight: 400;
   font-size: 1.3rem;
+  line-height: 1.2777em;
+}
+
+a {
+  position: relative;
+  color: inherit;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a::before {
+  display: none;
+  content: "";
+  position: absolute;
+  width: 100%;
+  background-color: #FFF9F5;
+}
+
+a::before:hover {
+  display: block;
+  height: 1em;
+  transition: 0.3333ms ease-in;
+
+}
+
+a:hover {
+  color: black;
+  transition: 0.3333ms ease-in;
 }
 
 .main-section {
@@ -155,7 +183,7 @@ p {
   z-index: 1000;
   /*font-size: calc(1.5rem + 5vw - (1.5em *(1px/1vh) ) );*/
   font-size: calc(0.5rem + 0.5vw + 2.5vh);
-  color: #1C1519;
+  color: rgb(28, 21, 25, 0.65);
 }
 
 @media (max-width: 383px) {
@@ -244,6 +272,57 @@ p {
 }
 */
 
+/* Tooltip container, so as to not warp text on highlight */
+.tooltip-container {
+  position: fixed;
+  display: inline-block;
+}
+
+ /* Tooltip sub-container */
+ .tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--tooltip-bg);
+  color: var(--text-color);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+} 
 /*****
 SVG features
 ******/
