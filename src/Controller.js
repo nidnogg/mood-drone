@@ -10,7 +10,7 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext;
 
-const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Fsong_test.mp3?alt=media&token=ccf6f882-47f5-46cb-9836-732bc871ee9a";
+const audioUrls = "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2";
 
 const audioStop = () => {
   // gets audio element
