@@ -50,12 +50,12 @@ const App = () => {
                       // .add("start", 2)
                        .to(blur.current, {bottom: "-30%", duration: 0.3777}, 0.2) //0.2 could be label start!
                        .set(blur.current, {webkitFilter:"blur(10px)"}, 0.2)
-                       .to(menu.current, {opacity:"1"}, 0.4)
+                       .to(menu.current, {display: "static", opacity:"1"}, 0.4)
                        .to(menuHeaderDiv.current, {opacity:"1"})
                        .to(menuHeader.current, {opacity: "1", top:"2%"}, ">-0.2")
                        .to(verNum.current, {opacity: "1", top: "27px"}, ">-0.1")
                        .to(menuContentDiv.current, {opacity: "1"}, ">-0.2")
-                       .to(menuButton.current, {opacity: "1", left: "40px"}, ">-0.2");
+                       .to(menuButton.current, {opacity: "1"}, ">-0.2");
     }
   }, []); // crap requirement for using hooks with timelines
 
@@ -67,25 +67,27 @@ const App = () => {
     <section className="main-section">
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
-            <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>      
-            <button ref={menuButton} className="menu-button" onClick={ ()=> { console.log('menu state is ' + isMenuOpen); setMenuOpen(0);} }>
-              <svg viewBox="0 0 6.3 7.5">
-                <defs>
-                  <style>
-                    {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:2.3px}"}
-                  </style>
-                </defs>
-                <path className="prefix__a" d="M1.15 0v7.5M5.15 0v7.5" />
-              </svg>  
-            </button>
+            <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
+        </div>
+
+        <div ref={menuButton} className="menu-button" onClick={ ()=> { setMenuOpen(0);} } >
+          <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.2 6.88">
+            <title>back</title>
+            <path d="M1.1,7.12" transform="translate(-1.11 -0.66)" fill="#d6d6d6" stroke="#d6d6d6" stroke-miterlimit="10"/>
+            <line x1="3.77" y1="0.35" x2="0.48" y2="3.64" fill="none" stroke="#e2ab5a" stroke-miterlimit="10"/>
+            <line x1="3.85" y1="6.52" x2="0.35" y2="3.03" fill="none" stroke="#e2ab5a" stroke-miterlimit="10"/>
+          </svg>
+          <h3>Back to app</h3>
         </div>
 
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! This is a radio web app built with quality sleep and productivity in mind. It aims to bring you moody tunes and to boost your spirits in times of need.
-            It's also intended as a simple visual experiment.<br/> <br/>
-            Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a>
-           
+            Hi! This is a radio web app built with quality sleep and headspace in mind. <br/>
+            It aims to bring you moody tunes and to boost your spirits in times of need. <br/>
+            It's also intended as a visual experiment. We've all faced sleepless nights among <br/> 
+            ever more agonizing deadlines. I hope you can find some peace of mind here.<br/> <br/>
+            All the songs are produced by me. Feel free to check out my <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
+            Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers!
           </p>
         </div>
         
@@ -102,7 +104,7 @@ const App = () => {
                       isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} 
           />
      </div>
-     <Tooltip />
+     {/*<Tooltip />*/}
     </section>
   );
 }
@@ -111,9 +113,7 @@ const Tooltip = () => {
   return (
     <div className="tooltip-container">
       <span className="tooltip">
-        <span className="tooltiptext">
           Now playing: <br /> songname
-        </span>
       </span>
     </div>
   );
