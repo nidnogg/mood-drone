@@ -65,6 +65,10 @@ const App = () => {
 
   return (
     <section className="main-section">
+      <button className="hamburger" onClick={() => { 
+          isMenuOpen ? setMenuOpen(0) : setMenuOpen(1); 
+        }}>>
+      </button>
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
@@ -101,7 +105,6 @@ const App = () => {
             </section>
           </div>
           <Controller isActive={isActiveCallback} setActive={setActiveCallback} 
-                      isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} 
           />
      </div>
      {/*<Tooltip />*/}

@@ -106,6 +106,13 @@ a:hover {
   transition: 0.3333ms ease-in;
 }
 
+
+.hamburger {
+  position: fixed;
+  top: 33px;
+  right: 60px;
+
+}
 .main-section {
   /*text-align: center;*/
   justify-content: center;

@@ -41,6 +41,10 @@ const audioSetup = () => {
 
   track.connect(gainNode);
 
+  // Chains songs on end
+  audioElement.onended=function() { 
+
+  };
 }
 
 const AudioElem = sourceUrl => {
@@ -152,7 +156,7 @@ const Controller = props => {
 
         <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => { 
-            props.isMenuOpen() ? props.setMenuOpen(0):props.setMenuOpen(1);
+            console.log('dummy!');
           }}>  
         <svg viewBox="0 0 7.488 6.719" >
           <defs>
