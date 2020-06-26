@@ -32,7 +32,7 @@ const App = () => {
   } 
 
   function setMenuOpenCallback(value) {
-    console.log('Setting menu open state to ' + value);
+    //console.log('Setting menu open state to ' + value);
     setMenuOpen(value);
   }
 
@@ -50,10 +50,10 @@ const App = () => {
                       // .add("start", 2)
                        .to(blur.current, {bottom: "-30%", duration: 0.3777}, 0.2) //0.2 could be label start!
                        .set(blur.current, {webkitFilter:"blur(10px)"}, 0.2)
-                       .to(menu.current, {display: "static", opacity:"1"}, 0.4)
+                       .to(menu.current, {opacity:"1"}, 0.4)
                        .to(menuHeaderDiv.current, {opacity:"1"})
-                       .to(menuHeader.current, {opacity: "1", top:"2%"}, ">-0.2")
-                       .to(verNum.current, {opacity: "1", top: "27px"}, ">-0.1")
+                       .to(menuHeader.current, {opacity: "1"}, ">-0.2")
+                       .to(verNum.current, {opacity: "1"}, ">-0.1")
                        .to(menuContentDiv.current, {opacity: "1"}, ">-0.2")
                        .to(menuButton.current, {opacity: "1"}, ">-0.2");
     }

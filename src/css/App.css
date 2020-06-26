@@ -48,6 +48,37 @@ p {
   line-height: 1.2777em;
 }
 
+@media (max-width: 426px) {
+  p {
+    font-size: 1.0rem !important;
+  }
+}
+@media (max-width: 416px) {
+  p {
+    font-size: 1.0rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  p {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-height: 590px) and (max-width: 580px) {
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-height: 751px) and (max-width: 580px) {
+  p {
+    font-size: 1.0rem;
+  }
+}
+
+
+
 a {
   position: relative;
   color: inherit;
@@ -108,6 +139,7 @@ a:hover {
 }
 
 .ver-num {
+  display: inline-block;
   left: 5px;
   opacity: 0;
   font-size: 1.5rem;
@@ -124,18 +156,30 @@ a:hover {
 
 .main-menu-header {
   position: absolute;
-  display: inline-flex;
-  flex-flow: row;
+  display: inline-block;
   top: 100px; /*toggled by anim!*/ 
   left: 4%;
-  height: 20vh;
+  height: 62px;
   width: 313px;
   z-index: 9999;
 }
 
 .main-menu-header > * {
   position: relative;
-  display: flex;
+  top: 0;
+}
+
+@media (max-width: 430px) {
+  .main-menu-header {
+    top: 50px;
+    right: 51px;
+  }
+}
+
+@media (max-width: 416px) {
+  .main-menu-header {
+    top: 25px;
+  }
 }
 
 .menu-button {
@@ -153,16 +197,35 @@ a:hover {
   padding: 5px 5px 5px 10px;
   background-color: rgba(221, 164, 71, 0.3);
   transition: all 0.777ms ease-in;
+}
 
+@media (max-width: 768px) {
+  .menu-button {
+    top: 116px;
+    right: 51px;
+  }
 }
 
 @media (max-width: 544px) {
   .menu-button {
     top: 173px;
     right: 51px;
+  }
+}
+
+@media (max-width: 430px) {
+  .menu-button {
+    top: 120px;
 
   }
 }
+
+@media (max-width: 416px) {
+  .menu-button {
+    top: 90px;
+  }
+}
+
 
 .menu-button:hover  {
   background-color: rgba(221, 164, 71, 0.9);
@@ -194,11 +257,24 @@ a:hover {
 }
 
 @media (max-width: 544px) {
-  .menu-button {
-    top: 173px;
-
+  .main-menu-content {
+    top: 230px;
   }
 }
+
+@media (max-width: 544px) {
+  .main-menu-content {
+    top: 230px;
+  }
+}
+
+@media (max-width: 430px) {
+  .main-menu-content {
+    top: 160px;
+  }
+}
+
+
 
 
 
@@ -352,6 +428,13 @@ svg {
 .drone {
   position: absolute;
   bottom: 0;
+}
+
+@media (max-width: 321px) {
+  .drone-wrapper {
+    bottom: -10px;
+    left: 2px;
+  }
 }
 
 @media (max-width: 1115px) {
