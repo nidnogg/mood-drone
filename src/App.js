@@ -65,25 +65,19 @@ const App = () => {
 
   return (
     <section className="main-section">
-      <button className="hamburger" onClick={() => { 
-          isMenuOpen ? setMenuOpen(0) : setMenuOpen(1); 
-        }}>>
-      </button>
+      <div className="bread">
+        <div className="ham" onClick={() => { 
+            isMenuOpen ? setMenuOpen(0) : setMenuOpen(1);  
+            }}>
+          <div className="burger"></div>
+        </div>
+      </div>
+
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
         </div>
-
-        <div ref={menuButton} className="menu-button" onClick={ ()=> { setMenuOpen(0);} } >
-          <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.2 6.88">
-            <title>back</title>
-            <path d="M1.1,7.12" transform="translate(-1.11 -0.66)" fill="#d6d6d6" stroke="#d6d6d6" stroke-miterlimit="10"/>
-            <line x1="3.77" y1="0.35" x2="0.48" y2="3.64" fill="none" stroke="#e2ab5a" stroke-miterlimit="10"/>
-            <line x1="3.85" y1="6.52" x2="0.35" y2="3.03" fill="none" stroke="#e2ab5a" stroke-miterlimit="10"/>
-          </svg>
-          <h3>Back to app</h3>
-        </div>
-
+        
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
             Hi! This is a radio web app built with quality sleep and headspace in mind. <br/>
@@ -94,9 +88,8 @@ const App = () => {
             Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers!
           </p>
         </div>
-        
-       
       </section>
+   
       <div ref={blur} className="drone-wrapper">
         <Drone className="drone" isActive={isActiveCallback} />
           <div className="visor-panel-wrapper">
