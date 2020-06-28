@@ -83,17 +83,19 @@ a {
   color: inherit;
   font-weight: bold;
   text-decoration: none;
+  transition: 0.3333ms ease-in;
 }
 
 a::before {
   display: none;
   content: "";
   position: absolute;
+  top: 25px;
   width: 100%;
   background-color: #FFF9F5;
 }
 
-a::before:hover {
+a:hover:before {
   display: block;
   height: 1em;
   transition: 0.3333ms ease-in;

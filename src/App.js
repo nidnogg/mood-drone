@@ -13,35 +13,39 @@ const Hentai = props => {
   const burger_2 = useRef(0);
   const burger_3 = useRef(0);
 
-
-  
   useEffect(() => {
     if(!tl.current) {
-      tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
-                       .to(burger_1.current, {x:-50, background:"transparent", boxShadow:"none"}, 0.2)
-                       .to(burger_2.current, {rotation: 45, y: 10 })
-                       .to(burger_3.current, {rotation: -45, y: -10 })
-                       //.to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"})
-                   
-
-    }
-  }, []); // crap requirement for using hooks with timelines
-
-  useEffect(() => {
-    if(tl.current) {
+      tl.current = gsap.timeline({defaults: {duration: 0.7, ease:"expo"} })
+                       .to(burger_1.current, {x:-50, backgroundColor:"transparent", boxShadow:"none"}, ">-0.5")
+                       .to(burger_2.current, {rotation: 45, y: 10 }, 0.2)
+                       .to(burger_3.current, {rotation: -45, y: -10 }, ">-0.255");
+      tl.current.paused(true);
+    } else {
       isMenuOpen ? tl.current.play() : tl.current.reverse();
     }
-  }, [isMenuOpen]);  // wonder if isMenuOpen is also required for hooks
-  
+    
+  }, []); // crap requirement for using hooks with timelines
+
+  const handleClick = () => {
+    //isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
+    if(isMenuOpen()) {
+      console.log('piduro');
+      tl.current.reverse();
+      setMenuOpen(0);
+    } else {
+      console.log('pimole');
+      //if(tl.current.paused(true) == true)
+      tl.current.play();
+      setMenuOpen(1);
+    }
+  }
+
   return (
     <div className="bread">
-      <div className="ham" onClick={() => { 
-          isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
-          }}>
+      <div className="ham" onClick={handleClick}>
         <div ref={burger_1} className="burger_1"></div>
         <div ref={burger_2} className="burger_2"></div>
         <div ref={burger_3} className="burger_3"></div>
-
       </div>
     </div>
   );
