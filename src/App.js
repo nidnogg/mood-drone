@@ -9,16 +9,14 @@ import Controller from './Controller.js';
 const Hentai = props => {
   const { isMenuOpen, setMenuOpen } = props;
   const tl = useRef(0);
-  const burger_1 = useRef(0);
   const burger_2 = useRef(0);
   const burger_3 = useRef(0);
 
   useEffect(() => {
     if(!tl.current) {
-      tl.current = gsap.timeline({defaults: {duration: 0.7, ease:"expo"} })
-                       .to(burger_1.current, {x:-50, backgroundColor:"transparent", boxShadow:"none"}, ">-0.5")
-                       .to(burger_2.current, {rotation: 45, y: 10 }, 0.2)
-                       .to(burger_3.current, {rotation: -45, y: -10 }, ">-0.255");
+      tl.current = gsap.timeline({defaults: {duration: 0.3777, ease:"expo"} })
+                       .to(burger_2.current, {rotation: 45, y: 6 }, "0.2")
+                       .to(burger_3.current, {rotation: -45, y: -6 }, ">-0.3115");
       tl.current.paused(true);
     } else {
       isMenuOpen ? tl.current.play() : tl.current.reverse();
@@ -43,7 +41,6 @@ const Hentai = props => {
   return (
     <div className="bread">
       <div className="ham" onClick={handleClick}>
-        <div ref={burger_1} className="burger_1"></div>
         <div ref={burger_2} className="burger_2"></div>
         <div ref={burger_3} className="burger_3"></div>
       </div>
