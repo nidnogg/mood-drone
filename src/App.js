@@ -27,12 +27,9 @@ const Hentai = props => {
   const handleClick = () => {
     //isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
     if(isMenuOpen()) {
-      console.log('piduro');
       tl.current.reverse();
       setMenuOpen(0);
     } else {
-      console.log('pimole');
-      //if(tl.current.paused(true) == true)
       tl.current.play();
       setMenuOpen(1);
     }
