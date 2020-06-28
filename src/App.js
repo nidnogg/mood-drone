@@ -8,13 +8,40 @@ import Controller from './Controller.js';
 
 const Hentai = props => {
   const { isMenuOpen, setMenuOpen } = props;
+  const tl = useRef(0);
+  const burger_1 = useRef(0);
+  const burger_2 = useRef(0);
+  const burger_3 = useRef(0);
+
+
+  
+  useEffect(() => {
+    if(!tl.current) {
+      tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
+                       .to(burger_1.current, {x:-50, background:"transparent", boxShadow:"none"}, 0.2)
+                       .to(burger_2.current, {rotation: 45, y: 10 })
+                       .to(burger_3.current, {rotation: -45, y: -10 })
+                       //.to(menu.current, {duration: 0.001, zIndex: 9997, ease:"none"})
+                   
+
+    }
+  }, []); // crap requirement for using hooks with timelines
+
+  useEffect(() => {
+    if(tl.current) {
+      isMenuOpen ? tl.current.play() : tl.current.reverse();
+    }
+  }, [isMenuOpen]);  // wonder if isMenuOpen is also required for hooks
   
   return (
     <div className="bread">
       <div className="ham" onClick={() => { 
           isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
           }}>
-        <div className="burger"></div>
+        <div ref={burger_1} className="burger_1"></div>
+        <div ref={burger_2} className="burger_2"></div>
+        <div ref={burger_3} className="burger_3"></div>
+
       </div>
     </div>
   );

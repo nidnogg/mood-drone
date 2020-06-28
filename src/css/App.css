@@ -132,35 +132,28 @@ a:hover {
   z-index: 9998;
 }
 
-.burger {
+.burger_1,
+.burger_2,
+.burger_3 {
+  position: absolute;
   width: 25px;
   height: 3px;
   background: #FFF9F5;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
-  transition: all 0.5s ease-in-out;
+  /*transition: all 0.5s ease-in-out;*/
   z-index: 9999;
 }
 
-.burger::before,
-.burger::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 3px;
-  background: #FFF9F5;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
-  transition: all 0.5s ease-in-out;
+
+.burger_2 {
+  top: 11px;
+  /*transform: translateY(-9px);*/
 }
 
-.burger::before {
-  transform: translateY(-9px);
-}
-
-.burger::after {
-  transform: translateY(5px);
-
+.burger_3 {
+  bottom: 11px;
+  /*transform: translateY(5px);*/
 }
 
 .main-menu-section {
