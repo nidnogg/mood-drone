@@ -1,5 +1,6 @@
 
 import React, {useEffect, useState, useRef} from 'react';
+import { render } from 'react-dom';
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;

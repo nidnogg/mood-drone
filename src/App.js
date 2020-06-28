@@ -6,6 +6,20 @@ import Drone from './Drone.js';
 import Clock from './Clock.js';
 import Controller from './Controller.js';
 
+const Hentai = props => {
+  const { isMenuOpen, setMenuOpen } = props;
+  
+  return (
+    <div className="bread">
+      <div className="ham" onClick={() => { 
+          isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
+          }}>
+        <div className="burger"></div>
+      </div>
+    </div>
+  );
+
+}
 const App = () => {
 
   const [isActive, setActive] = useState(0);
@@ -65,14 +79,7 @@ const App = () => {
 
   return (
     <section className="main-section">
-      <div className="bread">
-        <div className="ham" onClick={() => { 
-            isMenuOpen ? setMenuOpen(0) : setMenuOpen(1);  
-            }}>
-          <div className="burger"></div>
-        </div>
-      </div>
-
+      <Hentai isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
