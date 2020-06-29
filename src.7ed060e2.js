@@ -35936,7 +35936,9 @@ var App = function App() {
   }, "v1.0")), _react.default.createElement("div", {
     ref: menuContentDiv,
     className: "main-menu-content"
-  }, _react.default.createElement("p", null, "Hi! This is a radio web app built with quality sleep and headspace in mind. It aims to bring you moody tunes and to boost your spirits in times of need. It's also intended as a visual experiment. We've all faced sleepless nights among ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Feel free to check out my ", _react.default.createElement("a", {
+  }, _react.default.createElement("p", null, "Hi! If you like this, feel free to help me out with a cup of coffee at my ", _react.default.createElement("a", {
+    href: "https://www.patreon.com/nidnogg"
+  }, "Patreon."), " \u2615 ", _react.default.createElement("br", null), "This is a radio web app built with quality sleep and headspace in mind. It aims to bring you moody tunes and to boost your spirits in times of need. It's also intended as a visual experiment. We've all faced sleepless nights among ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Check out my ", _react.default.createElement("a", {
     href: "https://soundcloud.com/nidnogg"
   }, "soundcloud!"), " ", _react.default.createElement("br", null), "Inspired by Docubyte's phenomenal ", _react.default.createElement("a", {
     href: "https://www.docubyte.com/works/guide-to-computing/"
@@ -36008,7 +36010,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58919" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60538" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
