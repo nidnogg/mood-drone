@@ -35356,21 +35356,20 @@ var Clock = function Clock() {
       _useState4 = _slicedToArray(_useState3, 2),
       curMinutes = _useState4[0],
       updateMinutes = _useState4[1];
-
-  useInterval(function () {
+  /*
+  useInterval(() => {
     updateHours(getHours());
     updateMinutes(getMinutes());
   }, 1000);
-  (0, _react.useEffect)(function () {
-    _gsap.gsap.fromTo(blink.current, {
-      opacity: 0
-    }, {
-      opacity: 1,
-      duration: 0.1,
-      repeat: true,
-      repeatDelay: 0.1
-    });
-  });
+  */
+
+  /*
+  useEffect(() => {
+    gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
+  }); 
+  */
+
+
   return _react.default.createElement("div", null, _react.default.createElement("h1", null, curHours, _react.default.createElement("span", {
     ref: blink
   }, ":"), curMinutes));
@@ -35549,27 +35548,50 @@ var Controller = function Controller(props) {
     role: "switch",
     "aria-checked": "false",
     onClick: function onClick() {
-      currentTrack = (currentTrack + 1) % audioUrls.length;
-
       if (!audioContext) {
         audioSetup();
       }
 
       if (audioContext.state == 'suspended') {
+        currentTrack = (currentTrack - 1) % audioUrls.length;
+        console.log("currrent Track:".concat(currentTrack));
         audioContext.resume();
       }
 
       if (props.isActive()) {
         props.setActive(0);
-        audioStop();
+        audioStop(); // just in case so it does not reach -1
+
+        if (currentTrack == 0) {
+          currentTrack = audioUrls.length;
+        } else {
+          currentTrack = (currentTrack - 1) % audioUrls.length;
+        }
+
         var audioElement = document.querySelector('audio');
         audioElement.setAttribute('src', audioUrls[currentTrack]);
         setTimeout(function () {
+          console.log("currrent Track:".concat(currentTrack));
+          props.setActive(1);
+        }, 850);
+      } // does not reach -1
+
+
+      if (!props.isActive()) {
+        if (currentTrack == 0) {
+          currentTrack = audioUrls.length;
+        } else {
+          currentTrack = (currentTrack - 1) % audioUrls.length;
+        }
+
+        setTimeout(function () {
+          console.log("currentTrack:".concat(currentTrack));
           props.setActive(1);
         }, 850);
       }
     }
   }, _react.default.createElement("svg", {
+    className: "flip",
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 7.6 7.8"
   }, _react.default.createElement("title", null, "next"), _react.default.createElement("g", {
@@ -35594,19 +35616,124 @@ var Controller = function Controller(props) {
     role: "switch",
     "aria-checked": "false",
     onClick: function onClick() {
-      console.log('dummy!');
+      if (!audioContext) {
+        audioSetup();
+      }
+
+      if (audioContext.state == 'suspended') {
+        currentTrack = (currentTrack + 1) % audioUrls.length;
+        setTimeout(function () {
+          console.log("currrent Track:".concat(currentTrack));
+          audioContext.resume();
+        }, 850);
+      }
+
+      if (props.isActive()) {
+        props.setActive(0);
+        audioStop();
+        currentTrack = (currentTrack + 1) % audioUrls.length;
+        var audioElement = document.querySelector('audio');
+        audioElement.setAttribute('src', audioUrls[currentTrack]);
+        console.log("currentTrack:".concat(currentTrack));
+        setTimeout(function () {
+          props.setActive(1);
+        }, 850);
+      }
     }
   }, _react.default.createElement("svg", {
-    viewBox: "0 0 7.488 6.719"
-  }, _react.default.createElement("defs", null, _react.default.createElement("style", null, ".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:1.5px}")), _react.default.createElement("path", {
-    className: "prefix__a",
-    d: "M0 3.36h7.488M0 5.97h7.488M0 .75h7.488"
-  }))));
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 7.6 7.8"
+  }, _react.default.createElement("title", null, "next"), _react.default.createElement("g", {
+    id: "Layer_1",
+    "data-name": "Layer 1"
+  }, _react.default.createElement("path", {
+    d: "M0,0,7.6,3.9,0,7.8Z",
+    transform: "translate(0)",
+    fill: "#d6d6d6"
+  })), _react.default.createElement("g", {
+    id: "Layer_2",
+    "data-name": "Layer 2"
+  }, _react.default.createElement("rect", {
+    x: "6",
+    y: "0.01",
+    width: "1.59",
+    height: "7.79",
+    fill: "#d6d6d6"
+  })))));
 };
 
 var _default = Controller;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../src/Hentai.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _gsap = require("gsap");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+/* WARNING this component was jokingly named by a friend */
+var Hentai = function Hentai(props) {
+  var isMenuOpen = props.isMenuOpen,
+      setMenuOpen = props.setMenuOpen;
+  var tl = (0, _react.useRef)(0);
+  var burger_2 = (0, _react.useRef)(0);
+  var burger_3 = (0, _react.useRef)(0);
+  (0, _react.useEffect)(function () {
+    if (!tl.current) {
+      tl.current = _gsap.gsap.timeline({
+        defaults: {
+          duration: 0.3777,
+          ease: "expo"
+        }
+      }).to(burger_2.current, {
+        rotation: 45,
+        y: 6
+      }, "0.2").to(burger_3.current, {
+        rotation: -45,
+        y: -6
+      }, ">-0.3115");
+      tl.current.paused(true);
+    } else {
+      isMenuOpen ? tl.current.play() : tl.current.reverse();
+    }
+  }, []); // crap requirement for using hooks with timelines
+
+  var handleClick = function handleClick() {
+    if (isMenuOpen()) {
+      tl.current.reverse();
+      setMenuOpen(0);
+    } else {
+      tl.current.play();
+      setMenuOpen(1);
+    }
+  };
+
+  return _react.default.createElement("div", {
+    className: "bread"
+  }, _react.default.createElement("div", {
+    className: "ham",
+    onClick: handleClick
+  }, _react.default.createElement("div", {
+    ref: burger_2,
+    className: "burger_2"
+  }), _react.default.createElement("div", {
+    ref: burger_3,
+    className: "burger_3"
+  })));
+};
+
+var _default = Hentai;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","gsap":"../node_modules/gsap/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -35696,6 +35823,8 @@ var _Clock = _interopRequireDefault(require("./Clock.js"));
 
 var _Controller = _interopRequireDefault(require("./Controller.js"));
 
+var _Hentai = _interopRequireDefault(require("./Hentai.js"));
+
 require("./css/App.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -35711,56 +35840,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var Hentai = function Hentai(props) {
-  var isMenuOpen = props.isMenuOpen,
-      setMenuOpen = props.setMenuOpen;
-  var tl = (0, _react.useRef)(0);
-  var burger_2 = (0, _react.useRef)(0);
-  var burger_3 = (0, _react.useRef)(0);
-  (0, _react.useEffect)(function () {
-    if (!tl.current) {
-      tl.current = _gsap.gsap.timeline({
-        defaults: {
-          duration: 0.3777,
-          ease: "expo"
-        }
-      }).to(burger_2.current, {
-        rotation: 45,
-        y: 6
-      }, "0.2").to(burger_3.current, {
-        rotation: -45,
-        y: -6
-      }, ">-0.3115");
-      tl.current.paused(true);
-    } else {
-      isMenuOpen ? tl.current.play() : tl.current.reverse();
-    }
-  }, []); // crap requirement for using hooks with timelines
-
-  var handleClick = function handleClick() {
-    if (isMenuOpen()) {
-      tl.current.reverse();
-      setMenuOpen(0);
-    } else {
-      tl.current.play();
-      setMenuOpen(1);
-    }
-  };
-
-  return _react.default.createElement("div", {
-    className: "bread"
-  }, _react.default.createElement("div", {
-    className: "ham",
-    onClick: handleClick
-  }, _react.default.createElement("div", {
-    ref: burger_2,
-    className: "burger_2"
-  }), _react.default.createElement("div", {
-    ref: burger_3,
-    className: "burger_3"
-  })));
-};
 
 var App = function App() {
   var _useState = (0, _react.useState)(0),
@@ -35784,7 +35863,6 @@ var App = function App() {
   var blur = (0, _react.useRef)(0); // value should be either 0 or 1. These callbacks are passed down to child components
 
   function setActiveCallback(value) {
-    console.log('Setting active state to ' + value);
     setActive(value);
   }
 
@@ -35793,12 +35871,10 @@ var App = function App() {
   }
 
   function setMenuOpenCallback(value) {
-    //console.log('Setting menu open state to ' + value);
     setMenuOpen(value);
   }
 
   function isMenuOpenCallback() {
-    isMenuOpen ? console.log('Menu is active') : console.log('Menu is hidden');
     return isMenuOpen;
   }
 
@@ -35842,7 +35918,7 @@ var App = function App() {
 
   return _react.default.createElement("section", {
     className: "main-section"
-  }, _react.default.createElement(Hentai, {
+  }, _react.default.createElement(_Hentai.default, {
     isMenuOpen: isMenuOpenCallback,
     setMenuOpen: setMenuOpenCallback
   }), _react.default.createElement("section", {
@@ -35860,7 +35936,7 @@ var App = function App() {
   }, "v1.0")), _react.default.createElement("div", {
     ref: menuContentDiv,
     className: "main-menu-content"
-  }, _react.default.createElement("p", null, "Hi! This is a radio web app built with quality sleep and headspace in mind. ", _react.default.createElement("br", null), "It aims to bring you moody tunes and to boost your spirits in times of need. ", _react.default.createElement("br", null), "It's also intended as a visual experiment. We've all faced sleepless nights among ", _react.default.createElement("br", null), "ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Feel free to check out my ", _react.default.createElement("a", {
+  }, _react.default.createElement("p", null, "Hi! This is a radio web app built with quality sleep and headspace in mind. It aims to bring you moody tunes and to boost your spirits in times of need. It's also intended as a visual experiment. We've all faced sleepless nights among ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Feel free to check out my ", _react.default.createElement("a", {
     href: "https://soundcloud.com/nidnogg"
   }, "soundcloud!"), " ", _react.default.createElement("br", null), "Inspired by Docubyte's phenomenal ", _react.default.createElement("a", {
     href: "https://www.docubyte.com/works/guide-to-computing/"
@@ -35890,7 +35966,7 @@ var Tooltip = function Tooltip() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","gsap":"../node_modules/gsap/index.js","./Drone.js":"../src/Drone.js","./Clock.js":"../src/Clock.js","./Controller.js":"../src/Controller.js","./css/App.css":"../src/css/App.css"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","gsap":"../node_modules/gsap/index.js","./Drone.js":"../src/Drone.js","./Clock.js":"../src/Clock.js","./Controller.js":"../src/Controller.js","./Hentai.js":"../src/Hentai.js","./css/App.css":"../src/css/App.css"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -35932,7 +36008,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62021" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58919" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

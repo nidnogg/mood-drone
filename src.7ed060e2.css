@@ -125,7 +125,14 @@ a:hover {
   position: fixed;
   top: var(--top-offset);
   right: 60px;
-  z-index: 9998;
+  z-index: 9999;
+}
+
+@media(max-width: 451px) {
+  .bread {
+    right: 30px;
+
+  }
 }
 
 .ham {
@@ -209,6 +216,21 @@ a:hover {
   z-index: 9999;
 }
 
+@media(max-width: 451px) {
+  .main-menu-header {
+    font-size: 0.7em;
+    width: 313px;
+  }
+}
+
+@media(max-width: 422px) {
+  .main-menu-header {
+    position: relative;
+    font-size: 0.7em;
+    right: 20px;
+  }
+}
+
 /*
 .main-menu-header > * {
   position: relative;
@@ -224,7 +246,7 @@ a:hover {
   opacity: 0;
   height: 100%;
   text-align: left;
-  width: 90vw;
+  width: 70vw;
 }
 
 @media (max-width: 810px) {
@@ -426,6 +448,8 @@ svg {
   position: absolute;
 }
 
-
+.flip {
+  transform: rotate(180deg);
+}
 
 /*# sourceMappingURL=/src.7ed060e2.css.map */
