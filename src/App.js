@@ -69,16 +69,19 @@ const App = () => {
         
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! This is a radio web app built with quality sleep and headspace in mind. 
+            Hi! If you like this, feel free to help me out with a cup of coffee &#x2615; at 
+            my <a href="https://www.patreon.com/nidnogg">Patreon.</a> <br/>
+            This is a radio web app built with quality sleep and headspace in mind. 
             It aims to bring you moody tunes and to boost your spirits in times of need. 
             It's also intended as a visual experiment. We've all faced sleepless nights among  
             ever more agonizing deadlines. I hope you can find some peace of mind here.<br/> <br/>
-            All the songs are produced by me. Feel free to check out my <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
+
+            All the songs are produced by me. Check out my <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
             Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers!
           </p>
         </div>
       </section>
-   
+      
       <div ref={blur} className="drone-wrapper">
         <Drone className="drone" isActive={isActiveCallback} />
           <div className="visor-panel-wrapper">

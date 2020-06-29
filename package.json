@@ -10,7 +10,6 @@
     "build": "parcel build public/index.html --public-url /mood-drone",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
   "repository": {
     "type": "git",
@@ -26,7 +25,6 @@
     "url": "https://github.com/Nidnogg/mood-drone/issues"
   },
   "homepage": "https://github.com/Nidnogg/mood-drone",
-
   "dependencies": {
     "@svgr/parcel-plugin-svgr": "^4.3.3",
     "css": "^2.2.4",
