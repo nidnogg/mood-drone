@@ -2,18 +2,35 @@
   "name": "mood-drone",
   "version": "1.0.0",
   "description": "",
+  "private": "true",
   "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "scripts": {
     "clean": "rm dist/bundle.js",
     "dev": "parcel serve public/index.html --port 3000",
-    "build": "parcel build public/index.html"
+    "build": "parcel build public/index.html --public-url /mood-drone",
+    "deploy": "gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nidnogg/mood-drone.git"
+  },
+  "keywords": [
+    "mood",
+    "drone"
+  ],
+  "author": "nidnogg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nidnogg/mood-drone/issues"
+  },
+  "homepage": "https://github.com/Nidnogg/mood-drone",
+
   "dependencies": {
     "@svgr/parcel-plugin-svgr": "^4.3.3",
     "css": "^2.2.4",
+    "gh-pages": "^3.1.0",
     "gsap": "^3.2.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

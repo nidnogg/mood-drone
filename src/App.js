@@ -1,50 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
 import { gsap } from "gsap";
-//import { useSpring, animated } from 'react-spring';
-import './css/App.css';
 import Drone from './Drone.js';
 import Clock from './Clock.js';
 import Controller from './Controller.js';
+import Hentai from './Hentai.js'
+import './css/App.css';
 
-const Hentai = props => {
-  const { isMenuOpen, setMenuOpen } = props;
-  const tl = useRef(0);
-  const burger_2 = useRef(0);
-  const burger_3 = useRef(0);
 
-  useEffect(() => {
-    if(!tl.current) {
-      tl.current = gsap.timeline({defaults: {duration: 0.3777, ease:"expo"} })
-                       .to(burger_2.current, {rotation: 45, y: 6 }, "0.2")
-                       .to(burger_3.current, {rotation: -45, y: -6 }, ">-0.3115");
-      tl.current.paused(true);
-    } else {
-      isMenuOpen ? tl.current.play() : tl.current.reverse();
-    }
-    
-  }, []); // crap requirement for using hooks with timelines
-
-  const handleClick = () => {
-    //isMenuOpen() ? setMenuOpen(0) : setMenuOpen(1);  
-    if(isMenuOpen()) {
-      tl.current.reverse();
-      setMenuOpen(0);
-    } else {
-      tl.current.play();
-      setMenuOpen(1);
-    }
-  }
-
-  return (
-    <div className="bread">
-      <div className="ham" onClick={handleClick}>
-        <div ref={burger_2} className="burger_2"></div>
-        <div ref={burger_3} className="burger_3"></div>
-      </div>
-    </div>
-  );
-
-}
 const App = () => {
 
   const [isActive, setActive] = useState(0);
@@ -62,7 +24,6 @@ const App = () => {
 
   // value should be either 0 or 1. These callbacks are passed down to child components
   function setActiveCallback(value) {
-    console.log('Setting active state to ' + value);
     setActive(value);
   }
 
@@ -71,17 +32,13 @@ const App = () => {
   } 
 
   function setMenuOpenCallback(value) {
-    //console.log('Setting menu open state to ' + value);
     setMenuOpen(value);
   }
 
   function isMenuOpenCallback() {
-    isMenuOpen ? console.log('Menu is active') : console.log('Menu is hidden');
     return isMenuOpen;
   }
   
-  //const tl.current = gsap.timeline({defaults: {duration: 0.4, ease:"linear"} }); WIPED OUT ON EVERY RENDER
-
   useEffect(() => {
     if(!tl.current) {
       tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
@@ -112,9 +69,9 @@ const App = () => {
         
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! This is a radio web app built with quality sleep and headspace in mind. <br/>
-            It aims to bring you moody tunes and to boost your spirits in times of need. <br/>
-            It's also intended as a visual experiment. We've all faced sleepless nights among <br/> 
+            Hi! This is a radio web app built with quality sleep and headspace in mind. 
+            It aims to bring you moody tunes and to boost your spirits in times of need. 
+            It's also intended as a visual experiment. We've all faced sleepless nights among  
             ever more agonizing deadlines. I hope you can find some peace of mind here.<br/> <br/>
             All the songs are produced by me. Feel free to check out my <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
             Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers!
@@ -145,16 +102,6 @@ const Tooltip = () => {
       </span>
     </div>
   );
-}
-
-// utility function for listing object methods 
-const getMethods = obj => {
-  let properties = new Set()
-  let currentObj = obj
-  do {
-    Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
-  } while ((currentObj = Object.getPrototypeOf(currentObj)))
-    console.log([...properties.keys()].filter(item => typeof obj[item] === 'function'));
 }
 
 export default App;

@@ -125,7 +125,14 @@ a:hover {
   position: fixed;
   top: var(--top-offset);
   right: 60px;
-  z-index: 9998;
+  z-index: 9999;
+}
+
+@media(max-width: 451px) {
+  .bread {
+    right: 30px;
+
+  }
 }
 
 .ham {
@@ -176,6 +183,7 @@ a:hover {
   font-family: 'Barlow', sans-serif;
   font-weight: 400;
   font-size: 3rem;
+  padding: 30px 0px 0px 27px;
   z-index: -1000;
 }
 
@@ -208,6 +216,21 @@ a:hover {
   z-index: 9999;
 }
 
+@media(max-width: 451px) {
+  .main-menu-header {
+    font-size: 0.7em;
+    width: 313px;
+  }
+}
+
+@media(max-width: 422px) {
+  .main-menu-header {
+    position: relative;
+    font-size: 0.7em;
+    right: 20px;
+  }
+}
+
 /*
 .main-menu-header > * {
   position: relative;
@@ -222,10 +245,16 @@ a:hover {
   display: block;
   opacity: 0;
   height: 100%;
-  text-align: justify;
-  width: 80vw;
-
+  text-align: left;
+  width: 70vw;
 }
+
+@media (max-width: 810px) {
+  .main-menu-content {
+    left: 20px;
+  }
+}
+
 
 .playback-button > svg {
   position: absolute;  /*switching to absolute shows SVG in chrome*/
@@ -419,3 +448,6 @@ svg {
   position: absolute;
 }
 
+.flip {
+  transform: rotate(180deg);
+}

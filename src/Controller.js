@@ -125,26 +125,52 @@ const Controller = props => {
 
         <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
-            currentTrack = (currentTrack + 1) % audioUrls.length;
             if(!audioContext) {
               audioSetup();
             }
-
+            
             if(audioContext.state == 'suspended') {
+              currentTrack = (currentTrack - 1) % audioUrls.length;
+              console.log(`currrent Track:${currentTrack}`);
               audioContext.resume();
             }
           
             if(props.isActive()) {
               props.setActive(0);
               audioStop();
+
+              // just in case so it does not reach -1
+              if(currentTrack == 0) {
+                currentTrack = audioUrls.length 
+              } else {
+                currentTrack = (currentTrack - 1) % audioUrls.length;
+              } 
+
               const audioElement = document.querySelector('audio');
     	        audioElement.setAttribute('src', audioUrls[currentTrack]);
               setTimeout(() => {
+                console.log(`currrent Track:${currentTrack}`);
+                props.setActive(1);
+              }, 850);
+            } 
+
+            // does not reach -1
+            if(!props.isActive()) {
+              if(currentTrack == 0) {
+                currentTrack = audioUrls.length 
+              } else {
+                currentTrack = (currentTrack - 1) % audioUrls.length;
+              } 
+              
+              setTimeout(() => {
+                console.log(`currentTrack:${currentTrack}`);
                 props.setActive(1);
               }, 850);
             }
+            
+
           }}>  
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.6 7.8">
+          <svg className="flip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.6 7.8">
             <title>next</title>
             <g id="Layer_1" data-name="Layer 1">
               <path d="M0,0,7.6,3.9,0,7.8Z" transform="translate(0)" fill="#d6d6d6"/>
@@ -157,16 +183,45 @@ const Controller = props => {
 
         <button  className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => { 
-            console.log('dummy!');
+            if(!audioContext) {
+              audioSetup();
+            }
+            
+            if(audioContext.state == 'suspended') {
+              currentTrack = (currentTrack + 1) % audioUrls.length;
+              setTimeout(() => {
+                console.log(`currrent Track:${currentTrack}`);
+
+                audioContext.resume();
+              }, 850);
+            }
+          
+            if(props.isActive()) {
+              props.setActive(0);
+              audioStop();
+
+              currentTrack = (currentTrack + 1) % audioUrls.length;
+  
+              const audioElement = document.querySelector('audio');
+              audioElement.setAttribute('src', audioUrls[currentTrack]);
+      
+              console.log(`currentTrack:${currentTrack}`);
+              setTimeout(() => {
+                props.setActive(1);
+              }, 850);
+            }
+
           }}>  
-        <svg viewBox="0 0 7.488 6.719" >
-          <defs>
-            <style>
-              {".prefix__a{fill:none;stroke:#d6d6d6;stroke-width:1.5px}"}
-            </style>
-          </defs>
-          <path className="prefix__a" d="M0 3.36h7.488M0 5.97h7.488M0 .75h7.488" />
-        </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.6 7.8">
+            <title>next</title>
+            <g id="Layer_1" data-name="Layer 1">
+              <path d="M0,0,7.6,3.9,0,7.8Z" transform="translate(0)" fill="#d6d6d6"/>
+            </g>
+            <g id="Layer_2" data-name="Layer 2">
+              <rect x="6" y="0.01" width="1.59" height="7.79" fill="#d6d6d6"/>
+            </g>
+          </svg>
+        
         </button> 
     </div>
   );

@@ -10,14 +10,18 @@ const Clock = () => {
   const [curHours, updateHours] = useState(initial_hours);
   const [curMinutes, updateMinutes] = useState(initial_minutes);
 
+  /*
   useInterval(() => {
     updateHours(getHours());
     updateMinutes(getMinutes());
   }, 1000);
+  */
 
+  /*
   useEffect(() => {
     gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
   }); 
+  */
   return (
     <div>
       <h1>{curHours}<span ref={blink}>:</span>{curMinutes}</h1>
