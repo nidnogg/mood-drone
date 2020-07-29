@@ -1,5 +1,5 @@
 import * as React from "react"
-//ref={'wheel' + props.wheelNum}
+
 const Wheel = props => {
   return (
     <svg data-name="Layer 1" viewBox="0 0 268 268" >

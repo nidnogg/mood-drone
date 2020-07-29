@@ -62,22 +62,23 @@ const App = () => {
   return (
     <section className="main-section">
       <Hentai isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
+      <div id="poster"></div>
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
-            <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
+            <span ref={menuHeader} className="menu-header">su drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
         </div>
         
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! If you like this, feel free to help me out with a cup of coffee at 
-            my <a href="https://www.patreon.com/nidnogg">Patreon.</a> &#x2615; <br/>
-            This is a radio web app built with quality sleep and headspace in mind. 
-            It aims to bring you moody tunes and to boost your spirits in times of need. 
-            It's also intended as a visual experiment. We've all faced sleepless nights among  
-            ever more agonizing deadlines. I hope you can find some peace of mind here.<br/> <br/>
-
-            All the songs are produced by me. Check out my <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
-            Inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers!
+            Hey Su! This is a little bit differrent from a heartfelt note, but it is heartfelt
+            nonetheless. Welcome to Su Drone, your own little <a href="https://imgur.com/a/jHK9NIO">poster</a> website on the internet. I hope
+            today is the happiest birthday you can get your hands on. <br/> 
+            Have a sweet birthday cake on me &#127874;. You're our finest <a href="https://www.patreon.com/nidnog">Patreon.</a><br/> 
+            You will always be a <a href="https://www.youtube.com/watch?v=NA6OCGLCUec">Golden Lady</a> and the <a href="https://www.youtube.com/watch?v=eKQuwAmIVKA">Queen</a> of Convenience.
+            The songs are by our dearest pal Stevie Wonder. Thanks Stevie for making Su a happy little birthday!<br />
+            Check out our <a href="https://soundcloud.com/nidnogg">soundcloud!</a> <br/>
+            Also inspired by Docubyte's phenomenal <a href="https://www.docubyte.com/works/guide-to-computing/">Guide to Computing.</a> Cheers from your family and Henrique!
+            PS: Papura alpha is <a href="https://papura.vercel.app/">live</a>!
           </p>
         </div>
       </section>

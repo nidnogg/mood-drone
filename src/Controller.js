@@ -1,6 +1,5 @@
 
 import React, {useEffect, useState, useRef} from 'react';
-import { render } from 'react-dom';
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -8,8 +7,9 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext;
 let currentTrack = 0;
 const audioUrls = [
-                   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2",
-                   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232"
+                   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/happy_birthday_su.mp3?alt=media&token=c1f1cc94-0418-48a6-942b-22a6bc8c4d93",
+                   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/Don't%20You%20Worry%20'Bout%20A%20Thing.mp3?alt=media&token=0da2fbee-f3d3-4072-846b-4ef7fbeb8f1f",
+                   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/The%20Lumineers%20-%20Sleep%20On%20The%20Floor%20(Official%20Video).mp3?alt=media&token=14128be8-fa4b-45b4-b762-8cc95181294b"
                   ];
 
 const audioStop = () => {
@@ -72,7 +72,7 @@ const Controller = props => {
   return (
     <div className="buttons-wrapper">
       <AudioElem/>
-       <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
+        <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
