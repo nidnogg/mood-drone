@@ -33968,7 +33968,7 @@ var Drone = function Drone(props) {
     d: "M274.28 500.34l-1.62-.88a10.63 10.63 0 001.86-.15c.33-.06.67-.14 1-.22.56-.15 1-.29 1-.29l-.47.77z",
     fill: "#ac884d"
   })), _react.default.createElement("g", {
-    "data-name": "MOOD DRONE",
+    "data-name": "SU DRONE",
     opacity: 0.9,
     style: {
       isolation: "isolate"
@@ -33981,7 +33981,7 @@ var Drone = function Drone(props) {
     style: {
       isolation: "isolate"
     }
-  }, "MOOD"), _react.default.createElement("text", {
+  }, "SU"), _react.default.createElement("text", {
     transform: "translate(280.29 499.05)",
     style: {
       isolation: "isolate"
@@ -35328,8 +35328,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _gsap = require("gsap");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -35342,6 +35340,7 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//import {gsap} from 'gsap';
 var Clock = function Clock() {
   var initial_hours = getHours();
   var initial_minutes = getMinutes();
@@ -35412,7 +35411,7 @@ function useInterval(callback, delay) {
 
 var _default = Clock;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","gsap":"../node_modules/gsap/index.js"}],"../src/Controller.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"../src/Controller.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35422,8 +35421,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactDom = require("react-dom");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -35432,7 +35429,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext;
 var currentTrack = 0;
-var audioUrls = ["https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232"];
+var audioUrls = ["https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/happy_birthday_su.mp3?alt=media&token=c1f1cc94-0418-48a6-942b-22a6bc8c4d93", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/Don't%20You%20Worry%20'Bout%20A%20Thing.mp3?alt=media&token=0da2fbee-f3d3-4072-846b-4ef7fbeb8f1f", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/The%20Lumineers%20-%20Sleep%20On%20The%20Floor%20(Official%20Video).mp3?alt=media&token=14128be8-fa4b-45b4-b762-8cc95181294b"];
 
 var audioStop = function audioStop() {
   // gets audio element
@@ -35664,7 +35661,7 @@ var Controller = function Controller(props) {
 
 var _default = Controller;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../src/Hentai.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"../src/Hentai.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35921,6 +35918,8 @@ var App = function App() {
   }, _react.default.createElement(_Hentai.default, {
     isMenuOpen: isMenuOpenCallback,
     setMenuOpen: setMenuOpenCallback
+  }), _react.default.createElement("div", {
+    id: "poster"
   }), _react.default.createElement("section", {
     ref: menu,
     className: "main-menu-section"
@@ -35930,19 +35929,27 @@ var App = function App() {
   }, _react.default.createElement("span", {
     ref: menuHeader,
     className: "menu-header"
-  }, "mood drone"), " ", _react.default.createElement("span", {
+  }, "su drone"), " ", _react.default.createElement("span", {
     className: "ver-num",
     ref: verNum
   }, "v1.0")), _react.default.createElement("div", {
     ref: menuContentDiv,
     className: "main-menu-content"
-  }, _react.default.createElement("p", null, "Hi! If you like this, feel free to help me out with a cup of coffee at my ", _react.default.createElement("a", {
-    href: "https://www.patreon.com/nidnogg"
-  }, "Patreon."), " \u2615 ", _react.default.createElement("br", null), "This is a radio web app built with quality sleep and headspace in mind. It aims to bring you moody tunes and to boost your spirits in times of need. It's also intended as a visual experiment. We've all faced sleepless nights among ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Check out my ", _react.default.createElement("a", {
+  }, _react.default.createElement("p", null, "Hey Su! This is a little bit differrent from a heartfelt note, but it is heartfelt nonetheless. Welcome to Su Drone, your own little ", _react.default.createElement("a", {
+    href: "https://imgur.com/a/jHK9NIO"
+  }, "poster"), " website on the internet. I hope today is the happiest birthday you can get your hands on. ", _react.default.createElement("br", null), "Have a sweet birthday cake on me \uD83C\uDF82. You're our finest ", _react.default.createElement("a", {
+    href: "https://www.patreon.com/nidnog"
+  }, "Patreon."), _react.default.createElement("br", null), "You will always be a ", _react.default.createElement("a", {
+    href: "https://www.youtube.com/watch?v=NA6OCGLCUec"
+  }, "Golden Lady"), " and the ", _react.default.createElement("a", {
+    href: "https://www.youtube.com/watch?v=eKQuwAmIVKA"
+  }, "Queen"), " of Convenience. The songs are by our dearest pal Stevie Wonder. Thanks Stevie for making Su a happy little birthday!", _react.default.createElement("br", null), "Check out our ", _react.default.createElement("a", {
     href: "https://soundcloud.com/nidnogg"
-  }, "soundcloud!"), " ", _react.default.createElement("br", null), "Inspired by Docubyte's phenomenal ", _react.default.createElement("a", {
+  }, "soundcloud!"), " ", _react.default.createElement("br", null), "Also inspired by Docubyte's phenomenal ", _react.default.createElement("a", {
     href: "https://www.docubyte.com/works/guide-to-computing/"
-  }, "Guide to Computing."), " Cheers!"))), _react.default.createElement("div", {
+  }, "Guide to Computing."), " Cheers from your family and Henrique! PS: Papura alpha is ", _react.default.createElement("a", {
+    href: "https://papura.vercel.app/"
+  }, "live"), "!"))), _react.default.createElement("div", {
     ref: blur,
     className: "drone-wrapper"
   }, _react.default.createElement(_Drone.default, {
@@ -36010,7 +36017,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60538" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59194" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
