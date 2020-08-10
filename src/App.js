@@ -69,7 +69,7 @@ const App = () => {
         
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! If you like this, feel free to help me out with a cup of coffee at 
+            Hi! If you like this, feel free to help me out with a cup of <a href="https://ko-fi.com/nidnogg">Ko-Fi</a> at 
             my <a href="https://www.patreon.com/nidnogg">Patreon.</a> &#x2615; <br/>
             This is a radio web app built with quality sleep and headspace in mind. 
             It aims to bring you moody tunes and to boost your spirits in times of need. 

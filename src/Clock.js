@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef } from 'react';
-import {gsap} from 'gsap';
+//import {gsap} from 'gsap';
 
 const Clock = () => {
 

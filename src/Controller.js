@@ -1,6 +1,5 @@
 
 import React, {useEffect, useState, useRef} from 'react';
-import { render } from 'react-dom';
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -72,7 +71,7 @@ const Controller = props => {
   return (
     <div className="buttons-wrapper">
       <AudioElem/>
-       <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
+        <button className="playback-button" data-playing="false" role="switch" aria-checked="false" 
           onClick={() => {
             // check for autoplay policy
             if(audioContext.state == 'suspended') {
