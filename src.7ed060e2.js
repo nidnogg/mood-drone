@@ -35376,13 +35376,13 @@ var Clock = function Clock() {
 
 var getHours = function getHours() {
   var d = new Date();
-  var hours = d.getHours() < 10 ? hours = '0' + d.getHours() : d.getHours();
+  var hours = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
   return hours;
 };
 
 var getMinutes = function getMinutes() {
   var d = new Date();
-  var minutes = d.getMinutes() < 10 ? minutes = '0' + d.getMinutes() : d.getMinutes();
+  var minutes = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
   return minutes;
 };
 /* custom useInterval hook used in clock component */
@@ -35429,11 +35429,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext;
 var currentTrack = 0;
-var audioUrls = ["https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232"];
+var audioUrls = ["https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/the_zen_bass.mp3?alt=media&token=8b231fcd-0b79-4dbd-ba35-0bb3d509be2f", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2", "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232"];
 
 var audioStop = function audioStop() {
   // gets audio element
-  var audioElement = document.querySelector('audio');
+  var audioElement = document.querySelector("audio");
   audioElement.currentTime = 0;
 };
 
@@ -35441,8 +35441,8 @@ var audioSetup = function audioSetup() {
   // generates audio context on first user interaction
   audioContext = new AudioContext(); // gets audio element
 
-  var audioElement = document.querySelector('audio');
-  audioElement.setAttribute('src', audioUrls[currentTrack]); // passes it into the audio context
+  var audioElement = document.querySelector("audio");
+  audioElement.setAttribute("src", audioUrls[currentTrack]); // passes it into the audio context
 
   var track = audioContext.createMediaElementSource(audioElement);
   var analyser = audioContext.createAnalyser();
@@ -35469,8 +35469,33 @@ var AudioElem = function AudioElem(sourceUrl) {
 
 var Controller = function Controller(props) {
   (0, _react.useEffect)(function () {
-    // gets audio DOM node 
-    var audioElement = document.querySelector('audio');
+    // gets audio DOM node
+    var audioElement = document.querySelector("audio");
+
+    audioElement.onended = function (event) {
+      if (!audioContext) {
+        audioSetup();
+      }
+
+      if (audioContext.state == "suspended") {
+        currentTrack = (currentTrack + 1) % audioUrls.length;
+        setTimeout(function () {
+          console.log("current Track:".concat(currentTrack));
+          audioContext.resume();
+        }, 850);
+      }
+
+      if (props.isActive()) {
+        props.setActive(0);
+        audioStop();
+        currentTrack = (currentTrack + 1) % audioUrls.length;
+        audioElement.setAttribute("src", audioUrls[currentTrack]);
+        console.log("currentTrack:".concat(currentTrack));
+        setTimeout(function () {
+          props.setActive(1);
+        }, 850);
+      }
+    };
 
     if (audioContext) {
       if (props.isActive()) {
@@ -35489,7 +35514,7 @@ var Controller = function Controller(props) {
     "aria-checked": "false",
     onClick: function onClick() {
       // check for autoplay policy
-      if (audioContext.state == 'suspended') {
+      if (audioContext.state == "suspended") {
         audioContext.resume().then(function () {});
       }
 
@@ -35524,9 +35549,9 @@ var Controller = function Controller(props) {
     role: "switch",
     "aria-checked": "false",
     onClick: function onClick() {
-      if (!audioContext) audioSetup(audioUrls[currentTrack]); // check for autoplay policy
+      if (!audioContext) audioSetup(); // check for autoplay policy
 
-      if (audioContext.state == 'suspended') {
+      if (audioContext.state == "suspended") {
         audioContext.resume();
       }
 
@@ -35549,9 +35574,9 @@ var Controller = function Controller(props) {
         audioSetup();
       }
 
-      if (audioContext.state == 'suspended') {
+      if (audioContext.state == "suspended") {
         currentTrack = (currentTrack - 1) % audioUrls.length;
-        console.log("currrent Track:".concat(currentTrack));
+        console.log("current Track:".concat(currentTrack));
         audioContext.resume();
       }
 
@@ -35565,8 +35590,8 @@ var Controller = function Controller(props) {
           currentTrack = (currentTrack - 1) % audioUrls.length;
         }
 
-        var audioElement = document.querySelector('audio');
-        audioElement.setAttribute('src', audioUrls[currentTrack]);
+        var audioElement = document.querySelector("audio");
+        audioElement.setAttribute("src", audioUrls[currentTrack]);
         setTimeout(function () {
           console.log("currrent Track:".concat(currentTrack));
           props.setActive(1);
@@ -35617,7 +35642,7 @@ var Controller = function Controller(props) {
         audioSetup();
       }
 
-      if (audioContext.state == 'suspended') {
+      if (audioContext.state == "suspended") {
         currentTrack = (currentTrack + 1) % audioUrls.length;
         setTimeout(function () {
           console.log("currrent Track:".concat(currentTrack));
@@ -35629,8 +35654,8 @@ var Controller = function Controller(props) {
         props.setActive(0);
         audioStop();
         currentTrack = (currentTrack + 1) % audioUrls.length;
-        var audioElement = document.querySelector('audio');
-        audioElement.setAttribute('src', audioUrls[currentTrack]);
+        var audioElement = document.querySelector("audio");
+        audioElement.setAttribute("src", audioUrls[currentTrack]);
         console.log("currentTrack:".concat(currentTrack));
         setTimeout(function () {
           props.setActive(1);
@@ -35933,7 +35958,9 @@ var App = function App() {
   }, "v1.0")), _react.default.createElement("div", {
     ref: menuContentDiv,
     className: "main-menu-content"
-  }, _react.default.createElement("p", null, "Hi! If you like this, feel free to help me out with a cup of coffee at my ", _react.default.createElement("a", {
+  }, _react.default.createElement("p", null, "Hi! If you like this, feel free to help me out with a cup of ", _react.default.createElement("a", {
+    href: "https://ko-fi.com/nidnogg"
+  }, "Ko-Fi"), " at my ", _react.default.createElement("a", {
     href: "https://www.patreon.com/nidnogg"
   }, "Patreon."), " \u2615 ", _react.default.createElement("br", null), "This is a radio web app built with quality sleep and headspace in mind. It aims to bring you moody tunes and to boost your spirits in times of need. It's also intended as a visual experiment. We've all faced sleepless nights among ever more agonizing deadlines. I hope you can find some peace of mind here.", _react.default.createElement("br", null), " ", _react.default.createElement("br", null), "All the songs are produced by me. Check out my ", _react.default.createElement("a", {
     href: "https://soundcloud.com/nidnogg"
@@ -36007,7 +36034,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59356" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50206" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
