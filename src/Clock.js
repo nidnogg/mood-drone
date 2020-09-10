@@ -1,8 +1,7 @@
-import React, {useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 //import {gsap} from 'gsap';
 
 const Clock = () => {
-
   let initial_hours = getHours();
   let initial_minutes = getMinutes();
 
@@ -24,23 +23,27 @@ const Clock = () => {
   */
   return (
     <div>
-      <h1>{curHours}<span ref={blink}>:</span>{curMinutes}</h1>
+      <h1>
+        {curHours}
+        <span ref={blink}>:</span>
+        {curMinutes}
+      </h1>
       {/*<h6 className="alarm-text">ALARM SET</h6>*/}
     </div>
   );
-}
+};
 
 const getHours = () => {
   let d = new Date();
-  let hours = d.getHours() < 10 ? hours = '0' + d.getHours() : d.getHours();
+  let hours = d.getHours() < 10 ? "0" + d.getHours() : d.getHours();
   return hours;
-}
+};
 
 const getMinutes = () => {
   let d = new Date();
-  let minutes = d.getMinutes() < 10 ? minutes = '0' + d.getMinutes() : d.getMinutes();
+  let minutes = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
   return minutes;
-}
+};
 
 /* custom useInterval hook used in clock component */
 function useInterval(callback, delay) {
