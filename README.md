@@ -1,7 +1,7 @@
 # mood drone
 ![](https://i.imgur.com/hlVTvhQ.png)
 
-[Live demo available!]
+[Live demo available!](https://nidnogg.github.io/mood-drone)
 
 Mood Drone is an open source, happy little web app mimicking a radio widget. It is inspired on Docubyte's phenomenal [Guide to Computing.](https://www.docubyte.com/works/guide-to-computing/)
 
