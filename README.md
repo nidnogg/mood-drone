@@ -1,5 +1,5 @@
 # mood drone
-![moodDrone](https://www.docubyte.com/works/guide-to-computing/)
+![](https://i.imgur.com/hlVTvhQ.png)
 
 Mood Drone is an open source, happy little web app mimicking a radio widget. It is based on Docubyte's phenomenal [Guide to Computing](https://www.docubyte.com/works/guide-to-computing/)
 
@@ -7,7 +7,7 @@ It supports user defined alarms and it's mostly intended to play moody songs tha
 
 ## Contributors
 This app was made possible by the help of:
-* [Itoroabasi Unang](https://github.com/unangity)
+* [Itoroabasi Unang](https://github.com/unangity), who solved the loop issue
 ## Usage
 
 Just ```npm run dev``` for development
