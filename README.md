@@ -1,7 +1,9 @@
 # mood drone
 ![](https://i.imgur.com/hlVTvhQ.png)
 
-Mood Drone is an open source, happy little web app mimicking a radio widget. It is based on Docubyte's phenomenal [Guide to Computing](https://www.docubyte.com/works/guide-to-computing/)
+[Live demo available!]
+
+Mood Drone is an open source, happy little web app mimicking a radio widget. It is inspired on Docubyte's phenomenal [Guide to Computing.](https://www.docubyte.com/works/guide-to-computing/)
 
 It supports user defined alarms and it's mostly intended to play moody songs that would lull the user to a healthy night's sleep.
 
