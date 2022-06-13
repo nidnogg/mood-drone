@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 
 /* WARNING this component was jokingly named by a friend */
 
-const Hentai = props => {
+const Hamburger = props => {
   const { isMenuOpen, setMenuOpen } = props;
   const tl = useRef(0);
   const burger_2 = useRef(0);
@@ -41,4 +41,4 @@ const Hentai = props => {
   );
 }
 
-export default Hentai;
+export default Hamburger;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-//import {gsap} from 'gsap';
+// import {gsap} from 'gsap';
 
 const Clock = () => {
   let initial_hours = getHours();
@@ -9,18 +9,15 @@ const Clock = () => {
   const [curHours, updateHours] = useState(initial_hours);
   const [curMinutes, updateMinutes] = useState(initial_minutes);
 
-  /*
   useInterval(() => {
     updateHours(getHours());
     updateMinutes(getMinutes());
   }, 1000);
-  */
 
-  /*
-  useEffect(() => {
-    gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
-  }); 
-  */
+  // useEffect(() => {
+  //   gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
+  // }); 
+  
   return (
     <div>
       <h1>
@@ -28,7 +25,6 @@ const Clock = () => {
         <span ref={blink}>:</span>
         {curMinutes}
       </h1>
-      {/*<h6 className="alarm-text">ALARM SET</h6>*/}
     </div>
   );
 };

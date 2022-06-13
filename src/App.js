@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from "gsap";
 import Drone from './Drone.js';
 import Clock from './Clock.js';
 import Controller from './Controller.js';
-import Hentai from './Hentai.js'
+import Hamburger from './Hamburger.js'
 import './css/App.css';
 
 
@@ -12,7 +12,6 @@ const App = () => {
   const [isActive, setActive] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(0);
 
-  //const timeline = useRef(0);
   const tl = useRef(0);
   const menu = useRef(0);
   const menuHeaderDiv = useRef(0);
@@ -53,15 +52,15 @@ const App = () => {
                        .to(menuContentDiv.current, {opacity: "1"}, ">-0.2")
                        .to(menuButton.current, {opacity: "1"}, ">-0.2");
     }
-  }, []); // crap requirement for using hooks with timelines
+  }, []); // requirement for using hooks with timelines
 
   useEffect(() => {
     isMenuOpen ? tl.current.play() : tl.current.reverse();
-  }, [isMenuOpen]);  // wonder if isMenuOpen is also required for hooks
+  }, [isMenuOpen]); 
 
   return (
     <section className="main-section">
-      <Hentai isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
+      <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>     
@@ -69,8 +68,7 @@ const App = () => {
         
         <div ref={menuContentDiv} className="main-menu-content">
           <p>
-            Hi! If you like this, feel free to help me out with a cup of <a href="https://ko-fi.com/nidnogg">Ko-Fi</a> at 
-            my <a href="https://www.patreon.com/nidnogg">Patreon.</a> &#x2615; <br/>
+            Hi! <br/>
             This is a radio web app built with quality sleep and headspace in mind. 
             It aims to bring you moody tunes and to boost your spirits in times of need. 
             It's also intended as a visual experiment. We've all faced sleepless nights among  

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -6,7 +6,6 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioContext;
 let currentTrack = 0;
 const audioUrls = [
-  "https://firebasestorage.googleapis.com/v0/b/cloudtop-nidnogg.appspot.com/o/audio%2Ftest.mp3?alt=media&token=c0ca5d7b-abcf-43c7-87af-764393e539af",
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/the_zen_bass.mp3?alt=media&token=8b231fcd-0b79-4dbd-ba35-0bb3d509be2f",
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2",
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232",
@@ -47,7 +46,7 @@ const audioSetup = () => {
   audioElement.onended = function() {};
 };
 
-const AudioElem = (sourceUrl) => {
+const AudioElem = () => {
   return (
     <audio crossOrigin="anonymous" type="audio/mpeg">
       Failed to load <code>audio</code> element
@@ -60,7 +59,7 @@ const Controller = (props) => {
   useEffect(() => {
     // gets audio DOM node
     const audioElement = document.querySelector("audio");
-    audioElement.onended = function(event) {
+    audioElement.onended = () => {
       if (!audioContext) {
         audioSetup();
       }
@@ -99,7 +98,10 @@ const Controller = (props) => {
 
   return (
     <div className="buttons-wrapper">
+
       <AudioElem />
+
+      {/* Pause button */}
       <button
         className="playback-button"
         data-playing="false"
@@ -125,6 +127,8 @@ const Controller = (props) => {
         </svg>
       </button>
 
+
+      {/* Stop Button */}
       <button
         className="playback-button"
         data-playing="false"
@@ -142,6 +146,7 @@ const Controller = (props) => {
         </svg>
       </button>
 
+      {/* Play Button */}
       <button
         className="playback-button"
         data-playing="false"
@@ -164,6 +169,7 @@ const Controller = (props) => {
         </svg>
       </button>
 
+      {/* Previous Track Button */}
       <button
         className="playback-button"
         data-playing="false"
@@ -176,7 +182,7 @@ const Controller = (props) => {
 
           if (audioContext.state == "suspended") {
             currentTrack = (currentTrack - 1) % audioUrls.length;
-            console.log(`current Track:${currentTrack}`);
+            console.log(`current Track: ${currentTrack}`);
             audioContext.resume();
           }
 
@@ -194,7 +200,7 @@ const Controller = (props) => {
             const audioElement = document.querySelector("audio");
             audioElement.setAttribute("src", audioUrls[currentTrack]);
             setTimeout(() => {
-              console.log(`currrent Track:${currentTrack}`);
+              console.log(`current Track: ${currentTrack}`);
               props.setActive(1);
             }, 850);
           }
@@ -208,7 +214,7 @@ const Controller = (props) => {
             }
 
             setTimeout(() => {
-              console.log(`currentTrack:${currentTrack}`);
+              console.log(`currentTrack: ${currentTrack}`);
               props.setActive(1);
             }, 850);
           }
@@ -233,6 +239,7 @@ const Controller = (props) => {
         </svg>
       </button>
 
+      {/* Next Track Button */}
       <button
         className="playback-button"
         data-playing="false"
@@ -246,8 +253,7 @@ const Controller = (props) => {
           if (audioContext.state == "suspended") {
             currentTrack = (currentTrack + 1) % audioUrls.length;
             setTimeout(() => {
-              console.log(`currrent Track:${currentTrack}`);
-
+              console.log(`currrent Track: ${currentTrack}`);
               audioContext.resume();
             }, 850);
           }
@@ -261,7 +267,7 @@ const Controller = (props) => {
             const audioElement = document.querySelector("audio");
             audioElement.setAttribute("src", audioUrls[currentTrack]);
 
-            console.log(`currentTrack:${currentTrack}`);
+            console.log(`currentTrack: ${currentTrack}`);
             setTimeout(() => {
               props.setActive(1);
             }, 850);
