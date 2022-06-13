@@ -29,7 +29,7 @@
     "@svgr/parcel-plugin-svgr": "^4.3.3",
     "css": "^2.2.4",
     "gh-pages": "^3.1.0",
-    "gsap": "^3.2.4",
+    "gsap": "^3.6.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-spring": "^8.0.27",
