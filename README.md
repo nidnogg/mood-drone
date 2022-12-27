@@ -7,12 +7,6 @@ Mood Drone is an open source web app mimicking a radio widget. It is inspired on
 
 I'd hoped for it to support user defined alarms, but I will make a separate drone for sleeping. Right now it's mostly intended to play moody songs that would lull the user to a productive work day or night.
 
-## Drone Index
-This is a list of similar Mood Drones that were made public by nidnogg:
-* [Sky Drone](https://nidnogg.github.io/sky-drone/), featuring the Brazilian musical mastermind Rogério Skylab
-* [Kuh Drone](https://nidnogg.github.io/kuh-drone/), made for my friend and osu master [fkuhnert](https://github.com/fkuhnert)
-
-## Contributors
 This app was made possible by the help of:
 * [Itoroabasi Unang](https://github.com/unangity), who solved the loop issue
 
