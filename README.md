@@ -13,7 +13,7 @@ Linux • macOS • Windows • Web
 
 
 # About
-Mood Drone 📻 is an open source web app mimicking a radio widget. It is inspired on Docubyte's phenomenal [Guide to Computing.](https://www.docubyte.com/works/guide-to-computing/)
+Mood Drone 📻 is an open source web app mimicking a radio widget. It is inspired by Docubyte's phenomenal [Guide to Computing.](https://www.docubyte.com/works/guide-to-computing/)
 
 I'd hoped for it to support user defined alarms, but I will make a separate drone for sleeping. Right now it's mostly intended to play moody songs that would lull the user to a productive work day or night.
 
