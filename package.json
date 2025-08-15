@@ -5,10 +5,10 @@
   "private": "true",
   "main": "index.js",
   "scripts": {
-    "clean": "rm dist/bundle.js",
-    "dev": "parcel serve public/index.html --port 3000",
-    "build": "parcel build public/index.html --public-url /mood-drone",
-    "deploy": "gh-pages -d dist",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/Nidnogg/mood-drone",
   "dependencies": {
-    "@svgr/parcel-plugin-svgr": "^4.3.3",
     "css": "^2.2.4",
     "gh-pages": "^3.1.0",
     "gsap": "^3.2.4",
@@ -39,6 +38,7 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@svgr/cli": "^5.2.0",
-    "parcel-bundler": "^1.12.4"
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.1.2"
   }
 }
