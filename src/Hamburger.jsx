@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from "gsap";
 
 /* WARNING this component was jokingly named by a friend */

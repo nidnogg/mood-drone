@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from "gsap";
-import Drone from './Drone.js';
-import Clock from './Clock.js';
-import Controller from './Controller.js';
-import Hamburger from './Hamburger.js'
+import Drone from './Drone.jsx';
+import Clock from './Clock.jsx';
+import Controller from './Controller.jsx';
+import Hamburger from './Hamburger.jsx';
 import './css/App.css';
 
 
@@ -82,14 +82,13 @@ const App = () => {
       
       <div ref={blur} className="drone-wrapper">
         <Drone className="drone" isActive={isActiveCallback} />
-          <div className="visor-panel-wrapper">
-            <section className="visor">
-              <Clock />
-            </section>
-          </div>
-          <Controller isActive={isActiveCallback} setActive={setActiveCallback} 
-          />
-     </div>
+        <div className="visor-panel-wrapper">
+          <section className="visor">
+            <Clock />
+          </section>
+        </div>
+        <Controller isActive={isActiveCallback} setActive={setActiveCallback} />
+      </div>
      {/*<Tooltip />*/}
     </section>
   );
