@@ -26,8 +26,39 @@ const songUrls = [
 
 const showSongToast = (trackIndex) => {
   toast((t) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-      <div style={{ fontWeight: 'bold', fontSize: '14px' }}>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      gap: '12px',
+      fontFamily: 'Barlow, sans-serif'
+    }}>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '8px',
+        borderBottom: '1px solid rgba(233, 213, 192, 0.3)',
+        paddingBottom: '8px'
+      }}>
+        <span style={{ 
+          fontSize: '12px', 
+          color: '#e9d5c0',
+          letterSpacing: '0.5px'
+        }}>
+          MOOD DRONE
+        </span>
+        <span style={{ 
+          fontSize: '10px', 
+          color: '#ffffff',
+          fontWeight: 'normal'
+        }}>
+          v1.1
+        </span>
+      </div>
+      <div style={{ 
+        fontWeight: 'bold', 
+        fontSize: '18px',
+        color: '#fff9f5'
+      }}>
         {songNames[trackIndex]}
       </div>
       <a 
@@ -35,9 +66,11 @@ const showSongToast = (trackIndex) => {
         target="_blank" 
         rel="noopener noreferrer"
         style={{ 
-          color: '#3b82f6', 
+          color: '#ffffff', 
           textDecoration: 'underline',
-          fontSize: '12px'
+          fontSize: '16px',
+          fontWeight: 'bold',
+          transition: 'color 0.2s ease'
         }}
       >
         Listen on SoundCloud
@@ -47,10 +80,25 @@ const showSongToast = (trackIndex) => {
     duration: 4000,
     position: 'bottom-right',
     style: {
-      background: '#1f2937',
-      color: '#f9fafb',
-      borderRadius: '8px',
-      padding: '12px'
+      background: 'rgba(185, 134, 86, 0.85)',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
+      color: '#fff9f5',
+      borderRadius: '12px',
+      padding: '16px',
+      minWidth: '300px',
+      border: '1px solid rgba(233, 213, 192, 0.2)',
+      boxShadow: '0 8px 32px rgba(47, 35, 42, 0.3)'
+    },
+    enter: {
+      opacity: 1,
+      transform: 'scale(1)',
+      transition: 'opacity 377ms ease-out, transform 377ms ease-out'
+    },
+    exit: {
+      opacity: 0,
+      transform: 'scale(0.95)',
+      transition: 'opacity 377ms ease-in, transform 377ms ease-in'
     }
   });
 };
