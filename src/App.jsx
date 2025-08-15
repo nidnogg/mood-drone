@@ -63,7 +63,8 @@ const App = () => {
       <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
-            <span ref={menuHeader} className="menu-header">mood drone</span> <span className="ver-num" ref={verNum}>v1.0</span>
+            <span ref={menuHeader} className="menu-header">mood drone </span>
+            <span className="ver-num" ref={verNum}>v1.1</span>
         </div>
         
         <div ref={menuContentDiv} className="main-menu-content">
