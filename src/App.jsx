@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from "gsap";
+import toast, { Toaster } from 'react-hot-toast';
 import Drone from './Drone.jsx';
 import Clock from './Clock.jsx';
 import Controller from './Controller.jsx';
@@ -58,6 +59,8 @@ const App = () => {
     isMenuOpen ? tl.current.play() : tl.current.reverse();
   }, [isMenuOpen]); 
 
+ 
+
   return (
     <section className="main-section">
       <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
@@ -91,6 +94,7 @@ const App = () => {
         <Controller isActive={isActiveCallback} setActive={setActiveCallback} />
       </div>
      {/*<Tooltip />*/}
+     <Toaster />
     </section>
   );
 }

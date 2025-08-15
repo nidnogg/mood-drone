@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import toast from 'react-hot-toast';
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -10,6 +11,49 @@ const audioUrls = [
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2",
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232",
 ];
+
+const songNames = [
+  "The Zen Bass",
+  "Serene Mind Waves", 
+  "Pulsewaves"
+];
+
+const songUrls = [
+  "https://soundcloud.com/nidnogg/the-zen-bass",
+  "https://soundcloud.com/nidnogg/serene-mind-waves",
+  "https://soundcloud.com/nidnogg/pulsewaves"
+];
+
+const showSongToast = (trackIndex) => {
+  toast((t) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div style={{ fontWeight: 'bold', fontSize: '14px' }}>
+        {songNames[trackIndex]}
+      </div>
+      <a 
+        href={songUrls[trackIndex]} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{ 
+          color: '#3b82f6', 
+          textDecoration: 'underline',
+          fontSize: '12px'
+        }}
+      >
+        Listen on SoundCloud
+      </a>
+    </div>
+  ), {
+    duration: 4000,
+    position: 'bottom-right',
+    style: {
+      background: '#1f2937',
+      color: '#f9fafb',
+      borderRadius: '8px',
+      padding: '12px'
+    }
+  });
+};
 
 const audioStop = () => {
   // gets audio element
@@ -83,6 +127,7 @@ const Controller = (props) => {
         console.log(`currentTrack:${currentTrack}`);
         setTimeout(() => {
           props.setActive(1);
+          showSongToast(currentTrack);
         }, 850);
       }
     };
@@ -161,6 +206,7 @@ const Controller = (props) => {
 
           if (!props.isActive()) {
             props.setActive(1);
+            showSongToast(currentTrack);
           }
         }}
       >
@@ -202,6 +248,7 @@ const Controller = (props) => {
             setTimeout(() => {
               console.log(`current Track: ${currentTrack}`);
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
 
@@ -216,6 +263,7 @@ const Controller = (props) => {
             setTimeout(() => {
               console.log(`currentTrack: ${currentTrack}`);
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
         }}
@@ -270,6 +318,7 @@ const Controller = (props) => {
             console.log(`currentTrack: ${currentTrack}`);
             setTimeout(() => {
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
         }}
