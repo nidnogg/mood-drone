@@ -15,6 +15,7 @@
   align-items: center;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: all 0.377s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
 }
@@ -22,11 +23,13 @@
 .background-selector-overlay.open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .background-selector-overlay.closing {
   opacity: 0;
   visibility: visible;
+  pointer-events: none;
 }
 
 .background-selector-modal {

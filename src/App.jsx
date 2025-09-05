@@ -6,6 +6,7 @@ import Controller from './Controller.jsx';
 import Hamburger from './Hamburger.jsx';
 import SideController from './SideController.jsx';
 import Background from './Background.jsx';
+import BackgroundSelector from './BackgroundSelector.jsx';
 import './css/App.css';
 
 
@@ -14,6 +15,7 @@ const App = () => {
   const [isActive, setActive] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(0);
   const [currentBackground, setCurrentBackground] = useState({ type: 'video', value: '/mood-drone/videos/mood1.mp4' });
+  const [isBackgroundSelectorOpen, setBackgroundSelectorOpen] = useState(false);
 
   const tl = useRef(0);
   const menu = useRef(0);
@@ -60,6 +62,18 @@ const App = () => {
     const nextIndex = (currentIndex + 1) % backgrounds.length;
     setCurrentBackground(backgrounds[nextIndex]);
   }
+
+  function handleBackgroundSelect(background) {
+    setCurrentBackground(background);
+  }
+
+  function handleBackgroundSelectorOpen() {
+    setBackgroundSelectorOpen(true);
+  }
+
+  function handleBackgroundSelectorClose() {
+    setBackgroundSelectorOpen(false);
+  }
   
   useEffect(() => {
     if(!tl.current) {
@@ -88,7 +102,10 @@ const App = () => {
         videoSrc={currentBackground.type === 'video' ? currentBackground.value : null}
       />
       <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
-      <SideController onColorChange={handleBackgroundChange} />
+      <SideController 
+        onColorChange={handleBackgroundChange} 
+        onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
+      />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone </span>
@@ -118,6 +135,15 @@ const App = () => {
         </div>
         <Controller isActive={isActiveCallback} setActive={setActiveCallback} />
       </div>
+      
+      <BackgroundSelector
+        isOpen={isBackgroundSelectorOpen}
+        onClose={handleBackgroundSelectorClose}
+        backgrounds={backgrounds}
+        currentBackground={currentBackground}
+        onBackgroundSelect={handleBackgroundSelect}
+      />
+      
      {/*<Tooltip />*/}
     </section>
   );

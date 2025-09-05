@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SideController = ({ onColorChange }) => {
+const SideController = ({ onColorChange, onBackgroundSelectorOpen }) => {
   return (
     <div className="side-controller">
       <div className="side-controller-button">
@@ -42,6 +42,41 @@ const SideController = ({ onColorChange }) => {
             fill="#FFF9F5"
           />
         </svg>
+      </div>
+      <div className="background-controller">
+        <button className="background-button" onClick={onBackgroundSelectorOpen}>
+          <svg 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              d="M4 4H20C21.1046 4 22 4.89543 22 6V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6C2 4.89543 2.89543 4 4 4Z" 
+              stroke="#FFF9F5" 
+              strokeWidth="2"
+            />
+            <path 
+              d="M8.5 8.5C8.5 9.32843 7.82843 10 7 10C6.17157 10 5.5 9.32843 5.5 8.5C5.5 7.67157 6.17157 7 7 7C7.82843 7 8.5 7.67157 8.5 8.5Z" 
+              fill="#FFF9F5"
+            />
+            <path 
+              d="M2 15L7 10L12 15" 
+              stroke="#FFF9F5" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+            <path 
+              d="M13 14L16 11L22 17" 
+              stroke="#FFF9F5" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
       <div className="color-controller">
         <button className="color-button" onClick={onColorChange}>

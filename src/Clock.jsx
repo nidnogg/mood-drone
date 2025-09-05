@@ -1,45 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const Clock = ({ backgrounds, onBackgroundChange, currentBackground }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleIconClick = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleColorSelect = (background) => {
-    onBackgroundChange(background);
-    setIsExpanded(false);
-  };
+const Clock = () => {
+  const [time, setTime] = useState(getHours() + ":" + getMinutes());
+  
+  useInterval(() => {
+    setTime(getHours() + ":" + getMinutes());
+  }, 1000);
 
   return (
-    <div className="landscape-icon-container">
-      <div className="landscape-icon" onClick={handleIconClick}>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M14,6L10.25,11L13.1,14.8L11.5,16C9.81,13.75 7,10 7,10L1,18H23L14,6Z"/>
-        </svg>
-      </div>
-      
-      <div className={`color-options-panel ${isExpanded ? 'expanded' : ''}`}>
-        <div className="color-options-grid">
-          {backgrounds && backgrounds.map((bg, index) => (
-            <div
-              key={index}
-              className={`color-option ${bg.type === currentBackground?.type && bg.value === currentBackground?.value ? 'active' : ''}`}
-              onClick={() => handleColorSelect(bg)}
-              style={{
-                backgroundColor: bg.type === 'color' ? bg.value : '#666',
-                backgroundImage: bg.type === 'video' ? 'linear-gradient(45deg, #666 25%, #888 25%, #888 50%, #666 50%, #666 75%, #888 75%)' : 'none'
-              }}
-            >
-              {bg.type === 'video' && (
-                <span className="video-indicator">📹</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <span className="alarm-text">{time}</span>
   );
 };
 

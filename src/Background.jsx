@@ -24,7 +24,8 @@ const Background = ({ backgroundColor, videoSrc }) => {
     width: '100vw',
     height: '100vh',
     zIndex: -1,
-    transition: 'opacity 0.77s ease-in-out'
+    transition: 'opacity 0.77s ease-in-out',
+    pointerEvents: 'none'
   };
 
   return (
