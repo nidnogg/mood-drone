@@ -97,3 +97,4 @@ dist/
 # Claude tooling
 CLAUDE.md
 .claude
+.vercel
