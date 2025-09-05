@@ -93,3 +93,7 @@ dist/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Claude tooling
+CLAUDE.md
+.claude

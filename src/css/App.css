@@ -143,9 +143,19 @@ a:hover {
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  border: 3px solid #fff;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   z-index: 9998;
+  transition: all 0.377s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ham:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .burger_1,
@@ -460,7 +470,7 @@ svg {
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 @media(max-width: 451px) {
@@ -477,14 +487,19 @@ svg {
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  border: 3px solid #fff;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   z-index: 9998;
+  transition: all 0.377s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .side-controller-button:hover {
-  background-color: #333;
-  transition: background-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .side-controller-button svg {
@@ -506,15 +521,20 @@ svg {
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  border: 3px solid #fff;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   z-index: 9998;
   cursor: pointer;
+  transition: all 0.377s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .color-button:hover {
-  background-color: #333;
-  transition: background-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .color-button svg {
@@ -536,18 +556,66 @@ svg {
   height: 50px;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  border: 3px solid #fff;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   z-index: 9998;
   cursor: pointer;
+  transition: all 0.377s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .background-button:hover {
-  background-color: #333;
-  transition: background-color 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .background-button svg {
+  position: relative;
+  z-index: 9999;
+}
+
+.github-controller {
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+
+.github-button {
+  position: relative;
+  display: flex;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  z-index: 9998;
+  cursor: pointer;
+  transition: all 0.377s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  color: inherit;
+  font-weight: normal;
+}
+
+.github-button::before {
+  display: none !important;
+}
+
+.github-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  color: inherit;
+}
+
+.github-button svg {
   position: relative;
   z-index: 9999;
 }

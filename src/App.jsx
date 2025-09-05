@@ -200,7 +200,6 @@ const App = () => {
       />
       <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
       <SideController 
-        onColorChange={handleBackgroundChange} 
         onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
         onSaveSettings={saveSettings}
       />
