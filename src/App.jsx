@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from "gsap";
+import toast, { Toaster } from 'react-hot-toast';
 import Drone from './Drone.jsx';
 import Clock from './Clock.jsx';
 import Controller from './Controller.jsx';
@@ -95,6 +96,8 @@ const App = () => {
     isMenuOpen ? tl.current.play() : tl.current.reverse();
   }, [isMenuOpen]); 
 
+ 
+
   return (
     <section className="main-section">
       <Background 
@@ -145,6 +148,7 @@ const App = () => {
       />
       
      {/*<Tooltip />*/}
+     <Toaster />
     </section>
   );
 }

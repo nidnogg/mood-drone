@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import toast from 'react-hot-toast';
 
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -10,6 +11,97 @@ const audioUrls = [
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/serene_mind_waves.mp3?alt=media&token=dd379833-fe01-44da-a405-942cba30b3e2",
   "https://firebasestorage.googleapis.com/v0/b/cloudtop-8de79.appspot.com/o/pulsewaves.mp3?alt=media&token=8c300cfc-8d24-4895-8586-3159830a4232",
 ];
+
+const songNames = [
+  "The Zen Bass",
+  "Serene Mind Waves", 
+  "Pulsewaves"
+];
+
+const songUrls = [
+  "https://soundcloud.com/nidnogg/the-zen-bass",
+  "https://soundcloud.com/nidnogg/serene-mind-waves",
+  "https://soundcloud.com/nidnogg/pulsewaves"
+];
+
+const showSongToast = (trackIndex) => {
+  toast((t) => (
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      gap: '12px',
+      fontFamily: 'Barlow, sans-serif'
+    }}>
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '8px',
+        borderBottom: '1px solid rgba(233, 213, 192, 0.3)',
+        paddingBottom: '8px'
+      }}>
+        <span style={{ 
+          fontSize: '12px', 
+          color: '#e9d5c0',
+          letterSpacing: '0.5px'
+        }}>
+          MOOD DRONE
+        </span>
+        <span style={{ 
+          fontSize: '10px', 
+          color: '#ffffff',
+          fontWeight: 'normal'
+        }}>
+          v1.1
+        </span>
+      </div>
+      <div style={{ 
+        fontWeight: 'bold', 
+        fontSize: '18px',
+        color: '#fff9f5'
+      }}>
+        {songNames[trackIndex]}
+      </div>
+      <a 
+        href={songUrls[trackIndex]} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{ 
+          color: '#ffffff', 
+          textDecoration: 'underline',
+          fontSize: '16px',
+          fontWeight: 'bold',
+          transition: 'color 0.2s ease'
+        }}
+      >
+        Listen on SoundCloud
+      </a>
+    </div>
+  ), {
+    duration: 4000,
+    position: 'bottom-right',
+    style: {
+      background: 'rgba(185, 134, 86, 0.85)',
+      backdropFilter: 'blur(10px)',
+      WebkitBackdropFilter: 'blur(10px)',
+      color: '#fff9f5',
+      borderRadius: '12px',
+      padding: '16px',
+      minWidth: '300px',
+      border: '1px solid rgba(233, 213, 192, 0.2)',
+      boxShadow: '0 8px 32px rgba(47, 35, 42, 0.3)'
+    },
+    enter: {
+      opacity: 1,
+      transform: 'scale(1)',
+      transition: 'opacity 377ms ease-out, transform 377ms ease-out'
+    },
+    exit: {
+      opacity: 0,
+      transform: 'scale(0.95)',
+      transition: 'opacity 377ms ease-in, transform 377ms ease-in'
+    }
+  });
+};
 
 const audioStop = () => {
   // gets audio element
@@ -83,6 +175,7 @@ const Controller = (props) => {
         console.log(`currentTrack:${currentTrack}`);
         setTimeout(() => {
           props.setActive(1);
+          showSongToast(currentTrack);
         }, 850);
       }
     };
@@ -161,6 +254,7 @@ const Controller = (props) => {
 
           if (!props.isActive()) {
             props.setActive(1);
+            showSongToast(currentTrack);
           }
         }}
       >
@@ -202,6 +296,7 @@ const Controller = (props) => {
             setTimeout(() => {
               console.log(`current Track: ${currentTrack}`);
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
 
@@ -216,6 +311,7 @@ const Controller = (props) => {
             setTimeout(() => {
               console.log(`currentTrack: ${currentTrack}`);
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
         }}
@@ -270,6 +366,7 @@ const Controller = (props) => {
             console.log(`currentTrack: ${currentTrack}`);
             setTimeout(() => {
               props.setActive(1);
+              showSongToast(currentTrack);
             }, 850);
           }
         }}
