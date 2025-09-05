@@ -289,7 +289,7 @@ a:hover {
 }
 
 .alarm-text {
-  font-size: calc(0.117rem + 0.20vw + 1.5vh);
+  font-size: calc(0.5rem + 0.6vw + 2.2vh);
 }
 
 .buttons-wrapper {
