@@ -4,6 +4,9 @@ import Drone from './Drone.jsx';
 import Clock from './Clock.jsx';
 import Controller from './Controller.jsx';
 import Hamburger from './Hamburger.jsx';
+import SideController from './SideController.jsx';
+import Background from './Background.jsx';
+import BackgroundSelector from './BackgroundSelector.jsx';
 import './css/App.css';
 
 
@@ -11,6 +14,8 @@ const App = () => {
 
   const [isActive, setActive] = useState(0);
   const [isMenuOpen, setMenuOpen] = useState(0);
+  const [currentBackground, setCurrentBackground] = useState({ type: 'video', value: '/mood-drone/videos/mood1.mp4' });
+  const [isBackgroundSelectorOpen, setBackgroundSelectorOpen] = useState(false);
 
   const tl = useRef(0);
   const menu = useRef(0);
@@ -37,6 +42,38 @@ const App = () => {
   function isMenuOpenCallback() {
     return isMenuOpen;
   }
+
+  const backgrounds = [
+    { type: 'video', value: '/mood-drone/videos/mood1.mp4' },
+    { type: 'color', value: '#F6BD60' },
+    { type: 'color', value: '#84C7AE' },
+    { type: 'color', value: '#A8DADC' },
+    { type: 'color', value: '#E76F51' },
+    { type: 'color', value: '#264653' },
+    { type: 'color', value: '#2A9D8F' },
+    { type: 'color', value: '#E9C46A' },
+    { type: 'color', value: '#F4A261' }
+  ];
+  
+  function handleBackgroundChange() {
+    const currentIndex = backgrounds.findIndex(bg => 
+      bg.type === currentBackground.type && bg.value === currentBackground.value
+    );
+    const nextIndex = (currentIndex + 1) % backgrounds.length;
+    setCurrentBackground(backgrounds[nextIndex]);
+  }
+
+  function handleBackgroundSelect(background) {
+    setCurrentBackground(background);
+  }
+
+  function handleBackgroundSelectorOpen() {
+    setBackgroundSelectorOpen(true);
+  }
+
+  function handleBackgroundSelectorClose() {
+    setBackgroundSelectorOpen(false);
+  }
   
   useEffect(() => {
     if(!tl.current) {
@@ -60,7 +97,15 @@ const App = () => {
 
   return (
     <section className="main-section">
+      <Background 
+        backgroundColor={currentBackground.type === 'color' ? currentBackground.value : '#F6BD60'} 
+        videoSrc={currentBackground.type === 'video' ? currentBackground.value : null}
+      />
       <Hamburger isMenuOpen={isMenuOpenCallback} setMenuOpen={setMenuOpenCallback} />
+      <SideController 
+        onColorChange={handleBackgroundChange} 
+        onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
+      />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
             <span ref={menuHeader} className="menu-header">mood drone </span>
@@ -90,6 +135,15 @@ const App = () => {
         </div>
         <Controller isActive={isActiveCallback} setActive={setActiveCallback} />
       </div>
+      
+      <BackgroundSelector
+        isOpen={isBackgroundSelectorOpen}
+        onClose={handleBackgroundSelectorClose}
+        backgrounds={backgrounds}
+        currentBackground={currentBackground}
+        onBackgroundSelect={handleBackgroundSelect}
+      />
+      
      {/*<Tooltip />*/}
     </section>
   );

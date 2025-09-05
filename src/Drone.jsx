@@ -1,17 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 
-const Drone = props => {
-  const drone = useRef(0);
-  const wheel0 = useRef(0);
-  const wheel1 = useRef(0);
-  const rotation = useRef(0);
+const Drone = ({ isActive, ...props }) => {
+  const drone = useRef(null);
+  const wheel0 = useRef(null);
+  const wheel1 = useRef(null);
+  const rotation = useRef(null);
 
   useEffect(() => {
     //placeholder for eventual parallax effect with drone ref
   });
 
   useEffect(() => {
+    // Only create animation when wheel refs are available
+    if (!wheel0.current || !wheel1.current) return;
+    
     if (!rotation.current) {
       rotation.current = gsap.to([wheel0.current, wheel1.current], {
           duration: 0.7,
@@ -21,7 +24,7 @@ const Drone = props => {
           repeat: -1,
           paused: true
         }).timeScale(0);
-    } else if (props.isActive()) {
+    } else if (isActive()) {
         gsap.to(rotation.current, {
           duration: 1.0,
           timeScale: 1,
@@ -40,7 +43,7 @@ const Drone = props => {
           }
         });
       }
-  });
+  }, [isActive]);
 
   return (
     <svg ref={drone} data-name="Layer 1" viewBox="0 0 550.12 652.07" {...props}>

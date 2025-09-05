@@ -43,7 +43,7 @@ time, mark, audio, video {
 
 body {
   color: #FFF9F5;
-  background-color: #F6BD60;
+  background-color: transparent;
   font-family: 'alarm_clock', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   overflow-y: hidden;
 }
@@ -450,4 +450,104 @@ svg {
 
 .flip {
   transform: rotate(180deg);
+}
+
+.side-controller {
+  cursor: pointer;
+  position: fixed;
+  top: calc(var(--top-offset) + 70px);
+  right: 60px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media(max-width: 451px) {
+  .side-controller {
+    right: 30px;
+  }
+}
+
+.side-controller-button {
+  position: relative;
+  display: flex;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border: 3px solid #fff;
+  z-index: 9998;
+}
+
+.side-controller-button:hover {
+  background-color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.side-controller-button svg {
+  position: relative;
+  z-index: 9999;
+}
+
+.color-controller {
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+
+.color-button {
+  position: relative;
+  display: flex;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border: 3px solid #fff;
+  z-index: 9998;
+  cursor: pointer;
+}
+
+.color-button:hover {
+  background-color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.color-button svg {
+  position: relative;
+  z-index: 9999;
+}
+
+.background-controller {
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+
+.background-button {
+  position: relative;
+  display: flex;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  border: 3px solid #fff;
+  z-index: 9998;
+  cursor: pointer;
+}
+
+.background-button:hover {
+  background-color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.background-button svg {
+  position: relative;
+  z-index: 9999;
 }

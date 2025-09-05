@@ -1,31 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-// import {gsap} from 'gsap';
+import React, { useState, useRef, useEffect } from "react";
 
 const Clock = () => {
-  let initial_hours = getHours();
-  let initial_minutes = getMinutes();
-
-  const blink = useRef(0);
-  const [curHours, updateHours] = useState(initial_hours);
-  const [curMinutes, updateMinutes] = useState(initial_minutes);
-
+  const [time, setTime] = useState(getHours() + ":" + getMinutes());
+  
   useInterval(() => {
-    updateHours(getHours());
-    updateMinutes(getMinutes());
+    setTime(getHours() + ":" + getMinutes());
   }, 1000);
 
-  // useEffect(() => {
-  //   gsap.fromTo(blink.current, {opacity: 0}, {opacity: 1, duration: 0.1, repeat: true, repeatDelay: 0.1});
-  // }); 
-  
   return (
-    <div>
-      <h1>
-        {curHours}
-        <span ref={blink}>:</span>
-        {curMinutes}
-      </h1>
-    </div>
+    <span className="alarm-text">{time}</span>
   );
 };
 
