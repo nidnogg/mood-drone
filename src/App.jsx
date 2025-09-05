@@ -75,7 +75,101 @@ const App = () => {
   function handleBackgroundSelectorClose() {
     setBackgroundSelectorOpen(false);
   }
+
+  const showSettingsToast = (message) => {
+    toast((t) => (
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '12px',
+        fontFamily: 'Barlow, sans-serif'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '8px',
+          borderBottom: '1px solid rgba(233, 213, 192, 0.3)',
+          paddingBottom: '8px'
+        }}>
+          <span style={{ 
+            fontSize: '12px', 
+            color: '#e9d5c0',
+            letterSpacing: '0.5px'
+          }}>
+            MOOD DRONE
+          </span>
+          <span style={{ 
+            fontSize: '10px', 
+            color: '#ffffff',
+            fontWeight: 'normal'
+          }}>
+            v1.1
+          </span>
+        </div>
+        <div style={{ 
+          fontWeight: 'bold', 
+          fontSize: '18px',
+          color: '#fff9f5'
+        }}>
+          {message}
+        </div>
+      </div>
+    ), {
+      duration: 3000,
+      position: 'bottom-right',
+      style: {
+        background: 'rgba(185, 134, 86, 0.85)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        color: '#fff9f5',
+        borderRadius: '12px',
+        padding: '16px',
+        minWidth: '300px',
+        border: '1px solid rgba(233, 213, 192, 0.2)',
+        boxShadow: '0 8px 32px rgba(47, 35, 42, 0.3)'
+      },
+      enter: {
+        opacity: 1,
+        transform: 'scale(1)',
+        transition: 'opacity 377ms ease-out, transform 377ms ease-out'
+      },
+      exit: {
+        opacity: 0,
+        transform: 'scale(0.95)',
+        transition: 'opacity 377ms ease-in, transform 377ms ease-in'
+      }
+    });
+  };
+
+  function saveSettings() {
+    const settings = {
+      currentBackground: currentBackground
+    };
+    localStorage.setItem('mood-drone-settings', JSON.stringify(settings));
+    showSettingsToast('Settings saved');
+  }
+
+  function loadSettings() {
+    try {
+      const savedSettings = localStorage.getItem('mood-drone-settings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        if (settings.currentBackground) {
+          setCurrentBackground(settings.currentBackground);
+        }
+      } else {
+        showSettingsToast('Default settings loaded');
+      }
+    } catch (error) {
+      console.error('Error loading settings:', error);
+      showSettingsToast('Default settings loaded');
+    }
+  }
   
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
   useEffect(() => {
     if(!tl.current) {
       tl.current = gsap.timeline({defaults: {duration: 0.2, ease:"expo"} })
@@ -108,6 +202,7 @@ const App = () => {
       <SideController 
         onColorChange={handleBackgroundChange} 
         onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
+        onSaveSettings={saveSettings}
       />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">

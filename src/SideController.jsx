@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SideController = ({ onColorChange, onBackgroundSelectorOpen }) => {
+const SideController = ({ onColorChange, onBackgroundSelectorOpen, onSaveSettings }) => {
   return (
     <div className="side-controller">
-      <div className="side-controller-button">
+      <div className="side-controller-button" onClick={onSaveSettings}>
         <svg 
           width="24" 
           height="24" 
