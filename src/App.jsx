@@ -20,6 +20,7 @@ const App = () => {
   });
   const [isBackgroundSelectorOpen, setBackgroundSelectorOpen] = useState(false);
   const [isShareMenuOpen, setShareMenuOpen] = useState(false);
+  const [volume, setVolume] = useState(50);
 
   const tl = useRef(0);
   const menu = useRef(0);
@@ -89,6 +90,15 @@ const App = () => {
 
   function handleShareMenuClose() {
     setShareMenuOpen(false);
+  }
+
+  function handleVolumeChange(newVolume) {
+    setVolume(newVolume);
+    // Apply volume to audio element
+    const audioElement = document.querySelector("audio");
+    if (audioElement) {
+      audioElement.volume = newVolume / 100;
+    }
   }
 
   const showSettingsToast = (message) => {
@@ -172,6 +182,7 @@ const App = () => {
   function saveSettings() {
     const settings = {
       currentBackground: currentBackground,
+      volume: volume,
     };
     localStorage.setItem("mood-drone-settings", JSON.stringify(settings));
     showSettingsToast("Settings saved");
@@ -200,6 +211,9 @@ const App = () => {
         if (settings.currentBackground) {
           setCurrentBackground(settings.currentBackground);
         }
+        if (settings.volume !== undefined) {
+          setVolume(settings.volume);
+        }
       } else {
         showSettingsToast("Default settings loaded");
       }
@@ -212,6 +226,14 @@ const App = () => {
   useEffect(() => {
     loadSettings();
   }, []);
+
+  // Apply volume to audio element whenever volume changes
+  useEffect(() => {
+    const audioElement = document.querySelector("audio");
+    if (audioElement) {
+      audioElement.volume = volume / 100;
+    }
+  }, [volume]);
 
   useEffect(() => {
     if (!tl.current) {
@@ -254,6 +276,8 @@ const App = () => {
         onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
         onSaveSettings={saveSettings}
         onShareOpen={handleShareMenuOpen}
+        volume={volume}
+        onVolumeChange={handleVolumeChange}
       />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">

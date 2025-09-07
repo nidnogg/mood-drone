@@ -39,32 +39,21 @@ const ShareIcon = () => {
 const VolumeIcon = () => {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
+      width="27"
+      height="27"
+      viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M11 5L6 9H2V15H6L11 19V5Z"
-        stroke="#FFF9F5"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M9 3L5.5 6H2V12H5.5L9 15V3Z"
+        fill="#FFF9F5"
       />
       <path
-        d="M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07"
+        d="M11 7C11.5 7.5 11.5 10.5 11 11"
         stroke="#FFF9F5"
-        strokeWidth="2"
+        strokeWidth="1.2"
         strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54"
-        stroke="#FFF9F5"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );
@@ -72,7 +61,7 @@ const VolumeIcon = () => {
 
 const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen, volume, onVolumeChange }) => {
   return (
-    <div className="side-controller">
+    <div className="side-controller-container">
       <div className="volume-controller">
         <div className="volume-icon">
           <VolumeIcon />
@@ -88,7 +77,8 @@ const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen,
           />
         </div>
       </div>
-      <div className="side-controller-button" onClick={onSaveSettings}>
+      <div className="side-controller">
+        <div className="side-controller-button" onClick={onSaveSettings}>
         <svg
           width="24"
           height="24"
@@ -188,6 +178,7 @@ const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen,
         >
           <ShareIcon />
         </button>
+      </div>
       </div>
     </div>
   );
