@@ -7,15 +7,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:gh-pages": "vite build --config vite.config.gh-pages.js",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "npm run build:gh-pages && gh-pages -d dist",
+    "deploy:staging": "npm run build && vercel --prod",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nidnogg/mood-drone.git"
+    "url": "git+https://github.com/nidnogg/mood-drone.git"
   },
   "keywords": [
     "mood",
@@ -24,9 +26,9 @@
   "author": "nidnogg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Nidnogg/mood-drone/issues"
+    "url": "https://github.com/nidnogg/mood-drone/issues"
   },
-  "homepage": "https://github.com/Nidnogg/mood-drone",
+  "homepage": "https://github.com/nidnogg/mood-drone",
   "dependencies": {
     "@geist-ui/react": "^2.2.5",
     "css": "^2.2.4",
