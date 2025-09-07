@@ -16,7 +16,7 @@ const App = () => {
   const [isMenuOpen, setMenuOpen] = useState(0);
   const [currentBackground, setCurrentBackground] = useState({
     type: "video",
-    value: "/videos/mood1.mp4",
+    value: "/videos/0moodvid.mp4",
   });
   const [isBackgroundSelectorOpen, setBackgroundSelectorOpen] = useState(false);
   const [isShareMenuOpen, setShareMenuOpen] = useState(false);
@@ -56,7 +56,9 @@ const App = () => {
     { type: "color", value: "#2A9D8F" },
     { type: "color", value: "#E9C46A" },
     { type: "color", value: "#F4A261" },
-    { type: "video", value: "/videos/mood1.mp4" },
+    { type: "video", value: "/videos/0moodvid.mp4" },
+    { type: "video", value: "/videos/1moodvid.mp4" },
+    { type: "video", value: "/videos/2moodvid.mp4" },
   ];
 
   function handleBackgroundChange() {
