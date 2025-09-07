@@ -8,6 +8,7 @@ import Hamburger from "./Hamburger.jsx";
 import SideController from "./SideController.jsx";
 import Background from "./Background.jsx";
 import BackgroundSelector from "./BackgroundSelector.jsx";
+import ShareMenu from "./ShareMenu.jsx";
 import "./css/App.css";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
     value: "/videos/mood1.mp4",
   });
   const [isBackgroundSelectorOpen, setBackgroundSelectorOpen] = useState(false);
+  const [isShareMenuOpen, setShareMenuOpen] = useState(false);
 
   const tl = useRef(0);
   const menu = useRef(0);
@@ -77,6 +79,14 @@ const App = () => {
 
   function handleBackgroundSelectorClose() {
     setBackgroundSelectorOpen(false);
+  }
+
+  function handleShareMenuOpen() {
+    setShareMenuOpen(true);
+  }
+
+  function handleShareMenuClose() {
+    setShareMenuOpen(false);
   }
 
   const showSettingsToast = (message) => {
@@ -167,6 +177,21 @@ const App = () => {
 
   function loadSettings() {
     try {
+      // First check for shared background in URL hash
+      const hash = window.location.hash;
+      if (hash.startsWith("#bg=")) {
+        try {
+          const backgroundParam = decodeURIComponent(hash.substring(4));
+          const sharedBackground = JSON.parse(backgroundParam);
+          setCurrentBackground(sharedBackground);
+          showSettingsToast("Shared configuration loaded");
+          return;
+        } catch (error) {
+          console.error("Error loading shared background:", error);
+        }
+      }
+
+      // If no shared background, load from localStorage
       const savedSettings = localStorage.getItem("mood-drone-settings");
       if (savedSettings) {
         const settings = JSON.parse(savedSettings);
@@ -226,6 +251,7 @@ const App = () => {
       <SideController
         onBackgroundSelectorOpen={handleBackgroundSelectorOpen}
         onSaveSettings={saveSettings}
+        onShareOpen={handleShareMenuOpen}
       />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
@@ -273,6 +299,12 @@ const App = () => {
         backgrounds={backgrounds}
         currentBackground={currentBackground}
         onBackgroundSelect={handleBackgroundSelect}
+      />
+
+      <ShareMenu
+        isOpen={isShareMenuOpen}
+        onClose={handleShareMenuClose}
+        currentBackground={currentBackground}
       />
 
       {/*<Tooltip />*/}

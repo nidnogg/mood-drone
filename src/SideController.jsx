@@ -1,6 +1,6 @@
 import React from "react";
 
-const SideController = ({ onBackgroundSelectorOpen, onSaveSettings }) => {
+const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen }) => {
   return (
     <div className="side-controller">
       <div className="side-controller-button" onClick={onSaveSettings}>
@@ -95,6 +95,28 @@ const SideController = ({ onBackgroundSelectorOpen, onSaveSettings }) => {
             />
           </svg>
         </a>
+      </div>
+      <div className="share-controller">
+        <button
+          className="share-button"
+          onClick={onShareOpen}
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.18875 15.0129 5.37371 15.0378 5.55451L8.95163 9.61162C8.48052 9.23156 7.8838 9 7.23077 9C5.44646 9 4 10.4465 4 12.2308C4 14.0151 5.44646 15.4615 7.23077 15.4615C7.8838 15.4615 8.48052 15.23 8.95163 14.8499L15.0378 18.907C15.0129 19.0878 15 19.2728 15 19.4615C15 21.1184 16.3431 22.4615 18 22.4615C19.6569 22.4615 21 21.1184 21 19.4615C21 17.8047 19.6569 16.4615 18 16.4615C17.3469 16.4615 16.7502 16.6931 16.2791 17.0731L10.1929 13.0161C10.2178 12.8352 10.2308 12.65 10.2308 12.4615C10.2308 12.273 10.2178 12.0878 10.1929 11.907L16.2791 7.85C16.7502 8.23006 17.3469 8.46154 18 8.46154V8Z"
+              stroke="#FFF9F5"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );
