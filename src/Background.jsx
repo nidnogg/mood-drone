@@ -44,6 +44,7 @@ const Background = ({ backgroundColor, videoSrc }) => {
       {/* Video Background */}
       {videoSrc && (
         <video
+          key={videoSrc}
           className="background-layer-video"
           autoPlay
           loop
