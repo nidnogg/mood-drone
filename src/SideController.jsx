@@ -1,94 +1,39 @@
 import React from "react";
 
 const ShareIcon = () => {
-  const isApple = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
-  
-  if (isApple) {
-    // iOS-style share icon (square with arrow up)
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8.5 14.5L15.5 14.5C16.6046 14.5 17.5 15.3954 17.5 16.5L17.5 19C17.5 20.1046 16.6046 21 15.5 21L8.5 21C7.39543 21 6.5 20.1046 6.5 19L6.5 16.5C6.5 15.3954 7.39543 14.5 8.5 14.5Z"
-          stroke="#FFF9F5"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M12 3L12 14.5"
-          stroke="#FFF9F5"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M8.5 7L12 3L15.5 7"
-          stroke="#FFF9F5"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  } else {
-    // Standard centered share icon (3 connected nodes)
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle 
-          cx="18" 
-          cy="5" 
-          r="3" 
-          stroke="#FFF9F5" 
-          strokeWidth="2" 
-          fill="none"
-        />
-        <circle 
-          cx="6" 
-          cy="12" 
-          r="3" 
-          stroke="#FFF9F5" 
-          strokeWidth="2" 
-          fill="none"
-        />
-        <circle 
-          cx="18" 
-          cy="19" 
-          r="3" 
-          stroke="#FFF9F5" 
-          strokeWidth="2" 
-          fill="none"
-        />
-        <line 
-          x1="8.59" 
-          y1="13.51" 
-          x2="15.42" 
-          y2="17.49" 
-          stroke="#FFF9F5" 
-          strokeWidth="2"
-        />
-        <line 
-          x1="15.41" 
-          y1="6.51" 
-          x2="8.59" 
-          y2="10.49" 
-          stroke="#FFF9F5" 
-          strokeWidth="2"
-        />
-      </svg>
-    );
-  }
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 12V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V12"
+        stroke="#FFF9F5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <polyline
+        points="8,6 12,2 16,6"
+        stroke="#FFF9F5"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <line
+        x1="12"
+        y1="2"
+        x2="12"
+        y2="15"
+        stroke="#FFF9F5"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
 };
 
 const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen }) => {
