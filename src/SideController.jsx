@@ -1,5 +1,96 @@
 import React from "react";
 
+const ShareIcon = () => {
+  const isApple = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+  
+  if (isApple) {
+    // iOS-style share icon (square with arrow up)
+    return (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8.5 14.5L15.5 14.5C16.6046 14.5 17.5 15.3954 17.5 16.5L17.5 19C17.5 20.1046 16.6046 21 15.5 21L8.5 21C7.39543 21 6.5 20.1046 6.5 19L6.5 16.5C6.5 15.3954 7.39543 14.5 8.5 14.5Z"
+          stroke="#FFF9F5"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12 3L12 14.5"
+          stroke="#FFF9F5"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M8.5 7L12 3L15.5 7"
+          stroke="#FFF9F5"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  } else {
+    // Standard centered share icon (3 connected nodes)
+    return (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle 
+          cx="18" 
+          cy="5" 
+          r="3" 
+          stroke="#FFF9F5" 
+          strokeWidth="2" 
+          fill="none"
+        />
+        <circle 
+          cx="6" 
+          cy="12" 
+          r="3" 
+          stroke="#FFF9F5" 
+          strokeWidth="2" 
+          fill="none"
+        />
+        <circle 
+          cx="18" 
+          cy="19" 
+          r="3" 
+          stroke="#FFF9F5" 
+          strokeWidth="2" 
+          fill="none"
+        />
+        <line 
+          x1="8.59" 
+          y1="13.51" 
+          x2="15.42" 
+          y2="17.49" 
+          stroke="#FFF9F5" 
+          strokeWidth="2"
+        />
+        <line 
+          x1="15.41" 
+          y1="6.51" 
+          x2="8.59" 
+          y2="10.49" 
+          stroke="#FFF9F5" 
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+};
+
 const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen }) => {
   return (
     <div className="side-controller">
@@ -101,21 +192,7 @@ const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen 
           className="share-button"
           onClick={onShareOpen}
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.18875 15.0129 5.37371 15.0378 5.55451L8.95163 9.61162C8.48052 9.23156 7.8838 9 7.23077 9C5.44646 9 4 10.4465 4 12.2308C4 14.0151 5.44646 15.4615 7.23077 15.4615C7.8838 15.4615 8.48052 15.23 8.95163 14.8499L15.0378 18.907C15.0129 19.0878 15 19.2728 15 19.4615C15 21.1184 16.3431 22.4615 18 22.4615C19.6569 22.4615 21 21.1184 21 19.4615C21 17.8047 19.6569 16.4615 18 16.4615C17.3469 16.4615 16.7502 16.6931 16.2791 17.0731L10.1929 13.0161C10.2178 12.8352 10.2308 12.65 10.2308 12.4615C10.2308 12.273 10.2178 12.0878 10.1929 11.907L16.2791 7.85C16.7502 8.23006 17.3469 8.46154 18 8.46154V8Z"
-              stroke="#FFF9F5"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <ShareIcon />
         </button>
       </div>
     </div>
