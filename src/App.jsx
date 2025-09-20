@@ -304,6 +304,19 @@ const App = () => {
             <a href="https://www.docubyte.com/works/guide-to-computing/">
               Guide to Computing.
             </a>{" "}
+            <br /> <br />
+            If you come here often, sponsoring helps making this possible:
+            <br />
+            <a
+              href="https://github.com/sponsors/nidnogg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sponsor-button"
+            >
+              <span className="heart-emoji">❤️</span>
+              Sponsor
+            </a>
+            <br />
             Cheers!
           </p>
         </div>
