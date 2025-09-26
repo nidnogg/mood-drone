@@ -59,9 +59,16 @@ const VolumeIcon = () => {
   );
 };
 
-const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen, volume, onVolumeChange }) => {
+const SideController = ({ onBackgroundSelectorOpen, onSaveSettings, onShareOpen, volume, onVolumeChange, isMenuOpen }) => {
   return (
-    <div className="side-controller-container">
+    <div
+      className="side-controller-container"
+      style={{
+        opacity: isMenuOpen ? 0 : 1,
+        pointerEvents: isMenuOpen ? 'none' : 'all',
+        transition: 'opacity 377ms ease-in-out'
+      }}
+    >
       <div className="volume-controller">
         <div className="volume-icon">
           <VolumeIcon />

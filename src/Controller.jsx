@@ -148,6 +148,7 @@ const AudioElem = () => {
 
 // Receives moodD parent callback state functions as props and sets MoodD's state from these
 const Controller = (props) => {
+  const { isActive, setActive, isMenuOpen } = props;
   useEffect(() => {
     // gets audio DOM node
     const audioElement = document.querySelector("audio");
@@ -165,8 +166,8 @@ const Controller = (props) => {
         }, 850);
       }
 
-      if (props.isActive()) {
-        props.setActive(0);
+      if (isActive()) {
+        setActive(0);
         audioStop();
 
         currentTrack = (currentTrack + 1) % audioUrls.length;
@@ -174,14 +175,14 @@ const Controller = (props) => {
 
         console.log(`currentTrack:${currentTrack}`);
         setTimeout(() => {
-          props.setActive(1);
+          setActive(1);
           showSongToast(currentTrack);
         }, 850);
       }
     };
 
     if (audioContext) {
-      if (props.isActive()) {
+      if (isActive()) {
         audioElement.play();
       } else {
         audioElement.pause();
@@ -190,7 +191,14 @@ const Controller = (props) => {
   });
 
   return (
-    <div className="buttons-wrapper">
+    <div
+      className="buttons-wrapper"
+      style={{
+        opacity: isMenuOpen ? 0 : 1,
+        pointerEvents: isMenuOpen ? 'none' : 'all',
+        transition: 'opacity 377ms ease-in-out'
+      }}
+    >
 
       <AudioElem />
 
@@ -205,8 +213,8 @@ const Controller = (props) => {
           if (audioContext.state == "suspended") {
             audioContext.resume().then(() => {});
           }
-          if (props.isActive()) {
-            props.setActive(0);
+          if (isActive()) {
+            setActive(0);
           }
         }}
       >
@@ -228,8 +236,8 @@ const Controller = (props) => {
         role="switch"
         aria-checked="false"
         onClick={() => {
-          if (props.isActive()) {
-            props.setActive(0);
+          if (isActive()) {
+            setActive(0);
             audioStop();
           }
         }}
@@ -252,8 +260,8 @@ const Controller = (props) => {
             audioContext.resume();
           }
 
-          if (!props.isActive()) {
-            props.setActive(1);
+          if (!isActive()) {
+            setActive(1);
             showSongToast(currentTrack);
           }
         }}
@@ -280,8 +288,8 @@ const Controller = (props) => {
             audioContext.resume();
           }
 
-          if (props.isActive()) {
-            props.setActive(0);
+          if (isActive()) {
+            setActive(0);
             audioStop();
 
             // just in case so it does not reach -1
@@ -295,13 +303,13 @@ const Controller = (props) => {
             audioElement.setAttribute("src", audioUrls[currentTrack]);
             setTimeout(() => {
               console.log(`current Track: ${currentTrack}`);
-              props.setActive(1);
+              setActive(1);
               showSongToast(currentTrack);
             }, 850);
           }
 
           // does not reach -1
-          if (!props.isActive()) {
+          if (!isActive()) {
             if (currentTrack == 0) {
               currentTrack = audioUrls.length;
             } else {
@@ -310,7 +318,7 @@ const Controller = (props) => {
 
             setTimeout(() => {
               console.log(`currentTrack: ${currentTrack}`);
-              props.setActive(1);
+              setActive(1);
               showSongToast(currentTrack);
             }, 850);
           }
@@ -354,8 +362,8 @@ const Controller = (props) => {
             }, 850);
           }
 
-          if (props.isActive()) {
-            props.setActive(0);
+          if (isActive()) {
+            setActive(0);
             audioStop();
 
             currentTrack = (currentTrack + 1) % audioUrls.length;
@@ -365,7 +373,7 @@ const Controller = (props) => {
 
             console.log(`currentTrack: ${currentTrack}`);
             setTimeout(() => {
-              props.setActive(1);
+              setActive(1);
               showSongToast(currentTrack);
             }, 850);
           }
