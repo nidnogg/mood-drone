@@ -278,6 +278,7 @@ const App = () => {
         onShareOpen={handleShareMenuOpen}
         volume={volume}
         onVolumeChange={handleVolumeChange}
+        isMenuOpen={isMenuOpen}
       />
       <section ref={menu} className="main-menu-section">
         <div ref={menuHeaderDiv} className="main-menu-header">
@@ -329,7 +330,7 @@ const App = () => {
             <Clock />
           </section>
         </div>
-        <Controller isActive={isActiveCallback} setActive={setActiveCallback} />
+        <Controller isActive={isActiveCallback} setActive={setActiveCallback} isMenuOpen={isMenuOpen} />
       </div>
 
       <BackgroundSelector
