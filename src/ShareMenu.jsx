@@ -8,15 +8,38 @@ const ShareMenu = ({ isOpen, onClose, currentBackground }) => {
 
   const generateShareUrl = (background) => {
     const baseUrl = window.location.origin + window.location.pathname;
+    console.log("background", background);
+    debugger;
     const backgroundParam = encodeURIComponent(JSON.stringify(background));
-    return `${baseUrl}#bg=${backgroundParam}`;
+    const prettifiedShareUrl = prettifyShareUrl(
+      `${baseUrl}#bg=${backgroundParam}`,
+    );
+    return prettifiedShareUrl;
+  };
+
+  const prettifyShareUrl = (rawShareUrl) => {
+    const baseUrl = rawShareUrl.split("#bg=")[0];
+    const backgroundParam = rawShareUrl.split("#bg=")[1];
+    const background = JSON.parse(decodeURIComponent(backgroundParam));
+
+    const fancyWordsBaseUrl = ["frog", "cricket", "plank"];
+    const fancyWordsBgParam = ["chicken", "dinner", "barbecue"];
+
+    const baseUrlRandomIndex = Math.floor(
+      Math.random() * fancyWordsBaseUrl.length,
+    );
+    const bgParamRandomIndex = Math.floor(
+      Math.random() * fancyWordsBgParam.length,
+    );
+
+    return `${fancyWordsBaseUrl[baseUrlRandomIndex]}#bg=${fancyWordsBgParam[bgParamRandomIndex]}`;
   };
 
   const copyToClipboard = async (url, backgroundName) => {
     try {
       await navigator.clipboard.writeText(url);
       setCopiedUrl(url);
-      
+
       toast(
         (t) => (
           <div
@@ -60,9 +83,9 @@ const ShareMenu = ({ isOpen, onClose, currentBackground }) => {
             border: "1px solid rgba(233, 213, 192, 0.2)",
             boxShadow: "0 8px 32px rgba(47, 35, 42, 0.3)",
           },
-        }
+        },
       );
-      
+
       setTimeout(() => setCopiedUrl(null), 2000);
     } catch (err) {
       console.error("Failed to copy: ", err);
@@ -103,29 +126,29 @@ const ShareMenu = ({ isOpen, onClose, currentBackground }) => {
             </svg>
           </button>
         </div>
-        
+
         <div className="share-menu-content">
           <p>Share your current {backgroundName} with others:</p>
-          
+
           <div className="share-item">
             <div className="background-preview">
               {currentBackground.type === "video" ? (
                 <div className="video-preview">🎬</div>
               ) : (
-                <div 
-                  className="color-preview" 
+                <div
+                  className="color-preview"
                   style={{ backgroundColor: currentBackground.value }}
                 ></div>
               )}
             </div>
-            
+
             <div className="share-info">
               <div className="share-title">Current {backgroundName}</div>
               <div className="share-url">{shareUrl}</div>
             </div>
-            
+
             <button
-              className={`copy-button ${copiedUrl === shareUrl ? 'copied' : ''}`}
+              className={`copy-button ${copiedUrl === shareUrl ? "copied" : ""}`}
               onClick={() => copyToClipboard(shareUrl, backgroundName)}
             >
               {copiedUrl === shareUrl ? (
